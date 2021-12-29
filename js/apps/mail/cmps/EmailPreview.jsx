@@ -1,4 +1,4 @@
-import { MailService as EmailService } from "../services/mail.service.js"
+import { EmailService } from "../services/mail.service.js"
 
 const { Link } = ReactRouterDOM
 
