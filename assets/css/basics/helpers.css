@@ -2,13 +2,37 @@
    display: flex;
 }
 
+.row {
+   flex-direction: row;
+ }
 .column{
    flex-direction: column;
 }
 
+.justify-center {
+   justify-content: center;
+ }
+
 .space-between{
    justify-content: space-between;
 }
+
+.space-evenly {
+   justify-content: space-evenly;
+ }
+
+ .align-center {
+   align-items: center;
+ }
+
+
+.warp {
+   flex-wrap: wrap;
+ }
+
+
+
+
 
 .stick{
    position: fixed;

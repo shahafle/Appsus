@@ -1,8 +1,9 @@
-import { MailService } from "../services/mail.service.js"
-import { EmailInbox } from "../cmps/EmailInbox.jsx"
+import { EmailService } from "../services/mail.service.js"
+import { MailBox } from "../cmps/MailBox.jsx"
+import { EmailDetails } from "./EmailDetails.jsx"
 
 
-const Router = ReactRouterDOM.HashRouter
+// const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 
 
@@ -16,14 +17,15 @@ export class EmailApp extends React.Component {
    render() {
 
 
-      return <Router>
-         <React.Fragment>
-          
-               <div>EMAIL APP</div>
-               <Route component={EmailInbox} path="/mail/mail_inbox"/>
+      return<React.Fragment>
+               
+            <Switch>
+               <Route component={EmailDetails} path="/mail/mail_box/:emailId" />
+               <Route component={MailBox} path="/mail/mail_box" />
 
+            </Switch>
          </React.Fragment>
 
-      </Router>
+    
    }
 }
