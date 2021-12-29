@@ -10,7 +10,7 @@
 @import './cmps/app-header.css';
 
 /* MAIL APP */
-
+@import './apps/mail/cmps/inbox-preview.css';
 
 /* BOOK APP */
 @import './apps/book/cmps/add-review.css';
@@ -19,3 +19,11 @@
 @import './apps/book/cmps/books-filter.css';
 @import './apps/book/cmps/books-list.css';
 @import './apps/book/pages/book-app/main.css';
+
+
+
+
+.fas.fa-star{
+    color:gold;
+}
+

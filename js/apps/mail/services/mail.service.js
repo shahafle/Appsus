@@ -3,28 +3,44 @@ import { storageService } from '../../../services/storage.service.js';
 
 export const MailService = {
     query,
+    toggleEmailStarred,
 
 }
 
 const STORAGE_KEY = 'mailDB'
 
-
 _createMails()
-
 
 const loggedInUser = {
     email: 'user@appsus.com',
     fullName: 'Mahatma Appsus'
 }
 
-
 function query() {
     const emails = _loadFromStorage()
-    console.log('emails at Load quary:', emails);
-    
     return Promise.resolve(emails)
 }
 
+function getEmailById(emailId) {
+    const emails = _loadFromStorage()
+    var email = emails.find(email => {
+        return emailId === email.id
+    })
+    return Promise.resolve(email)
+}
+
+function toggleEmailStarred(emailId) {
+ 
+    const emails = _loadFromStorage()
+    const emailIdx = emails.findIndex( email => emailId === email.id)
+
+    return getEmailById(emailId).then(email =>{
+        email.isStared = !email.isStared
+        emails[emailIdx] = email
+        _saveEmailsToStorage(emails)
+        return email
+    })
+}
 
 
 function _createMails() {
@@ -33,8 +49,7 @@ function _createMails() {
         emails = [
             {
                 id: utilService.makeId(),
-                userName: 'Momo Cohen',
-                from: 'momo@momo.com',
+                from: { address: 'momo@momo.com', userName: 'Momo Cohen' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
@@ -46,7 +61,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                from: 'momo@momo.com',
+                from: { address: 'momo@momo.com', userName: 'Momo Cohen' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
@@ -58,7 +73,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                from: 'momo@momo.com',
+                from: { address: 'momo@momo.com', userName: 'Momo Shapira' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
@@ -70,7 +85,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                from: 'momo@momo.com',
+                from: { address: 'momo@momo.com', userName: 'Momo Yehezkel' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
@@ -82,7 +97,19 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                from: 'momo@momo.com',
+                from: { address: 'momo@momo.com', userName: 'Momo Dai' },
+                to: 'user@appsus.com',
+                subject: 'Miss you!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                isStared: false,
+                isTrashed: false,
+                labels: [],
+                sentAt: 1551133930594,
+            },
+            {
+                id: utilService.makeId(),
+                from: { address: 'momo@momo.com', userName: 'Momo Kaplan' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
@@ -92,12 +119,11 @@ function _createMails() {
                 labels: [],
                 sentAt: 1551133930594,
             }
+
+
         ]
     }
-console.log('emails at save:', emails);
-
     _saveEmailsToStorage(emails)
-
 }
 
 
