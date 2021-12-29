@@ -4,6 +4,7 @@ import { NotesBoard } from './pages/NotesBoard.jsx'
 const { Route, Switch } = ReactRouterDOM
 
 export class NoteApp extends React.Component {
+
    render() {
       return <React.Fragment>
          <AppHeader app="keep" />

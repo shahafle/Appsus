@@ -20,7 +20,9 @@
 @import './apps/book/cmps/books-list.css';
 @import './apps/book/pages/book-app/main.css';
 
-
+/* NOTES APP */
+@import './apps/keep/notes-board.css';
+@import './apps/keep/note-preview.css';
 
 
 .fas.fa-star{

@@ -10,45 +10,54 @@ const KEY = 'NotesDB';
 _createNotes()
 
 function query() {
-   return _loadNotesFromStorage()
+   const notes = _loadNotesFromStorage()
+   return Promise.resolve(notes);
 }
 
 
 function _createNotes() {
-   let notes = _saveNotesToStorage();
+   let notes = _loadNotesFromStorage();
    if (!notes || !notes.length) {
       notes = [{
          id: utilService.makeId(),
          type: "txt",
-         isPinned: true,
+         isPinned: false,
          info: {
             txt: "Fullstack Me Baby!"
+         },
+         style: {
+            color: 'khaki'
          }
       },
       {
          id: utilService.makeId(),
-         type: "note-img",
+         type: "img",
+         isPinned: false,
          info: {
-            url: "http://some-img/me",
+            url: "https://hellodesign.co/wp-content/uploads/2020/11/UX-hello-design.jpg",
             title: "Bobi and Me"
          },
          style: {
-            backgroundColor: "#00d"
+            backgroundColor: 'khaki'
          }
       },
       {
          id: utilService.makeId(),
-         type: "note-todos",
+         type: "todos",
+         isPinned: false,
          info: {
             label: "Get my stuff together",
             todos: [
                { txt: "Driving liscence", doneAt: null },
                { txt: "Coding power", doneAt: 187111111 }
             ]
+         },
+         style: {
+            backgroundColor: 'khaki'
          }
       }];
    }
-   _loadNotesFromStorage(notes);
+   _saveNotesToStorage(notes);
 }
 
 
