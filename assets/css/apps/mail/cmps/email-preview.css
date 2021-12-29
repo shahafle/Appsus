@@ -1,23 +1,26 @@
 
 
-.inbox-preview-table{
+.email-preview{
     border-collapse: collapse;
-}
-
-.inbox-preview-table .inbox-table-row{
     background-color: #8f8f8f85;
     border-top: 1px black solid;
     border-bottom: 1px black solid; 
-    
+    padding: 15px;
+
 }
 
-.inbox-preview-table .inbox-table-row:hover{
+
+.email-preview:hover{
     background-color: #a19696d0;
 }
 
-
-.inbox-preview-table td{
-    padding: 15px;
+.email-preview button{ 
+    margin-inline-end: 1.2rem;
+ 
+}
+.email-preview p{ 
+    margin-inline-end: 1.2rem;
+ 
 }
 
 

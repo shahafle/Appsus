@@ -10,7 +10,8 @@
 @import './cmps/app-header.css';
 
 /* MAIL APP */
-@import './apps/mail/cmps/inbox-preview.css';
+@import './apps/mail/cmps/email-preview.css';
+
 
 /* BOOK APP */
 @import './apps/book/cmps/add-review.css';

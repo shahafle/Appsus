@@ -1,15 +1,15 @@
 import { utilService } from '../../../services/util.service.js';
 import { storageService } from '../../../services/storage.service.js';
 
-export const MailService = {
+export const EmailService = {
     query,
-    toggleEmailStarred,
+    toggleEmailAttributes,
 
 }
 
 const STORAGE_KEY = 'mailDB'
 
-_createMails()
+_createEmails()
 
 const loggedInUser = {
     email: 'user@appsus.com',
@@ -29,13 +29,22 @@ function getEmailById(emailId) {
     return Promise.resolve(email)
 }
 
-function toggleEmailStarred(emailId) {
-
+function toggleEmailAttributes(emailId, attribute) {
     const emails = _loadFromStorage()
     const emailIdx = emails.findIndex(email => emailId === email.id)
 
     return getEmailById(emailId).then(email => {
-        email.isStared = !email.isStared
+
+        console.log('attribute:', attribute);
+        switch (attribute) {
+            case 'star':
+                email.isStared = !email.isStared
+                break;
+            case 'read':
+                email.isRead = !email.isRead
+                break;
+        }
+
         emails[emailIdx] = email
         _saveEmailsToStorage(emails)
         return email
@@ -43,7 +52,7 @@ function toggleEmailStarred(emailId) {
 }
 
 
-function _createMails() {
+function _createEmails() {
     var emails = _loadFromStorage()
     if (!emails || !emails.length) {
         emails = [
