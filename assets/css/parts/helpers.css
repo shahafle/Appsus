@@ -1,0 +1,42 @@
+.flex{
+   display: flex;
+}
+
+.column{
+   flex-direction: column;
+}
+
+.space-between{
+   justify-content: space-between;
+}
+
+.stick{
+   position: fixed;
+}
+
+.primary-btn{
+   font-size: 1.2rem;
+   padding: 7px;
+   border-radius: 5px;
+   background-color: rgb(32, 32, 32);
+   color: white;
+}
+
+.muted{
+   opacity:0.5;
+   font-weight: 400;
+}
+
+.green{
+color: green;
+}
+
+.red{
+   color: rgb(226, 49, 49);
+}
+
+.marked-field::after{
+   content: "*";
+   color: cornflowerblue;
+   font-weight: 800;
+}

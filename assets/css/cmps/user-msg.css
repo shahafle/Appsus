@@ -1,0 +1,20 @@
+.user-msg {
+   position: fixed;
+   top: 5%;
+   right: 5%;
+   padding: 1rem 1.5rem;
+}
+
+.user-msg button {
+   position: absolute;
+   top: 2%;
+   right: 2%;
+}
+
+.user-msg.success {
+   background-color: rgb(119, 238, 179);
+}
+
+.user-msg.danger {
+   background-color: rgb(238, 119, 119);
+}

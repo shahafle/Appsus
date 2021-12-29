@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 16px;
+}
+
+body {
+    background-color: rgb(107, 136, 168);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,p,button,ul,input{
+    margin: 0;
+    padding: 0;
+}
+
+h1::first-letter,h2::first-letter,h3::first-letter,h4::first-letter,
+h5::first-letter,h6::first-letter,p::first-letter,button::first-letter{
+text-transform: uppercase;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+}
+
+footer{
+    background-color: rgb(51, 46, 46);
+    padding: 20px;
+    color: rgb(224, 174, 64);
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style: none;
+}
+
+img{
+    object-fit: contain;
+    width:100%;
+    height:100%;
+}
