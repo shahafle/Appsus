@@ -1,5 +1,5 @@
-import { EmailInbox } from "../cmps/EmailInbox.jsx"
 import { MailService } from "../services/mail.service.js"
+import { EmailInbox } from "../cmps/EmailInbox.jsx"
 
 
 const Router = ReactRouterDOM.HashRouter

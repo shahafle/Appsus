@@ -40,3 +40,15 @@ color: green;
    color: cornflowerblue;
    font-weight: 800;
 }
+
+
+
+.clear-button{
+   background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	
+	cursor: pointer;
+	outline: inherit;
+}

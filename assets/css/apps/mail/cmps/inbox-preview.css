@@ -1,0 +1,23 @@
+
+
+.inbox-preview-table{
+    border-collapse: collapse;
+}
+
+.inbox-preview-table .inbox-table-row{
+    background-color: #8f8f8f85;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid; 
+    
+}
+
+.inbox-preview-table .inbox-table-row:hover{
+    background-color: #a19696d0;
+}
+
+
+.inbox-preview-table td{
+    padding: 15px;
+}
+
+

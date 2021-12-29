@@ -1,5 +1,5 @@
 import { MailService } from "../services/mail.service.js"
-
+import { InboxPreview } from "./InboxPreview.jsx"
 
 export class EmailInbox extends React.Component {
 
@@ -24,12 +24,16 @@ export class EmailInbox extends React.Component {
     render() {
         const { emails } = this.state
 
+
         if (!emails) return <div>'Loading...'</div>
         return (
             <section className="inbox-container">
-
-                Inbox
-
+                    
+                <table className="inbox-preview-table">
+                    <tbody>
+                    {emails.map(email => <InboxPreview key={email.id} email={email} />)}
+                    </tbody>
+                    </table>
 
             </section>
 
