@@ -21,7 +21,7 @@ const loggedInUser = {
 function query() {
     const emails = _loadFromStorage()
     console.log('emails at Load quary:', emails);
-    
+
     return Promise.resolve(emails)
 }
 
@@ -94,7 +94,6 @@ function _createMails() {
             }
         ]
     }
-console.log('emails at save:', emails);
 
     _saveEmailsToStorage(emails)
 

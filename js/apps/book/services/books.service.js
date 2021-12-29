@@ -484,6 +484,7 @@ function query(filterBy) {
    if (!filterBy) return Promise.resolve(books);
    books = books.filter(book => {
       const bookPrice = utilService.getPrice(book.listPrice, true)
+      if (!filterBy.maxPrice) return (book.title.toLowerCase().includes(filterBy.name.toLowerCase()))
       return (bookPrice <= filterBy.maxPrice && book.title.toLowerCase().includes(filterBy.name.toLowerCase()))
    })
    return Promise.resolve(books);

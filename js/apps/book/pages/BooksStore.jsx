@@ -7,9 +7,30 @@ export class BooksStore extends React.Component {
         books: [],
         filterBy: null
     }
+
+    removeEventBus
+
+
     componentDidMount() {
-        this.loadBooks();
+        let currSearch = new URLSearchParams(this.props.location.search).get('search');
+        currSearch = (currSearch === null) ? '' : currSearch;
+        this.setState((prevState) => ({
+            filterBy: { ...prevState.filterBy, 'name': currSearch }
+        }), this.loadBooks)
+
     }
+
+    componentDidUpdate(prevProps) {
+        if (new URLSearchParams(prevProps.location.search).get('search') !== new URLSearchParams(this.props.location.search).get('search')) {
+            let currSearch = new URLSearchParams(this.props.location.search).get('search');
+            currSearch = (currSearch === null) ? '' : currSearch;
+            this.setState((prevState) => ({
+                filterBy: { ...prevState.filterBy, 'name': currSearch }
+            }), this.loadBooks)
+        }
+    }
+
+
     loadBooks = () => {
         const { filterBy } = this.state;
         booksService.query(filterBy).then(books =>
