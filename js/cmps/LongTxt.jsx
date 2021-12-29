@@ -3,7 +3,6 @@ export class LongTxt extends React.Component {
       isMoreShown: false
    }
    onToggleReadMore = () => {
-      console.log('ho');
       this.setState({ isMoreShown: !this.state.isMoreShown })
    }
    render() {
