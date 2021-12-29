@@ -10,3 +10,12 @@
 @import './cmps/app-header.css';
 
 /* MAIL APP */
+
+
+/* BOOK APP */
+@import './apps/book/cmps/add-review.css';
+@import './apps/book/cmps/book-details.css';
+@import './apps/book/cmps/book-preview.css';
+@import './apps/book/cmps/books-filter.css';
+@import './apps/book/cmps/books-list.css';
+@import './apps/book/pages/book-app/main.css';

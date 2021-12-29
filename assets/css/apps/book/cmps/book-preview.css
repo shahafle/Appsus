@@ -1,0 +1,41 @@
+.book-preview{
+   padding: 5px 0;
+   border-bottom: 1px solid rgba(204, 204, 204, 0.582);
+   position: relative;
+}
+
+.preview-container{
+   gap:10px;
+}
+
+.book-preview:first-child{
+   padding-top: 0;
+}
+
+.book-preview:last-child{
+   border-bottom: none;
+}
+
+.book-preview img{
+   height: 150px;cursor: pointer;}
+
+.book-preview-info{
+   gap: 10px;
+}
+
+.book-preview-info h3{
+   text-transform: capitalize;
+}
+
+.book-preview-info .author{
+   font-size: 0.8rem;
+}
+
+.sale-tag{
+   color: rgb(82, 156, 79);
+   border-radius: 3px;
+   border: rgb(82, 156, 79) 1px solid;
+   align-self: flex-start;
+   padding: 0 2px 1px;
+   font-size: 0.9rem;
+}
