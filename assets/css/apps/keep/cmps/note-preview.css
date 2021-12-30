@@ -8,3 +8,9 @@
 .img-note-preview img{
    width: 100%;
 }
+
+.todo-note-preview input,.todo-note-preview label{
+   z-index: 1;
+   position: relative;
+   /* color: chartreuse; */
+}

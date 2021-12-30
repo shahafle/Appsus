@@ -5,7 +5,8 @@ export class TxtNoteDetails extends React.Component {
       const { note } = this.props
       if (!note) return <Loader />
       return <div className="note-details txt-note-details">
-         <h3>Details</h3>
+         <h3>{note.info.title}</h3>
+         <p>{note.info.txt}</p>
       </div>
    }
 }

@@ -22,8 +22,8 @@
 @import './apps/book/pages/book-app/main.css';
 
 /* NOTES APP */
-@import './apps/keep/notes-board.css';
-@import './apps/keep/note-preview.css';
+@import './apps/keep/pages/notes-board.css';
+@import './apps/keep/cmps/note-preview.css';
 
 
 .fas.fa-star{

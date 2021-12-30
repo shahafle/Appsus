@@ -1,6 +1,7 @@
 import { noteService } from "../services/note.service.js"
 import { Loader } from "../../../cmps/Loader.jsx"
 import { DynamicPreview } from "../cmps/dynamic-note-preview/DynamicPreview.jsx";
+import { ComposeNote } from "../cmps/ComposeNote.jsx";
 
 export class NotesBoard extends React.Component {
    state = {
@@ -16,11 +17,20 @@ export class NotesBoard extends React.Component {
          .then(notes => this.setState({ notes }))
    }
 
+   onAddNote = (rawNote) => {
+      noteService.addNote(rawNote)
+         .then(note => this.setState(prevState => ({ notes: [...prevState.notes, note] })))
+   }
+
    render() {
       const { notes } = this.state
       if (!notes) return <Loader />
-      return <main className="notes-board">
-         {notes.map(note => <DynamicPreview key={note.id} note={note} />)}
-      </main>
+      return <React.Fragment>
+         <ComposeNote onAddNote={this.onAddNote} />
+         <main className="notes-board">
+
+            {notes.map(note => <DynamicPreview key={note.id} note={note} />)}
+         </main>
+      </React.Fragment>
    }
 }

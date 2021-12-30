@@ -16,7 +16,7 @@ export class AddBook extends React.Component {
    }
    onAddBook = (book) => {
       booksService.addBook(book)
-         .then(book => eventBusService.emit('user-msg', { txt: `added !`, type: 'success' }))
+         .then(() => eventBusService.emit('user-msg', { txt: `added !`, type: 'success' }))
    }
 
    render() {

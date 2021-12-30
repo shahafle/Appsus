@@ -8,7 +8,8 @@ export class TxtNotePreview extends React.Component {
       if (!note) return <Loader />
       return <Link to={`/keep/note/${note.id}`}>
          <div className="note-preview txt-note-preview">
-            <h3>{note.info.txt}</h3>
+            <h3>{note.info.title}</h3>
+            <p>{note.info.txt}</p>
          </div>
       </Link>
    }
