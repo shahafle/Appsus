@@ -16,11 +16,12 @@ export class EmailPreview extends React.Component {
     }
 
 
+
     onToggleAttributes = (emailId, attribute) => {
         EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
             this.setState({ email })
+            // this.props.onUpdateReadCount()
             this.onToggleAttributesModal(attribute)
-            this.props.onUpdateReadCount()
         })
     }
 

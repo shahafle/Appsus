@@ -21,6 +21,15 @@
 .sidebar-trash {
   font-size: 1.5rem;
   padding: 15px;
+  cursor: pointer;
+}
+
+.sidebar-inbox:hover,
+.sidebar-starred:hover,
+.sidebar-sent:hover,
+.sidebar-draft:hover,
+.sidebar-trash:hover {
+ background-color: #fff;
 }
 
 .sidebar-sort i {
