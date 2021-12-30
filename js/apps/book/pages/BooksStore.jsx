@@ -17,7 +17,6 @@ export class BooksStore extends React.Component {
         this.setState((prevState) => ({
             filterBy: { ...prevState.filterBy, 'name': currSearch }
         }), this.loadBooks)
-
     }
 
     componentDidUpdate(prevProps) {

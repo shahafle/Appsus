@@ -2,13 +2,13 @@ import { TxtNotePreview } from './TxtNotePreview.jsx'
 import { ImgNotePreview } from './ImgNotePreview.jsx'
 import { TodoNotePreview } from './TodoNotePreview.jsx'
 
-export function DynamicPreview({ note }) {
-   switch (note.type) {
+export function DynamicPreview(props) {
+   switch (props.note.type) {
       case 'txt':
-         return <TxtNotePreview note={note} />
+         return <TxtNotePreview {...props} />
       case 'img':
-         return <ImgNotePreview note={note} />
+         return <ImgNotePreview {...props} />
       case 'todos':
-         return <TodoNotePreview note={note} />
+         return <TodoNotePreview {...props} />
    }
 }

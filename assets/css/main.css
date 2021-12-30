@@ -26,7 +26,4 @@
 /* NOTES APP */
 @import './apps/keep/pages/notes-board.css';
 @import './apps/keep/cmps/note-preview.css';
-
-
-
-
+@import './apps/keep/cmps/preview-action-bar.css'

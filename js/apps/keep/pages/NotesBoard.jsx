@@ -5,21 +5,52 @@ import { ComposeNote } from "../cmps/ComposeNote.jsx";
 
 export class NotesBoard extends React.Component {
    state = {
-      notes: null
+      notes: null,
+      filterBy: null
    }
 
    componentDidMount() {
-      this.loadNotes();
+      let currSearch = new URLSearchParams(this.props.location.search).get('search');
+      currSearch = (currSearch === null) ? '' : currSearch;
+      this.setState((prevState) => ({
+         filterBy: { ...prevState.filterBy, 'name': currSearch }
+      }), this.loadNotes)
    }
 
+   componentDidUpdate(prevProps) {
+      if (new URLSearchParams(prevProps.location.search).get('search') !== new URLSearchParams(this.props.location.search).get('search')) {
+         let currSearch = new URLSearchParams(this.props.location.search).get('search');
+         currSearch = (currSearch === null) ? '' : currSearch;
+         this.setState((prevState) => ({
+            filterBy: { ...prevState.filterBy, 'name': currSearch }
+         }), this.loadNotes)
+      }
+   }
+
+   // componentDidMount() {
+   //    this.loadNotes();
+   // }
+
    loadNotes = () => {
-      noteService.query()
-         .then(notes => this.setState({ notes }))
+      noteService.query(this.state.filterBy)
+         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
    }
 
    onAddNote = (rawNote) => {
       noteService.addNote(rawNote)
-         .then(note => this.setState(prevState => ({ notes: [...prevState.notes, note] })))
+         .then(note => this.setState(prevState => ({ ...prevState, notes: [...prevState.notes, note] })))
+   }
+
+   onDeleteNote = (ev, noteId) => {
+      ev.stopPropagation()
+      noteService.deleteNote(noteId)
+         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+   }
+
+   onPinNote = (ev, noteId) => {
+      ev.preventDefault()
+      noteService.toggleNotePin(noteId)
+         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
    }
 
    render() {
@@ -28,8 +59,7 @@ export class NotesBoard extends React.Component {
       return <React.Fragment>
          <ComposeNote onAddNote={this.onAddNote} />
          <main className="notes-board">
-
-            {notes.map(note => <DynamicPreview key={note.id} note={note} />)}
+            {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote} onPinNote={this.onPinNote} />)}
          </main>
       </React.Fragment>
    }

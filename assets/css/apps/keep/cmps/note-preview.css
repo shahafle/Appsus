@@ -9,8 +9,11 @@
    width: 100%;
 }
 
-.todo-note-preview input,.todo-note-preview label{
+.todo-note-preview button,.todo-note-preview label{
    z-index: 1;
    position: relative;
-   /* color: chartreuse; */
+}
+
+label.checked{
+   text-decoration: line-through;
 }

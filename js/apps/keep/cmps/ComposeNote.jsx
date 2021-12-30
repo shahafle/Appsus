@@ -1,3 +1,5 @@
+import { ComposeTodos } from "./composeTodos.jsx";
+
 export class ComposeNote extends React.Component {
    state = {
       note: {}
@@ -12,6 +14,7 @@ export class ComposeNote extends React.Component {
          <input type="text" name="title" placeholder="Title" onChange={this.handleChange} />
          <input type="text" name="txt" placeholder="Compose your text" onChange={this.handleChange} />
          <input type="text" name="imgUrl" placeholder="Image url" onChange={this.handleChange} />
+         <ComposeTodos />
          <button onClick={(ev) => {
             ev.preventDefault();
             this.props.onAddNote(this.state.note)
