@@ -5,6 +5,8 @@ export const EmailService = {
     query,
     toggleEmailAttributes,
     getEmailById,
+    getUnreadCount,
+    
 
 }
 
@@ -29,20 +31,18 @@ function getEmailById(emailId) {
     })
     return Promise.resolve(email)
 }
-// getUnreadCount()
-// function getUnreadCount(){
-//     const emails = _loadFromStorage()
-//     let readCount = 0
-//     emails.map(email =>{
-//         console.log('email:', email.isRead);
-//         if()
 
+function getUnreadCount(){
+    const emails = _loadFromStorage()
+    let unreadCount = 0
+    emails.map(email =>{
+    //    (email.isTrashed || !email.isRead )? unreadCount ++ :unreadCount--
+       if(!email.isTrashed&&!email.isRead) unreadCount++
+        console.log('unreadCount:', unreadCount);
+        return unreadCount   
+    })
 
-        
-        
-//     })
-
-// }
+}
 
 
 function toggleEmailAttributes(emailId, attribute) {
@@ -61,13 +61,14 @@ function toggleEmailAttributes(emailId, attribute) {
                 break;
             case 'trash':
                 // if(isDeleteItem){
-
+            
                 //     break;
                 // }
                 email.isTrashed = !email.isTrashed
                 break;
         }
-
+     
+        
         emails[emailIdx] = email
         _saveEmailsToStorage(emails)
         return email

@@ -1,15 +1,15 @@
 import { EmailService } from "../services/mail.service.js"
 import { EmailPreview } from "./EmailPreview.jsx"
-import { Loader } from "../../../cmps/Loader.jsx";
 
+import { Loader } from "../../../cmps/Loader.jsx";
 
 export class MailBox extends React.Component {
 
 
     state = {
         emails: [],
-        filterBy:null,
-        
+        filterBy: null,
+
     }
 
     componentDidMount() {
@@ -17,7 +17,6 @@ export class MailBox extends React.Component {
     }
 
     loadEmails = () => {
-
         EmailService.query().then(emails => {
             this.setState({ emails })
         })
@@ -29,14 +28,15 @@ export class MailBox extends React.Component {
         const { emails } = this.state
 
 
-        if (!emails) return <Loader/>
+        if (!emails) return <Loader />
         return (
-            <section className="mailbox-container">
-                                    
-                    {emails.map(email => <EmailPreview key={email.id} email={email} />)}  
+            <React.Fragment>
+                
+                <section className="mailbox-container flex column">
+                    {emails.map(email => <EmailPreview key={email.id} email={email} onUpdateReadCount={this.onUpdateReadCount} />)}
 
-            </section>
-
+                </section>
+            </React.Fragment>
 
         )
 
