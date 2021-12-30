@@ -3,7 +3,7 @@
 export function Loader() {
     return (
         <div className="loader">
-            <h1>Loading...</h1>
+            <img src="././assets/img/loader.svg" alt="" />
         </div>
     )
 }

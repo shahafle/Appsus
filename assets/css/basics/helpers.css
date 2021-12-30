@@ -24,6 +24,13 @@
  .align-center {
    align-items: center;
  }
+ .align-end {
+   align-self: flex-end;
+ }
+ .align-start {
+   align-self: flex-start;
+ }
+
 
 
 .warp {

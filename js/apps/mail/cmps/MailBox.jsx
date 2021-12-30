@@ -1,5 +1,7 @@
 import { EmailService } from "../services/mail.service.js"
 import { EmailPreview } from "./EmailPreview.jsx"
+import { Loader } from "../../../cmps/Loader.jsx";
+
 
 export class MailBox extends React.Component {
 
@@ -27,7 +29,7 @@ export class MailBox extends React.Component {
         const { emails } = this.state
 
 
-        if (!emails) return <div>'Loading...'</div>
+        if (!emails) return <Loader/>
         return (
             <section className="mailbox-container">
                                     

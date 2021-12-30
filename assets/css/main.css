@@ -8,6 +8,8 @@
 
 /* MAIN APP */
 @import './cmps/app-header.css';
+@import './apps/mail/pages/side-bar.css';
+
 
 /* MAIL APP */
 @import './apps/mail/cmps/email-preview.css';
@@ -26,7 +28,5 @@
 @import './apps/keep/cmps/note-preview.css';
 
 
-.fas.fa-star{
-    color:gold;
-}
+
 

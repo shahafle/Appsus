@@ -4,6 +4,7 @@ import { storageService } from '../../../services/storage.service.js';
 export const EmailService = {
     query,
     toggleEmailAttributes,
+    getEmailById,
 
 }
 
@@ -28,6 +29,21 @@ function getEmailById(emailId) {
     })
     return Promise.resolve(email)
 }
+// getUnreadCount()
+// function getUnreadCount(){
+//     const emails = _loadFromStorage()
+//     let readCount = 0
+//     emails.map(email =>{
+//         console.log('email:', email.isRead);
+//         if()
+
+
+        
+        
+//     })
+
+// }
+
 
 function toggleEmailAttributes(emailId, attribute) {
     const emails = _loadFromStorage()
@@ -38,10 +54,17 @@ function toggleEmailAttributes(emailId, attribute) {
         console.log('attribute:', attribute);
         switch (attribute) {
             case 'star':
-                email.isStared = !email.isStared
+                email.isStarred = !email.isStarred
                 break;
             case 'read':
                 email.isRead = !email.isRead
+                break;
+            case 'trash':
+                // if(isDeleteItem){
+
+                //     break;
+                // }
+                email.isTrashed = !email.isTrashed
                 break;
         }
 
@@ -63,19 +86,19 @@ function _createEmails() {
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                isStared: false,
+                isStarred: false,
                 isTrashed: false,
                 labels: [],
                 sentAt: 1551133930594,
             },
-            {
+            {   
                 id: utilService.makeId(),
                 from: { address: 'momo@momo.com', userName: 'Momo Cohen' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
-                body: 'Would love to catch up sometimes',
+                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit possimus quaerat eveniet accusamus ipsa ut exercitationem molestiae repellendus doloribus ipsum repellat vero error incidunt libero, atque explicabo praesentium eius corporis autem. Nobis, beatae aut dignissimos maxime vitae ipsam corporis labore eius culpa. Illum obcaecati, nam quis alias ad officiis blanditiis.',
                 isRead: false,
-                isStared: false,
+                isStarred: false,
                 isTrashed: false,
                 labels: [],
                 sentAt: 1551133930594,
@@ -85,24 +108,24 @@ function _createEmails() {
                 from: { address: 'momo@momo.com', userName: 'Momo Shapira' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
-                body: 'Would love to catch up sometimes',
+                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ipsum repellat vero error incidunt libero, atque explicabo praesentium eius corporis autem. Nobis, beatae aut dignissimos maxime vitae ipsam corporis labore eius culpa. Illum obcaecati, nam quis alias ad officiis blanditiis.',
                 isRead: false,
-                isStared: false,
+                isStarred: false,
                 isTrashed: false,
                 labels: [],
-                sentAt: 1551133930594,
+                sentAt: 1551137580594,
             },
             {
                 id: utilService.makeId(),
                 from: { address: 'momo@momo.com', userName: 'Momo Yehezkel' },
                 to: 'user@appsus.com',
                 subject: 'Miss you!',
-                body: 'Would love to catch up sometimes',
+                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit possimus quaerat eveniet accusamus ipsa ut exercitationem molestiae repellendus doloribus ipsum repellat vero error incidunt libero, atque explicabo praesentium eius corporis autem. Nobis, beatae aut dignissimos maxime vitae ipsam corporis labore eius.',
                 isRead: false,
-                isStared: false,
+                isStarred: false,
                 isTrashed: false,
                 labels: [],
-                sentAt: 1551133930594,
+                sentAt: 1552533930594,
             },
             {
                 id: utilService.makeId(),
@@ -111,10 +134,10 @@ function _createEmails() {
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                isStared: false,
+                isStarred: false,
                 isTrashed: false,
                 labels: [],
-                sentAt: 1551133930594,
+                sentAt: 1551132530594,
             },
             {
                 id: utilService.makeId(),
@@ -123,10 +146,10 @@ function _createEmails() {
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                isStared: false,
+                isStarred: false,
                 isTrashed: false,
                 labels: [],
-                sentAt: 1551133930594,
+                sentAt: 1551423930594,
             }
 
 
