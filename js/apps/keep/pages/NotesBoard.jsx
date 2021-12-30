@@ -27,10 +27,6 @@ export class NotesBoard extends React.Component {
       }
    }
 
-   // componentDidMount() {
-   //    this.loadNotes();
-   // }
-
    loadNotes = () => {
       noteService.query(this.state.filterBy)
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
@@ -56,11 +52,11 @@ export class NotesBoard extends React.Component {
    render() {
       const { notes } = this.state
       if (!notes) return <Loader />
-      return <React.Fragment>
+      return <main className="main-layout">
          <ComposeNote onAddNote={this.onAddNote} />
-         <main className="notes-board">
+         <div className="notes-board">
             {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote} onPinNote={this.onPinNote} />)}
-         </main>
-      </React.Fragment>
+         </div>
+      </main>
    }
 }

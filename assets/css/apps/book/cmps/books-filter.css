@@ -2,6 +2,6 @@
    gap: 20px;
 }
 
-input[type=text]{
+.books-filter input[type=text]{
    padding: 2px;
 }

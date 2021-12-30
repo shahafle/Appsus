@@ -10,41 +10,41 @@ const { Route, Switch } = ReactRouterDOM
 
 
 export class EmailApp extends React.Component {
-   
-   
+
+
    state = {
-   
+
       unreadCount: 0,
-   
+
    }
 
 
-   componentDidMount(){
+   componentDidMount() {
       this.onUpdateReadCount()
    }
 
    onUpdateReadCount = () => {
       const unreadCount = EmailService.getUnreadCount()
-      this.setState({unreadCount})
+      this.setState({ unreadCount })
    }
 
 
-   
+
 
    render() {
-      const {unreadCount} = this.state
-      
-      return<React.Fragment>
-                <AppHeader app="email" />
-                <main className="flex">
-                <AppSideBar unreadCount={unreadCount} />
+      const { unreadCount } = this.state
+
+      return <React.Fragment>
+         <AppHeader app="email" />
+         <main className="flex main-layout">
+            <AppSideBar unreadCount={unreadCount} />
             <Switch>
-               <Route component={() => <EmailDetails onUpdateReadCount={this.onUpdateReadCount}/>} path="/mail/mail_box/:emailId" />
-               <Route component={() => <MailBox onUpdateReadCount={this.onUpdateReadCount}/>} path="/mail/mail_box" />
+               <Route component={() => <EmailDetails onUpdateReadCount={this.onUpdateReadCount} />} path="/mail/mail_box/:emailId" />
+               <Route component={() => <MailBox onUpdateReadCount={this.onUpdateReadCount} />} path="/mail/mail_box" />
 
             </Switch>
-            </main>
-         </React.Fragment>
+         </main>
+      </React.Fragment>
 
 
    }

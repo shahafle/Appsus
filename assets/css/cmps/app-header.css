@@ -1,8 +1,22 @@
 header{
-    background-color: wheat;
+    background-color: rgb(238, 238, 238);
+    padding: 10px;
+    box-shadow: inset 0 -5px 0 0 rgb(218, 180, 98);
 }
 
 
-.main-header .header-nav > *{
+header .header-nav > *:not(:last-child){
     margin-inline-end: 1.3rem;
+}
+
+header .logo{
+    height: 40px;
+}
+
+
+header input{
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    padding: 6px;
 }

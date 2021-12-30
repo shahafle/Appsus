@@ -5,7 +5,7 @@ export class TodoNoteDetails extends React.Component {
       const { note } = this.props
       console.log(note);
       if (!note) return <Loader />
-      return <div className="note-details  todo-note-details ">
+      return <div className="note-details  todo-note-details main-layout">
          <h3>{note.info.title}</h3>
          <ul>
             {note.info.todos.map((todo, i) => {

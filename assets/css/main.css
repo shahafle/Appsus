@@ -4,14 +4,15 @@
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './cmps/user-msg.css';
+@import './basics/layout.css';
 
 
 /* MAIN APP */
 @import './cmps/app-header.css';
-@import './apps/mail/pages/side-bar.css';
 
 
 /* MAIL APP */
+@import './apps/mail/pages/side-bar.css';
 @import './apps/mail/cmps/email-preview.css';
 
 
@@ -26,4 +27,5 @@
 /* NOTES APP */
 @import './apps/keep/pages/notes-board.css';
 @import './apps/keep/cmps/note-preview.css';
-@import './apps/keep/cmps/preview-action-bar.css'
+@import './apps/keep/cmps/preview-action-bar.css';
+
