@@ -3,8 +3,7 @@ import { ImgNotePreview } from './ImgNotePreview.jsx'
 import { TodoNotePreview } from './TodoNotePreview.jsx'
 
 export function DynamicPreview({ note }) {
-   const { type } = note;
-   switch (type) {
+   switch (note.type) {
       case 'txt':
          return <TxtNotePreview note={note} />
       case 'img':

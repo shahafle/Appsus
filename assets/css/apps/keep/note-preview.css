@@ -1,3 +1,10 @@
 .note-preview{
-   
+   background-color:khaki;
+   border-radius: 10px;
+   overflow: hidden;
+   cursor: pointer;
+}
+
+.img-note-preview img{
+   width: 100%;
 }
