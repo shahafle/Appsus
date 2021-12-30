@@ -1,3 +1,8 @@
 header{
     background-color: wheat;
 }
+
+
+.main-header .header-nav > *{
+    margin-inline-end: 1.3rem;
+}

@@ -6,7 +6,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
-    getPrice
+    getPrice,
+    getDate,
 }
 
 function makeId(length = 6) {
@@ -73,4 +74,17 @@ function getPrice({ amount, currencyCode }, isGetInNIS) {
         case 'USD':
             return (!isGetInNIS) ? '$' + amount : Math.floor(amount * 3.15);
     }
+}
+
+
+
+function getDate(timeStamp){
+   
+    var date = new Date(timeStamp);
+    
+    return(date.getDate()+
+              "/"+(date.getMonth()+1)+
+              "/"+date.getFullYear()+
+              " "+date.getHours()+
+              ":"+date.getMinutes());
 }

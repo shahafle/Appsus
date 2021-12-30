@@ -12,7 +12,7 @@ export class LongTxt extends React.Component {
       const showBtnTxt = (this.state.isMoreShown) ? ' [hide]' : ' [...]'
       return <React.Fragment>
          <p>{txtToShow}
-            {text.length > 100 && <a className="show-more-btn" onClick={this.onToggleReadMore}>{showBtnTxt}</a>}
+            {text.length > 100 && <button className="show-more-btn clear-button" onClick={this.onToggleReadMore}>{showBtnTxt}</button>}
          </p>
       </React.Fragment>
 
