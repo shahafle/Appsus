@@ -1,12 +1,21 @@
 import { Loader } from "../../../../cmps/Loader.jsx"
 
-export class TxtNoteDetails extends React.Component {
-   render() {
-      const { note } = this.props
-      if (!note) return <Loader />
-      return <div className="note-details txt-note-details main-layout">
-         <h3>{note.info.title}</h3>
-         <p>{note.info.txt}</p>
-      </div>
-   }
+export function TxtNoteDetails({ note, handleEdit, onSaveEdit }) {
+   if (!note) return <Loader />
+   return <div className="note-details txt-note-details main-layout">
+      <h3 contentEditable="true"
+         data-name="title"
+         suppressContentEditableWarning={true}
+         onBlur={({ target }) => handleEdit(target)}
+      >{note.info.title}</h3>
+
+      <p contentEditable="true"
+         data-name="txt"
+         suppressContentEditableWarning={true}
+         onBlur={({ target }) => handleEdit(target)}
+      >{note.info.txt}</p>
+      <button
+         onClick={onSaveEdit}
+      >Save</button>
+   </div>
 }

@@ -5,13 +5,13 @@ const { Link } = ReactRouterDOM
 
 export class TxtNotePreview extends React.Component {
    render() {
-      const { note, onDeleteNote, onPinNote } = this.props
+      const { note } = this.props
       if (!note) return <Loader />
       return <Link to={`/keep/note/${note.id}`}>
-         <div className="note-preview txt-note-preview flex column">
+         <div className="note-preview txt-note-preview flex column" style={{ backgroundColor: note.backgroundColor }}>
             <h3>{note.info.title}</h3>
             <p>{note.info.txt}</p>
-            <PreviewActionBar note={note} onDeleteNote={onDeleteNote} onPinNote={onPinNote} />
+            <PreviewActionBar {...this.props} />
          </div>
       </Link>
    }

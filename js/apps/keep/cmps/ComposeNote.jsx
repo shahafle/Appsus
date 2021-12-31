@@ -13,10 +13,16 @@ export class ComposeNote extends React.Component {
       isOpen: false
    }
 
+   removeEventBus
+
    componentDidMount() {
-      eventBusService.on('toggleNoteCompose', (isOpen) => {
+      this.removeEventBus = eventBusService.on('toggleNoteCompose', (isOpen) => {
          this.setState((prevState) => ({ ...prevState, isOpen }))
       })
+   }
+
+   componentWillUnmount() {
+      this.removeEventBus();
    }
 
    handleFieldChange = ({ target }) => {
@@ -39,9 +45,9 @@ export class ComposeNote extends React.Component {
          <div className={`compose-preview flex column ${(isOpen && type !== 'todos') ? 'compose-open' : ''}`}>
 
             <div className="compose-types flex">
-               <button className="fas fa-paragraph" onClick={(ev) => this.onChangeType(ev, 'txt')}></button>
-               <button className="fas fa-image" onClick={(ev) => this.onChangeType(ev, 'img')}></button>
-               <button className="fas fa-tasks" onClick={(ev) => this.onChangeType(ev, 'todos')}></button>
+               <button className={`fas fa-paragraph ${(type === 'txt' ? 'active' : '')}`} onClick={(ev) => this.onChangeType(ev, 'txt')}></button>
+               <button className={`fas fa-image ${(type === 'img' ? 'active' : '')}`} onClick={(ev) => this.onChangeType(ev, 'img')}></button>
+               <button className={`fas fa-tasks  ${(type === 'todos' ? 'active' : '')}`} onClick={(ev) => this.onChangeType(ev, 'todos')}></button>
             </div>
             <input type="text"
                name="title"

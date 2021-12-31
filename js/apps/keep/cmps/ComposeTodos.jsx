@@ -24,7 +24,7 @@ export class ComposeTodos extends React.Component {
       const { todos } = this.state
 
       return <React.Fragment>
-         <label className="compose-todos-label" >Todos</label>
+         {/* <label className="compose-todos-label muted" >Todos</label> */}
          {todos.map((todo, i) => <ComposeTodoLine key={i} todoIdx={i} todo={todo} handleTodoChange={this.handleTodoChange} />)}
       </React.Fragment>
    }

@@ -4,6 +4,8 @@ import { DynamicPreview } from "../cmps/dynamic-note-preview/DynamicPreview.jsx"
 import { ComposeNote } from "../cmps/ComposeNote.jsx";
 import { Screen } from "../../../cmps/Screen.jsx";
 
+const { Route } = ReactRouterDOM
+
 export class NotesBoard extends React.Component {
    state = {
       notes: null,
@@ -53,13 +55,28 @@ export class NotesBoard extends React.Component {
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
    }
 
+   onDuplicateNote = (ev, noteId) => {
+      ev.preventDefault()
+      noteService.duplicateNote(noteId)
+         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+   }
+
+   onColorNote = (ev, noteId, color) => {
+      ev.preventDefault()
+      noteService.colorNote(noteId, color)
+         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+   }
+
    render() {
       const { notes } = this.state
       if (!notes) return <Loader />
       return <main className="main-layout">
          <ComposeNote onAddNote={this.onAddNote} />
          <div className="notes-board">
-            {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote} onPinNote={this.onPinNote} />)}
+            {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote}
+               onPinNote={this.onPinNote} onDuplicateNote={this.onDuplicateNote} onColorNote={this.onColorNote} />)}
+            {/* {notes.map(note => <Route component={ } />)} */}
+
          </div>
          <Screen />
       </main>
