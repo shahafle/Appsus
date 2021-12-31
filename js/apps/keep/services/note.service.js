@@ -94,16 +94,27 @@ function getNoteById(noteId) {
 }
 
 function addNote(note) {
-   const noteType = (note.imgUrl) ? 'img' : 'txt';
+   const { fields, type } = note
+   console.log(fields);
+   let info = { title: fields.title };
+   switch (type) {
+      case 'txt':
+         info.txt = fields.txt
+         break;
+      case 'img':
+         info.url = fields.url
+         break;
+      case 'todos':
+         fields.todos.pop();
+         info.todos = fields.todos.map(todo => ({ txt: todo }))
+         break;
+   }
+
    const formattedNote = {
       id: utilService.makeId(),
-      type: noteType,
+      type,
       isPinned: false,
-      info: {
-         url: note.imgUrl,
-         title: note.title,
-         txt: note.txt
-      },
+      info,
       style: {
          backgroundColor: 'khaki'
       }

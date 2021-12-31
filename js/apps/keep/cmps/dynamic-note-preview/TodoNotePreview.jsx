@@ -23,7 +23,6 @@ export class TodoNotePreview extends React.Component {
 
    onToggleTodoChecked = (ev, noteId, todoIdx) => {
       ev.preventDefault()
-      // ev.stopPropagation()
       noteService.toggleTodoChecked(noteId, todoIdx)
          .then(note => {
             this.setState({ note })
@@ -35,7 +34,7 @@ export class TodoNotePreview extends React.Component {
       const { note } = this.state
       if (!note) return <Loader />
       return <Link to={`/keep/note/${note.id}`}>
-         <div className="note-preview  todo-note-preview ">
+         <div className="note-preview  todo-note-preview flex column">
             <h3>{note.info.title}</h3>
             <ul>
                {note.info.todos.map((todo, i) => {

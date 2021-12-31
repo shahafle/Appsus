@@ -1,6 +1,8 @@
 .notes-board{
    display: grid;
    grid-template-columns: repeat(auto-fill,250px);
-   gap: 10px;
+   gap: 20px;
    text-align: center;
+   padding: 20px 0;
+   align-items: start;
 }

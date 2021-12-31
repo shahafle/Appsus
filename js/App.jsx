@@ -10,7 +10,7 @@ const { Route, Switch } = ReactRouterDOM
 
 export function App() {
     return <Router>
-            
+
         <React.Fragment>
             <Switch>
                 <Route component={BookApp} path="/book" />

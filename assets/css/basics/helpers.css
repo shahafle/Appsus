@@ -83,3 +83,7 @@ color: green;
 	cursor: pointer;
 	outline: inherit;
 }
+
+.hidden{
+   display: none;
+}

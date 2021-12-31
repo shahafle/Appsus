@@ -1,0 +1,78 @@
+.compose-note{
+   padding: 10px ;
+   align-items: center;
+   z-index: 2;
+   position: relative;
+   max-width: 300px;
+   margin: 10px auto;
+   border-radius: 10px;
+   border: 1px rgba(124, 124, 124, 0.322) solid;
+}
+
+
+.compose-note.compose-open{
+background-color: rgba(151, 151, 151, 0.144);
+}
+
+.compose-note input{
+   border: none;
+   font-size: 0.9rem;
+   background: transparent;
+   padding: 5px 10px;
+}
+
+.compose-preview{
+   border-radius: 5px;
+   /* outline: black 2px solid; */
+}
+
+.compose-preview > :last-child{
+   border-end-start-radius: 5px;
+   border-end-end-radius: 5px;
+}
+
+.compose-preview .compose-open:last-child{
+   border-end-start-radius: 0;
+   border-end-end-radius: 0;
+}
+
+.compose-preview.compose-open{
+   border-end-start-radius: 0;
+   border-end-end-radius: 0;
+}
+
+.extra-fields > input:first-child{
+   border-end-start-radius: 5px;
+   border-end-end-radius: 5px;
+   
+}
+
+.extra-fields > .todo-compose-line:first-of-type{
+   border-start-start-radius: 5px;
+   border-start-end-radius: 5px;
+}
+
+.extra-fields > .todo-compose-line:last-of-type{
+   border-end-start-radius: 5px;
+   border-end-end-radius: 5px;
+}
+
+.compose-todos-label{
+   font-weight: 800;
+}
+
+.compose-types{
+   border-start-start-radius: 5px;
+   border-start-end-radius: 5px;
+   gap:5px;
+   margin-bottom: 5px;
+}
+
+.compose-types button{
+   font-size: 1rem;
+   border-radius: 50%;
+   height: 30px;
+   width: 30px;
+   background-color: rgba(151, 151, 151, 0.308);
+}
+

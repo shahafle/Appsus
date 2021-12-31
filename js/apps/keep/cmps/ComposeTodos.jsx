@@ -2,28 +2,30 @@ import { ComposeTodoLine } from "./ComposeTodoLine.jsx"
 
 export class ComposeTodos extends React.Component {
    state = {
-      lines: ['todo1', 'todo2']
+      todos: ['task', '']
    }
 
-   handleTodoChange = (newTxt, lineIdx) => {
-      let { lines } = this.state;
-      lines[lineIdx] = newTxt;
-      lines = this.clearEmptyLines(lines)
-      lines.push('')
-      this.setState({ lines });
+   handleTodoChange = (newTxt, todoIdx) => {
+      let { todos } = this.state;
+      todos[todoIdx] = newTxt;
+      todos = this.clearEmptyLines(todos);
+      this.props.handleFieldChange({ target: { name: 'todos', value: todos } })
+      todos.push('')
+      this.setState({ todos });
    }
 
-   clearEmptyLines = (lines) => {
-      return lines.filter(line => (typeof line === 'string' && line !== ''))
+   clearEmptyLines = (todos) => {
+      return todos.filter(todo => (typeof todo === 'string' && todo !== ''))
    }
+
 
 
    render() {
-      const { lines } = this.state
+      const { todos } = this.state
 
       return <React.Fragment>
-         <label htmlFor="" >Todos</label>
-         {lines.map((line, i) => <ComposeTodoLine key={i} lineIdx={i} line={line} handleTodoChange={this.handleTodoChange} />)}
+         <label className="compose-todos-label" >Todos</label>
+         {todos.map((todo, i) => <ComposeTodoLine key={i} todoIdx={i} todo={todo} handleTodoChange={this.handleTodoChange} />)}
       </React.Fragment>
    }
 }

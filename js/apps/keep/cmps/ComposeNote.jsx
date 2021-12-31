@@ -1,24 +1,67 @@
 import { ComposeTodos } from "./composeTodos.jsx";
+import { eventBusService } from "../../../services/event-bus.service.js";
 
 export class ComposeNote extends React.Component {
    state = {
-      note: {}
+      fields: {
+         title: '',
+         txt: '',
+         url: '',
+         todos: []
+      },
+      type: 'txt',
+      isOpen: false
    }
 
-   handleChange = ({ target }) => {
-      this.setState(prevState => ({ note: { ...prevState.note, [target.name]: target.value } }))
+   componentDidMount() {
+      eventBusService.on('toggleNoteCompose', (isOpen) => {
+         this.setState((prevState) => ({ ...prevState, isOpen }))
+      })
+   }
+
+   handleFieldChange = ({ target }) => {
+      this.setState(prevState => ({ ...prevState, fields: { ...prevState.fields, [target.name]: target.value } }))
+   }
+
+   onChangeType = (ev, type) => {
+      ev.preventDefault()
+      this.setState(prevState => ({ ...prevState, type }))
+   }
+
+   onToggleExtraFields = (isComposeOpen) => {
+      eventBusService.emit('toggleScreen', isComposeOpen)
+      this.setState(prevState => ({ ...prevState, isOpen: isComposeOpen }))
    }
 
    render() {
-      return <form>
-         <input type="text" name="title" placeholder="Title" onChange={this.handleChange} />
-         <input type="text" name="txt" placeholder="Compose your text" onChange={this.handleChange} />
-         <input type="text" name="imgUrl" placeholder="Image url" onChange={this.handleChange} />
-         <ComposeTodos />
-         <button onClick={(ev) => {
-            ev.preventDefault();
-            this.props.onAddNote(this.state.note)
-         }}>Add</button>
-      </form>
+      const { type, isOpen } = this.state
+      return <form className={`compose-note ${(isOpen) ? 'compose-open' : ''}`}>
+         <div className={`compose-preview flex column ${(isOpen && type !== 'todos') ? 'compose-open' : ''}`}>
+
+            <div className="compose-types flex">
+               <button className="fas fa-paragraph" onClick={(ev) => this.onChangeType(ev, 'txt')}></button>
+               <button className="fas fa-image" onClick={(ev) => this.onChangeType(ev, 'img')}></button>
+               <button className="fas fa-tasks" onClick={(ev) => this.onChangeType(ev, 'todos')}></button>
+            </div>
+            <input type="text"
+               name="title"
+               placeholder="Title"
+               onChange={this.handleFieldChange}
+               onFocus={() => this.onToggleExtraFields(true)}
+               className={` ${(isOpen && type !== 'todos') ? 'compose-open' : ''}`} />
+         </div>
+
+         <div className={`flex column extra-fields ${(!this.state.isOpen) ? 'hidden' : ''}`}>
+
+            {type === 'txt' && < input type="text" name="txt" placeholder="Compose your text" onChange={this.handleFieldChange} />}
+            {type === 'img' && <input type="text" name="url" placeholder="Image url" onChange={this.handleFieldChange} />}
+            {type === 'todos' && <ComposeTodos handleFieldChange={this.handleFieldChange} />}
+            <button onClick={(ev) => {
+               ev.preventDefault();
+               this.onToggleExtraFields(false);
+               this.props.onAddNote(this.state);
+            }}>Add</button>
+         </div>
+      </form >
    }
 }

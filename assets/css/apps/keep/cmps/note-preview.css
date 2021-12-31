@@ -1,8 +1,21 @@
 .note-preview{
-   background-color:khaki;
+   background-color:rgb(236, 236, 236);
    border-radius: 10px;
    overflow: hidden;
    cursor: pointer;
+   transition: box-shadow 0.3s;
+   align-self:flex-start;
+   text-align: start;
+   border: 0.2px solid rgb(196, 196, 196);
+}
+
+.todo-note-preview ,.txt-note-preview,.img-note-preview-details{
+   gap:8px;
+   padding: 5px 10px;
+}
+
+.note-preview:hover{
+ box-shadow: 0 0 5px 0px black;
 }
 
 .img-note-preview img{
@@ -16,4 +29,33 @@
 
 label.checked{
    text-decoration: line-through;
+}
+
+.preview-actions-bar{
+   gap: 7px;
+}
+
+.preview-actions-bar button{
+   font-size: 1.2rem;
+   padding: 2px;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   transition: background-color 0.5s;
+}
+
+.note-preview .preview-actions-bar button:not(.pinned){
+   visibility: hidden;
+   opacity: 0;
+   transition: opacity 0.5s;
+}
+
+.note-preview:hover .preview-actions-bar button{
+   background-color: rgba(0, 0, 0, 0.24);
+   visibility: visible;
+   opacity: 1;
+}
+
+.fa-thumbtack.unpinned::before{
+   opacity: 0.3;
 }

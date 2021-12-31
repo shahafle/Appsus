@@ -10,8 +10,11 @@ export function ImgNotePreview(props) {
    return <Link to={`/keep/note/${note.id}`}>
       <div className="note-preview img-note-preview">
          <img src={note.info.url} />
-         <h3>{note.info.title}</h3>
+
+         <div className="img-note-preview-details flex column">
+            <h3>{note.info.title}</h3>
+            <PreviewActionBar note={note} onDeleteNote={onDeleteNote} onPinNote={onPinNote} />
+         </div>
       </div>
-      <PreviewActionBar note={note} onDeleteNote={onDeleteNote} onPinNote={onPinNote} />
    </Link>
 }

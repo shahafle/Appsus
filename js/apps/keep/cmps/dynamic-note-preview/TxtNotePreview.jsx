@@ -8,11 +8,11 @@ export class TxtNotePreview extends React.Component {
       const { note, onDeleteNote, onPinNote } = this.props
       if (!note) return <Loader />
       return <Link to={`/keep/note/${note.id}`}>
-         <div className="note-preview txt-note-preview">
+         <div className="note-preview txt-note-preview flex column">
             <h3>{note.info.title}</h3>
             <p>{note.info.txt}</p>
+            <PreviewActionBar note={note} onDeleteNote={onDeleteNote} onPinNote={onPinNote} />
          </div>
-         <PreviewActionBar note={note} onDeleteNote={onDeleteNote} onPinNote={onPinNote} />
       </Link>
    }
 }

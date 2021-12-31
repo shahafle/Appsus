@@ -2,6 +2,7 @@ import { noteService } from "../services/note.service.js"
 import { Loader } from "../../../cmps/Loader.jsx"
 import { DynamicPreview } from "../cmps/dynamic-note-preview/DynamicPreview.jsx";
 import { ComposeNote } from "../cmps/ComposeNote.jsx";
+import { Screen } from "../../../cmps/Screen.jsx";
 
 export class NotesBoard extends React.Component {
    state = {
@@ -34,7 +35,10 @@ export class NotesBoard extends React.Component {
 
    onAddNote = (rawNote) => {
       noteService.addNote(rawNote)
-         .then(note => this.setState(prevState => ({ ...prevState, notes: [...prevState.notes, note] })))
+         .then(note => {
+            if (note.info)
+               this.setState(prevState => ({ ...prevState, notes: [...prevState.notes, note] }))
+         })
    }
 
    onDeleteNote = (ev, noteId) => {
@@ -57,6 +61,7 @@ export class NotesBoard extends React.Component {
          <div className="notes-board">
             {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote} onPinNote={this.onPinNote} />)}
          </div>
+         <Screen />
       </main>
    }
 }
