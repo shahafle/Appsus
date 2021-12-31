@@ -36,7 +36,7 @@ export class EmailApp extends React.Component {
 
       return <React.Fragment>
          <AppHeader app="email" />
-         <main className="flex main-layout">
+         <main className="email-app-main flex main-layout">
             <AppSideBar unreadCount={unreadCount} />
             <Switch>
                <Route component={() => <EmailDetails onUpdateReadCount={this.onUpdateReadCount} />} path="/mail/mail_box/:emailId" />

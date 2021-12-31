@@ -1,12 +1,13 @@
 .app-sidebar-container {
   min-width: 250px;
+  gap:20px;
+  height: 100%;
+  
 }
 
 .compose-email-btn {
   font-size: 1.6rem;
   align-self: start;
-  margin-block-start: 25px;
-  margin-block-end: 25px;
 }
 .compose-email-btn:hover::after {
   content: "Compose";
@@ -19,7 +20,7 @@
 .sidebar-draft,
 .sidebar-trash {
   font-size: 1.5rem;
-  padding: 15px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -28,7 +29,7 @@
 .sidebar-sent:hover,
 .sidebar-draft:hover,
 .sidebar-trash:hover {
- background-color: #fff;
+ background-color: #d3d3d3;
 }
 
 .sidebar-sort i {
@@ -46,29 +47,25 @@
   color: #3c4043;
   cursor: pointer;
   display: inline-flex;
-  fill: currentcolor;
   height: 48px;
   justify-content: center;
   letter-spacing: 0.25px;
-  line-height: normal;
   max-width: 100%;
   overflow: visible;
-  padding: 2px 24px;
+  padding: 2px 17px;
   position: relative;
   text-align: center;
-  user-select: none;
-  touch-action: manipulation;
-  z-index: 0;
+ 
 }
 
 .compose-style:hover {
   background: #f6f9fe;
-  color: #174ea6;
+  color: #fbc9c8d8;
 }
 
 .compose-style:active {
   box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
     0 8px 12px 6px rgb(60 64 67 / 15%);
-  border: 2px solid #4285f4;
+  border: 2px solid #fbc9c8d8;
   outline: none;
 }

@@ -1,0 +1,5 @@
+
+
+.mailbox-container > :first-child{
+    border-top: 1px #909090 solid;
+}

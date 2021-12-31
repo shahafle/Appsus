@@ -17,56 +17,65 @@ export class EmailPreview extends React.Component {
 
 
 
-    onToggleAttributes = (emailId, attribute) => {
+    onToggleAttributes = (ev, emailId, attribute) => {
+        ev.preventDefault()
+        if(this.state.email.isTrashed && attribute === 'trash') attribute = 'delete'
         EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
             this.setState({ email })
-            // this.props.onUpdateReadCount()
+            this.props.onUpdateReadCount()
             this.onToggleAttributesModal(attribute)
         })
     }
 
-    onToggleAttributesModal = (attribute) =>{
+    onToggleAttributesModal = (attribute) => {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: false,
-          })
-          let txt =''
-            if(attribute === 'star'){
-                txt = (this.state.email.isStarred)? '⭐Email Starred': 'Email Unstarred'
-            } else if (attribute === 'read') {
-                txt = (this.state.email.isRead)? 'Email marked as Read': 'Email marked as unread'
-            } else if (attribute === 'trash'){
-                txt =  'Email moved to trash'
-            }
-          Toast.fire({
+        })
+        let txt = ''
+        if (attribute === 'star') {
+            txt = (this.state.email.isStarred) ? '⭐Email Starred' : 'Email Unstarred'
+        } else if (attribute === 'read') {
+            txt = (this.state.email.isRead) ? 'Email marked as Read' : 'Email marked as unread'
+        } else if (attribute === 'trash' && this.state.email.isTrashed) {
+            txt = 'Email has been deleted'
+        } else if (attribute === 'trash') {
+            txt = 'Email moved to trash'
+        } else if (attribute === 'restore') {
+            txt = 'Email was restored'
+        }
+        Toast.fire({
             title: txt
-          })
+        })
     }
 
 
 
     render() {
         const { email } = this.state
-        if (!email) return <Loader/>
+        if (!email) return <Loader />
 
         return (
-            <section className="email-preview flex ">
-                <div className="preview-action-btns align-start">
-                <button className="fas fa-trash-alt fa-lg clear-button" onClick={() => this.onToggleAttributes(email.id, 'trash')} ></button>
-                <button className={`${(this.state.email.isStarred) ? 'fas' : 'far'} fa-star fa-lg clear-button`} onClick={() => this.onToggleAttributes(email.id, 'star')} ></button>
-                <button className={` fas fa-envelope${(this.state.email.isRead) ? '-open' : ''} fa-lg clear-button`} onClick={() => this.onToggleAttributes(email.id, 'read')}></button>
-                </div>
-                <Link className="clean-link flex " to={`/mail/mail_box/${this.state.email.id}`}>
-                    <p>{email.from.userName}</p>
-                    <p>{email.subject}</p>
-                     <p className="email-body">{email.body}</p> 
-                </Link>
-                    <div className="align-end">{utilService.getDate(email.sentAt)}</div>
+            <Link className="clean-link" to={`/mail/mail_box/${this.state.email.id}`}>
+                <section className="email-preview flex align-center justify-center">
+                    <div className="preview-action-btns align-start justify-center">
+                        <button className="fas fa-trash-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'trash')} ></button>
+                        <button className={`${(this.state.email.isStarred) ? 'fas' : 'far'} fa-star fa-lg clear-button`} onClick={(ev) => this.onToggleAttributes(ev, email.id, 'star')} ></button>
+                        <button className={` fas fa-envelope${(this.state.email.isRead) ? '-open' : ''} fa-lg clear-button`} onClick={(ev) => this.onToggleAttributes(ev, email.id, 'read')}></button>
+                        {email.isTrashed &&  <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}
+                    </div>
+                    <div className="email-userName">{email.from.userName}</div>
+                    <div className="flex space-between">
+                        <p className="email-subject">{email.subject}</p>
+                        <p className="email-body">{email.body}</p>
+                    </div>
+                    <div className="email-date flex flex-grow1">{utilService.getDate(email.sentAt)}</div>
 
-            </section >
+                </section >
+            </Link>
         )
 
 
