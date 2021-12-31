@@ -30,11 +30,10 @@ export class TodoNotePreview extends React.Component {
    }
 
    render() {
-      const { onDeleteNote, onPinNote } = this.props
       const { note } = this.state
       if (!note) return <Loader />
       return <Link to={`/keep/note/${note.id}`}>
-         <div className="note-preview  todo-note-preview flex column">
+         <div className="note-preview todo-note-preview flex column" style={{ backgroundColor: this.props.note.backgroundColor }}>
             <h3>{note.info.title}</h3>
             <ul>
                {note.info.todos.map((todo, i) => {
@@ -51,7 +50,7 @@ export class TodoNotePreview extends React.Component {
                   </li>
                })}
             </ul>
-            <PreviewActionBar note={this.props.note} onDeleteNote={onDeleteNote} onPinNote={onPinNote} />
+            <PreviewActionBar {...this.props} />
          </div>
       </Link >
    }

@@ -32,6 +32,7 @@
 @import './apps/keep/pages/notes-board.css';
 @import './apps/keep/cmps/note-preview.css';
 @import './apps/keep/cmps/compose-note.css';
+@import './apps/keep/cmps/color-input.css';
 
 
 /* CMPS */

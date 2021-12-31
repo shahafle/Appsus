@@ -1,7 +1,7 @@
 .note-preview{
    background-color:rgb(236, 236, 236);
    border-radius: 10px;
-   overflow: hidden;
+   /* overflow: hidden; */
    cursor: pointer;
    transition: box-shadow 0.3s;
    align-self:flex-start;
@@ -20,6 +20,8 @@
 
 .img-note-preview img{
    width: 100%;
+   border-start-start-radius: 10px;
+   border-start-end-radius:10px ;
 }
 
 .todo-note-preview button,.todo-note-preview label{
@@ -33,27 +35,37 @@ label.checked{
 
 .preview-actions-bar{
    gap: 7px;
+   position: relative;
 }
 
 .preview-actions-bar button{
+   background-color: rgba(0, 0, 0, 0);;
    font-size: 1.2rem;
    padding: 2px;
-   width: 30px;
-   height: 30px;
+   width: 35px;
+   height: 35px;
    border-radius: 50%;
-   transition: background-color 0.5s;
+   transition: background-color 0.3s;
 }
+
 
 .note-preview .preview-actions-bar button:not(.pinned){
    visibility: hidden;
    opacity: 0;
-   transition: opacity 0.5s;
+   transition: background-color 0.3s,opacity 0.5s;
+}
+
+.note-preview  .preview-actions-bar button.input-open{
+   visibility: visible;
+   opacity: 1;
 }
 
 .note-preview:hover .preview-actions-bar button{
-   background-color: rgba(0, 0, 0, 0.24);
    visibility: visible;
    opacity: 1;
+}
+.preview-actions-bar button:hover{
+   background-color: rgba(0, 0, 0, 0.1);
 }
 
 .fa-thumbtack.unpinned::before{

@@ -21,10 +21,10 @@ h1,h2,h3,h4,h5,h6,p,button,ul,input{
     overflow-wrap: break-word;
 }
 
-h1::first-letter,h2::first-letter,h3::first-letter,h4::first-letter,
+/* h1::first-letter,h2::first-letter,h3::first-letter,h4::first-letter,
 h5::first-letter,h6::first-letter,p::first-letter,button::first-letter{
     text-transform: uppercase;
-}
+} */
 
 button{
     cursor: pointer;

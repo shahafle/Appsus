@@ -2,11 +2,18 @@ import { Loader } from "../../../../cmps/Loader.jsx"
 
 export class ImgNoteDetails extends React.Component {
    render() {
-      const { note } = this.props
+      const { note, handleEdit, onSaveEdit } = this.props
       if (!note) return <Loader />
       return <div className="note-details img-note-details main-layout">
-         <h2>{note.info.title}</h2>
+         <h2 contentEditable="true"
+            data-name="title"
+            suppressContentEditableWarning={true}
+            onBlur={({ target }) => handleEdit(target)}
+         >{note.info.title}</h2>
          <img src={note.info.url} />
+         <button
+            onClick={onSaveEdit}
+         >Save</button>
       </div>
    }
 }

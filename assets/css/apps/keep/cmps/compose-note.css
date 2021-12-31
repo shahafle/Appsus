@@ -18,12 +18,19 @@ background-color: rgba(151, 151, 151, 0.144);
    border: none;
    font-size: 0.9rem;
    background: transparent;
-   padding: 5px 10px;
+   padding: 5px 0 ;
+}
+
+.compose-note input:focus-visible{
+   outline: none;
+}
+
+.compose-preview input{
+   font-weight: 800;
 }
 
 .compose-preview{
    border-radius: 5px;
-   /* outline: black 2px solid; */
 }
 
 .compose-preview > :last-child{
@@ -59,13 +66,15 @@ background-color: rgba(151, 151, 151, 0.144);
 
 .compose-todos-label{
    font-weight: 800;
+   border-radius: 5px;
 }
 
 .compose-types{
    border-start-start-radius: 5px;
    border-start-end-radius: 5px;
    gap:5px;
-   margin-bottom: 5px;
+   padding-bottom: 5px;
+   border-bottom: 1px solid gray;
 }
 
 .compose-types button{
@@ -73,6 +82,10 @@ background-color: rgba(151, 151, 151, 0.144);
    border-radius: 50%;
    height: 30px;
    width: 30px;
-   background-color: rgba(151, 151, 151, 0.308);
+   transition: background-color 0.3s;
+   background-color: rgba(0, 0, 0, 0);
 }
 
+.compose-types button:hover,.compose-types button.active{
+   background-color: rgba(151, 151, 151, 0.308);
+}

@@ -7,7 +7,10 @@ export const noteService = {
    addNote,
    toggleTodoChecked,
    deleteNote,
-   toggleNotePin
+   toggleNotePin,
+   updateNote,
+   duplicateNote,
+   colorNote
 }
 
 const KEY = 'NotesDB';
@@ -43,21 +46,17 @@ function _createNotes() {
             title: 'hi',
             txt: "Fullstack Me Baby!"
          },
-         style: {
-            color: 'khaki'
-         }
+         backgroundColor: '#ececec'
       },
       {
          id: utilService.makeId(),
          type: "img",
          isPinned: false,
          info: {
-            url: "https://hellodesign.co/wp-content/uploads/2020/11/UX-hello-design.jpg",
-            title: "Bobi and Me"
+            title: "Bobi and Me",
+            url: "https://hellodesign.co/wp-content/uploads/2020/11/UX-hello-design.jpg"
          },
-         style: {
-            backgroundColor: 'khaki'
-         }
+         backgroundColor: '#ececec'
       },
       {
          id: utilService.makeId(),
@@ -70,9 +69,7 @@ function _createNotes() {
                { txt: "Coding power", doneAt: 187111111 }
             ]
          },
-         style: {
-            backgroundColor: 'khaki'
-         }
+         backgroundColor: '#ececec'
       }];
    }
    _saveNotesToStorage(notes);
@@ -95,7 +92,6 @@ function getNoteById(noteId) {
 
 function addNote(note) {
    const { fields, type } = note
-   console.log(fields);
    let info = { title: fields.title };
    switch (type) {
       case 'txt':
@@ -115,9 +111,7 @@ function addNote(note) {
       type,
       isPinned: false,
       info,
-      style: {
-         backgroundColor: 'khaki'
-      }
+      backgroundColor: '#ececec'
    }
    const notes = _loadNotesFromStorage();
    notes.push(formattedNote);
@@ -160,4 +154,32 @@ function toggleNotePin(noteId) {
 
 function sortNotes(notes) {
    return notes.sort((n1, n2) => { return (!n1.isPinned && n2.isPinned) ? 1 : -1 })
+}
+
+function updateNote(newNote) {
+   const notes = _loadNotesFromStorage();
+   const noteIdx = notes.findIndex(note => note.id === newNote.id);
+   notes.splice(noteIdx, 1, newNote);
+   _saveNotesToStorage(notes);
+}
+
+
+function duplicateNote(noteId) {
+   const notes = _loadNotesFromStorage();
+   return getNoteById(noteId)
+      .then(note => {
+         note.id = utilService.makeId();
+         notes.push(note)
+         _saveNotesToStorage(notes);
+
+         return notes;
+      })
+}
+
+function colorNote(noteId, color) {
+   const notes = _loadNotesFromStorage();
+   const note = notes.find(note => note.id === noteId);
+   note.backgroundColor = color;
+   _saveNotesToStorage(notes);
+   return Promise.resolve(notes);
 }
