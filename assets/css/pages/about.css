@@ -1,0 +1,32 @@
+.about-title {
+  font-size: 3rem;
+  color: rgb(19, 19, 19);
+}
+
+.about-grid-container {
+  display: grid;
+  color: rgb(19, 19, 19);
+  grid-template-columns: repeat(3, 3fr);
+  text-align: center;
+  margin-block-start: 50px;
+  margin-inline-end: 50px;
+  gap: 30px;
+}
+
+
+.about-grid-container p{
+    font-size: 1.2rem;
+    text-align: start;
+    font-weight: 400;
+}
+
+
+.about-grid-container i{
+    text-shadow: -2px 2px #786363;
+
+}
+
+.about-contact {
+font-size: 1.2rem;
+
+}
