@@ -1,0 +1,81 @@
+.compose-email-container {
+  position: fixed;
+  bottom: 0;
+  width: 450px;
+  box-shadow: 0 0 3px 0px black;
+  border-radius: 15px 15px 0 0;
+}
+
+.composer-header {
+  background-color: #404040;
+  padding: 9px;
+  border-radius: 10px 10px 0 0;
+}
+
+.composer-header .composer-title {
+  font-size: 1.1rem;
+  color: #dadada;
+}
+
+.composer-header .composer-title-btns {
+  gap: 10px;
+  color: #dadada;
+}
+
+.composer-header .composer-title-btns button {
+  padding: 7px;
+  transition: .3s ease;
+}
+.composer-header .composer-title-btns button:hover {
+  background-color: rgba(187, 187, 187, 0.459);
+  border-radius: 5px;
+}
+
+.compose-email-container form {
+  padding: 10px;
+  background-color: #f1f1f1;
+  gap: 10px;
+}
+
+.compose-email-container form input,textarea {
+    border: hidden;
+  }
+
+.compose-email-container label > input {
+    background-color: #f1f1f1;
+ font-size: 1rem;
+ height: 35px;
+ background: none;
+}
+.compose-email-container label > *:focus {
+    border: hidden;
+    outline: none;
+
+}
+
+.compose-email-container label > input::placeholder {
+ font-size: .9rem;
+}
+
+.compose-email-container form label {
+  font-size: 1rem;
+  border-bottom: 1px solid grey;
+
+}
+
+.compose-email-container label > input -internal-autofill-selected {
+background: none;
+}
+
+.compose-email-container form textarea {
+  resize: none;
+  background-color: rgba(255, 255, 255, 0.548);
+  font-size: 1rem;
+  font-family: inherit;
+
+}
+
+
+
+
+

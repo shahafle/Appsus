@@ -14,7 +14,7 @@ export function App() {
         <React.Fragment>
             <Switch>
                 <Route component={BookApp} path="/book" />
-                <Route component={EmailApp} path="/mail" />
+                <Route component={EmailApp} path="/mail/mail_box" />
                 <Route component={NoteApp} path="/keep" />
                 <Route component={About} path="/about" />
                 <Route component={Home} path="/" />

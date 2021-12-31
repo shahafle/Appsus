@@ -1,0 +1,77 @@
+/* COMPOSER SEND BTN */
+.composer-send-btn {
+    align-self: flex-end;
+    width: 123px;
+    background-color: #0095ff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: rgb(255 255 255 / 40%) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 1rem;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: 8px 0.8em;
+    text-align: center;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+  
+  .composer-send-btn:hover,
+  .composer-send-btn:focus {
+    background-color: #07c;
+  }
+  
+  .composer-send-btn:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+  }
+  
+  .composer-send-btn:active {
+    background-color: #0064bd;
+    box-shadow: none;
+  }
+
+
+
+
+
+  /* OPEN COMPOSER BTN */
+  .compose-email-btn  {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgb(0 0 0 / 20%) 0 3px 5px -1px, rgb(0 0 0 / 14%) 0 6px 10px 0,
+      rgb(0 0 0 / 12%) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #3c4043;
+    cursor: pointer;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: 0.25px;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2px 17px;
+    position: relative;
+    text-align: center;
+   
+  }
+  
+  .compose-email-btn:hover {
+    background: #f6f9fe;
+    color: #fbc9c8d8;
+  }
+  
+  .compose-email-btn:active {
+    box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+      0 8px 12px 6px rgb(60 64 67 / 15%);
+    border: 2px solid #fbc9c8d8;
+    outline: none;
+  }

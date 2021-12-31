@@ -1,5 +1,7 @@
 import { utilService } from "../../../services/util.service.js";
 import { EmailService } from "../services/mail.service.js"
+import { eventBusService } from "../../../services/event-bus.service.jsx"
+
 import { DetailsActionBar } from "../cmps/DetailsActionBar.jsx";
 import { Loader } from "../../../cmps/Loader.jsx";
 
@@ -24,7 +26,7 @@ class _EmailDetails extends React.Component {
     }
 
     onBackToMailBox = () => {
-        this.props.history.push('/mail/mail_box')
+        this.props.history.goBack()
     }
 
     onToggleAttributes = (emailId, attribute) => {
@@ -33,16 +35,17 @@ class _EmailDetails extends React.Component {
         // if (this.state.email.isTrashed){
         //      this.onDeleteModal()
         // }
-        if(this.state.email.isTrashed) attribute = 'delete'
-            EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
-                this.setState({ email })
-                this.props.onUpdateReadCount()
-                if (attribute === 'delete' || attribute === 'trash') this.props.history.push('/mail/mail_box')
+        if (this.state.email.isTrashed) attribute = 'delete'
+        EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
+            this.setState({ email })
+            eventBusService.emit('update-read-count', this.onUpdateReadCount)
+
+            if (attribute === 'delete' || attribute === 'trash') this.onBackToMailBox()
 
 
 
-            })
-        
+        })
+
     }
 
 
@@ -76,8 +79,8 @@ class _EmailDetails extends React.Component {
 
         return (
 
-            <section className="email-details">
-                <DetailsActionBar email={email} onToggleAttributes={this.onToggleAttributes} onBackToMailBox={this.onBackToMailBox}/>
+            <section className="email-details flex column">
+                <DetailsActionBar email={email} onToggleAttributes={this.onToggleAttributes} onBackToMailBox={this.onBackToMailBox} />
                 <div className="email-details-container flex column ">
                     <div className="details-title-container flex space-between align-center">
                         <p className="email-title">{email.subject}</p>

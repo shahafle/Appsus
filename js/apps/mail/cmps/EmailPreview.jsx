@@ -1,6 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { EmailService } from "../services/mail.service.js"
-// import { LongTxt } from "../../../cmps/LongTxt.jsx";
+import { eventBusService } from "../../../services/event-bus.service.jsx"
 import { Loader } from "../../../cmps/Loader.jsx";
 
 const { Link } = ReactRouterDOM
@@ -15,14 +15,12 @@ export class EmailPreview extends React.Component {
         this.setState({ email: this.props.email })
     }
 
-
-
     onToggleAttributes = (ev, emailId, attribute) => {
         ev.preventDefault()
-        if(this.state.email.isTrashed && attribute === 'trash') attribute = 'delete'
+        if (this.state.email.isTrashed && attribute === 'trash') attribute = 'delete'
         EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
             this.setState({ email })
-            this.props.onUpdateReadCount()
+            eventBusService.emit('update-read-count', this.onUpdateReadCount)
             this.onToggleAttributesModal(attribute)
         })
     }
@@ -56,6 +54,8 @@ export class EmailPreview extends React.Component {
 
     render() {
         const { email } = this.state
+        const { loggedInUser } = this.props
+
         if (!email) return <Loader />
 
         return (
@@ -65,9 +65,10 @@ export class EmailPreview extends React.Component {
                         <button className="fas fa-trash-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'trash')} ></button>
                         <button className={`${(this.state.email.isStarred) ? 'fas' : 'far'} fa-star fa-lg clear-button`} onClick={(ev) => this.onToggleAttributes(ev, email.id, 'star')} ></button>
                         <button className={` fas fa-envelope${(this.state.email.isRead) ? '-open' : ''} fa-lg clear-button`} onClick={(ev) => this.onToggleAttributes(ev, email.id, 'read')}></button>
-                        {email.isTrashed &&  <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}
+                        {email.isTrashed && <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}
                     </div>
-                    <div className="email-userName">{email.from.userName}</div>
+                    {(email.from.address !== loggedInUser.address) && < div className="email-userName">{email.from.userName}</div>}
+                    {(email.from.address === loggedInUser.address) &&<div className="email-userName">{loggedInUser.from.fullName}</div>}
                     <div className="flex space-between">
                         <p className="email-subject">{email.subject}</p>
                         <p className="email-body">{email.body}</p>
@@ -75,7 +76,7 @@ export class EmailPreview extends React.Component {
                     <div className="email-date flex flex-grow1">{utilService.getDate(email.sentAt)}</div>
 
                 </section >
-            </Link>
+            </Link >
         )
 
 
