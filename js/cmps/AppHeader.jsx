@@ -5,7 +5,9 @@ const { Link, NavLink } = ReactRouterDOM
 
 export class AppHeader extends React.Component {
    state = {
-      search: ''
+      search: '',
+      isOpen: false
+
    }
 
    handleChange = ({ target }) => {
@@ -19,7 +21,14 @@ export class AppHeader extends React.Component {
       if (app === 'books') return 'book/store'
    }
 
+
+   toggleBtnClass = () => {
+      this.setState((prevState) => ({ ...prevState, isOpen: !prevState.isOpen }))
+   }
+
    render() {
+
+      const { isOpen } = this.state
       return <header >
          <div className="main-layout flex space-between align-center">
 
@@ -31,14 +40,16 @@ export class AppHeader extends React.Component {
                <input type="text" placeholder="Search" name="search" onChange={this.handleChange} value={this.state.search} />
                <Link to={`/${this.appRoute}/?search=${this.state.search}`}><button>Go</button></Link>
             </form>
-
             <nav className="header-nav ">
-               <NavLink className="clean-link" to="/" >Home</NavLink>
-               <NavLink className="clean-link" to="/about">About</NavLink>
-               <NavLink className="clean-link" to="/book/store">Book Shop</NavLink>
-               <NavLink className="clean-link" to="/keep/board">Keep</NavLink>
-               <NavLink className="clean-link" to="/mail/mail_box">Mail</NavLink>
+               <div className={`${(isOpen) ? 'open' : ''} menu`} onClick={this.toggleBtnClass}>
+                  <NavLink className={`${(isOpen) ? 'open' : ''} button fas fa-home clean-link`} to="/" ></NavLink>
+                  <NavLink className={`${(isOpen) ? 'open' : ''} button fas fa-info-circle clean-link`} to="/about"></NavLink>
+                  <NavLink className={`${(isOpen) ? 'open' : ''} button fas fa-book clean-link`} to="/book/store"></NavLink>
+                  <NavLink className={`${(isOpen) ? 'open' : ''} button fas fa-sticky-note clean-link`} to="/keep/board"></NavLink>
+                  <NavLink className={`${(isOpen) ? 'open' : ''} button fas fa-at clean-link`} to="/mail/mail_box"></NavLink>
+               </div>
             </nav>
+
 
          </div>
       </header >

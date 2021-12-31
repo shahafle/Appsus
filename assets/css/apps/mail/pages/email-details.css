@@ -1,0 +1,45 @@
+.email-details {
+  margin-block-start: 30px;
+}
+
+/* BUTTON ACTION BAR */
+.email-details-action-bar {
+  font-size: 1.2rem;
+  padding: 20px;
+  gap: 30px;
+  margin-block-end: 20px;
+}
+
+.email-details-action-bar > button {
+  font-size: 1.4rem;
+}
+
+/* EMAIL DETAILS */
+.email-details-container {
+  background-color: #fff;
+  padding: 30px;
+}
+
+.details-title-container {
+  margin-block-end: 10px;
+}
+
+.details-title-container .details-reply {
+  margin-inline-end: 20px;
+}
+
+.details-title-container .email-title {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.email-details-from {
+  color: #888888;
+  margin-block-end: 20px;
+}
+
+.email-details-from span {
+  color: #131313;
+  font-weight: 600;
+  font-size: 1.2rem;
+}

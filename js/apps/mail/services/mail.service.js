@@ -20,8 +20,6 @@ const loggedInUser = {
 }
 
 function query(filterBy) {
-    console.log('filterBy at Quary:', filterBy);
-
     const emails = _loadFromStorage()
     const filteredEmails = _getFilteredEmails(emails, filterBy)
     return Promise.resolve(filteredEmails)
@@ -40,14 +38,12 @@ function getUnreadCount() {
     const emails = _loadFromStorage()
     let unreadCount = 0
     emails.forEach(email => {
-        if (!email.isTrashed && !email.isRead) unreadCount++
+        if (!email.isTrashed && !email.isRead && email.to === loggedInUser.email) unreadCount++
     })
     return unreadCount
 }
 
 function _getFilteredEmails(emails, filterBy) {
-    console.log('filterBy:', filterBy);
-
 
     let { type, searchLine } = filterBy
     searchLine = searchLine.toLowerCase()
@@ -55,19 +51,19 @@ function _getFilteredEmails(emails, filterBy) {
         switch (type) {
             case 'inbox':
                 return (!email.isTrashed && email.to === loggedInUser.email && (isSearchLineMatch(email, searchLine)))
-                
+
             case 'starred':
                 return (!email.isTrashed && email.to === loggedInUser.email && email.isStarred && (isSearchLineMatch(email, searchLine)))
-                
+
             case 'sent':
                 return (!email.isTrashed && email.to !== loggedInUser.email && (isSearchLineMatch(email, searchLine)))
-                
+
             case 'trash':
                 return (email.isTrashed && (isSearchLineMatch(email, searchLine)))
-                
+
             case 'draft':
                 return (!email.isTrashed && email.isDraft && (isSearchLineMatch(email, searchLine)))
-                
+
         }
     })
 
@@ -87,7 +83,6 @@ function toggleEmailAttributes(emailId, attribute) {
     const emails = _loadFromStorage()
     const emailIdx = emails.findIndex(email => emailId === email.id)
     const email = emails[emailIdx]
-    console.log('attribute:', attribute);
     switch (attribute) {
         case 'star':
             email.isStarred = !email.isStarred
@@ -95,13 +90,14 @@ function toggleEmailAttributes(emailId, attribute) {
         case 'read':
             email.isRead = !email.isRead
             break;
+        case 'restore':
+            email.isTrashed = !email.isTrashed
+            break;
         case 'trash':
-            if (email.isTrashed) {
-
-                emails.splice(emailIdx, 1)
-            } else {
-                email.isTrashed = !email.isTrashed
-            }
+            email.isTrashed = !email.isTrashed
+            break;
+        case 'delete':
+            if (email.isTrashed) emails.splice(emailIdx, 1)
             break;
     }
     _saveEmailsToStorage(emails)
@@ -199,16 +195,44 @@ function _createEmails() {
             },
             {
                 id: utilService.makeId(),
-                from: { address: 'momo@momo.com', userName: 'SENT' },
+                from: { address: 'semi@fireman.com', userName: 'Semi the Fireman' },
                 to: 'user@apspsus.com',
                 subject: 'Miss you!',
-                body: 'Would love to catch up sometimes',
+                body: ' understand the personal data we collect and to give you greater control over your personal data. This is part of our ongoing commitment to be transparent about how we use your data and keep it safe. The new updates will take effect on December 23, 2021, and no further action is required by yo',
                 isRead: false,
                 isStarred: false,
                 isTrashed: false,
                 isDraft: false,
                 labels: [],
                 sentAt: 1551423930594,
+                removedAt: null
+            },
+            {
+                id: utilService.makeId(),
+                from: { address: 'carla@walla.com', userName: 'Carla' },
+                to: 'user@apspsus.com',
+                subject: 'i truly miss you baby!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                isStarred: false,
+                isTrashed: false,
+                isDraft: false,
+                labels: [],
+                sentAt: 1551448930594,
+                removedAt: null
+            },
+            {
+                id: utilService.makeId(),
+                from: { address: 'Shimon@gmail.com', userName: 'Shimon' },
+                to: 'user@apspsus.com',
+                subject: 'Gotta Catch Them All!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                isStarred: false,
+                isTrashed: false,
+                isDraft: false,
+                labels: [],
+                sentAt: 1551426930594,
                 removedAt: null
             }
 
@@ -217,8 +241,6 @@ function _createEmails() {
     }
     _saveEmailsToStorage(emails)
 }
-
-
 
 
 
