@@ -33,7 +33,7 @@ export class AppHeader extends React.Component {
          <div className="main-layout flex space-between align-center">
 
             <div className='brand-container flex'>
-               <img className="logo" src="././assets/img/logo.png" />
+               <img className="logo" src="../../assets/img/green-logo.svg" />
                <h1 className="app-name">Trinity</h1>
             </div>
             <form className="search-bar">
