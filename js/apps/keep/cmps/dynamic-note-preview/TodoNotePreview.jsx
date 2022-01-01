@@ -37,7 +37,7 @@ export class TodoNotePreview extends React.Component {
             <h3>{note.info.title}</h3>
             <ul>
                {note.info.todos.map((todo, i) => {
-                  return <li key={i}>
+                  return <li key={i} className="flex">
                      <button
                         onClick={(ev) => this.onToggleTodoChecked(ev, note.id, i)}
                         className={`fas fa${(todo.doneAt) ? '-check' : ''}-circle`}

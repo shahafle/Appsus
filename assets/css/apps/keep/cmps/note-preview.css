@@ -1,12 +1,11 @@
 .note-preview{
-   background-color:rgb(236, 236, 236);
    border-radius: 10px;
-   /* overflow: hidden; */
    cursor: pointer;
    transition: box-shadow 0.3s;
    align-self:flex-start;
    text-align: start;
    border: 0.2px solid rgb(196, 196, 196);
+   max-height: 400px;
 }
 
 .todo-note-preview ,.txt-note-preview,.img-note-preview-details{
@@ -23,6 +22,14 @@
    border-start-start-radius: 10px;
    border-start-end-radius:10px ;
 }
+
+
+.img-note-preview h3{
+   text-overflow: ellipsis;
+   white-space: pre-wrap;
+   overflow: hidden;
+}
+
 
 .todo-note-preview button,.todo-note-preview label{
    z-index: 1;
@@ -70,4 +77,27 @@ label.checked{
 
 .fa-thumbtack.unpinned::before{
    opacity: 0.3;
+}
+
+
+.todo-note-preview ul button{
+   background: none;
+   align-self: flex-start;
+   margin-top: 0.3rem;
+}
+
+.todo-note-preview ul li{
+   gap: 5px;
+}
+
+.todo-note-preview ul li label{
+   overflow-wrap: anywhere;
+}
+
+.fa-circle{
+   color:rgba(141, 141, 141, 0.356) ;   
+}
+
+.fa-check-circle{
+   color: #2f5233;
 }

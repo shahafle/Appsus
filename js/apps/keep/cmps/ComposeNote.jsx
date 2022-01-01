@@ -39,6 +39,24 @@ export class ComposeNote extends React.Component {
       this.setState(prevState => ({ ...prevState, isOpen: isComposeOpen }))
    }
 
+   onCreateNote = (ev) => {
+      ev.preventDefault();
+      this.onToggleExtraFields(false);
+      this.props.onAddNote(this.state)
+         .then(() => {
+            console.log('hi');
+            this.setState(prevState => ({
+               ...prevState, fields: ({
+                  title: '',
+                  txt: '',
+                  url: '',
+                  todos: []
+               })
+            }))
+         })
+         .catch(err => alert(err))
+   }
+
    render() {
       const { type, isOpen } = this.state
       return <form className={`compose-note ${(isOpen) ? 'compose-open' : ''}`}>
@@ -54,21 +72,20 @@ export class ComposeNote extends React.Component {
                placeholder="Title"
                onChange={this.handleFieldChange}
                onFocus={() => this.onToggleExtraFields(true)}
-               className={` ${(isOpen && type !== 'todos') ? 'compose-open' : ''}`} />
+               className={` ${(isOpen && type !== 'todos') ? 'compose-open' : ''}`}
+               value={this.state.fields.title} />
          </div>
 
          <div className={`flex column extra-fields ${(!this.state.isOpen) ? 'hidden' : ''}`}>
 
-            {type === 'txt' && < input type="text" name="txt" placeholder="Compose your text" onChange={this.handleFieldChange} />}
-            {type === 'img' && <input type="text" name="url" placeholder="Image url" onChange={this.handleFieldChange} />}
+            {type === 'txt' && < input type="text" name="txt" placeholder="Compose your text" onChange={this.handleFieldChange} value={this.state.fields.txt} />}
+            {type === 'img' && <input type="text" name="url" placeholder="Image url" onChange={this.handleFieldChange} value={this.state.fields.url} />}
             {type === 'todos' && <ComposeTodos handleFieldChange={this.handleFieldChange} />}
 
             <button
                className="create-note-btn"
                onClick={(ev) => {
-                  ev.preventDefault();
-                  this.onToggleExtraFields(false);
-                  this.props.onAddNote(this.state);
+                  this.onCreateNote(ev)
                }}>Create</button>
          </div>
       </form >

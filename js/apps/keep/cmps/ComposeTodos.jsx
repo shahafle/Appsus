@@ -14,6 +14,7 @@ export class ComposeTodos extends React.Component {
       this.setState({ todos });
    }
 
+
    clearEmptyLines = (todos) => {
       return todos.filter(todo => (typeof todo === 'string' && todo !== ''))
    }

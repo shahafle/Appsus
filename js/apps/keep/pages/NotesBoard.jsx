@@ -36,11 +36,12 @@ export class NotesBoard extends React.Component {
    }
 
    onAddNote = (rawNote) => {
-      noteService.addNote(rawNote)
+      return noteService.addNote(rawNote)
          .then(note => {
             if (note.info)
                this.setState(prevState => ({ ...prevState, notes: [...prevState.notes, note] }))
          })
+         .catch(err => { return Promise.reject(err) })
    }
 
    onDeleteNote = (ev, noteId) => {

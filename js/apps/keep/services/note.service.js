@@ -96,17 +96,21 @@ function addNote(note) {
    let info = { title: fields.title };
    switch (type) {
       case 'txt':
+         if (!fields.txt && !fields.title) return Promise.reject('Insert content please')
          info.txt = fields.txt
          break;
       case 'img':
+         if (!fields.url) return Promise.reject('Insert image url please')
          info.url = fields.url
          break;
       case 'todos':
+
+         if (fields.todos.length === 1 && !fields.todos[0]) return Promise.reject('Insert todos please')
          fields.todos.pop();
          info.todos = fields.todos.map(todo => ({ txt: todo }))
          break;
    }
-
+   console.log('hiush');
    const formattedNote = {
       id: utilService.makeId(),
       type,
