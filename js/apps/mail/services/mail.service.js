@@ -79,7 +79,6 @@ function _getFilteredEmails(emails, filterBy) {
     let { type, searchLine } = filterBy
     if (type) {
 
-        // searchLine = searchLine.toLowerCase()
         return emails.filter(email => {
             switch (type) {
                 case 'inbox':

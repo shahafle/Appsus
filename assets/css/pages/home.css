@@ -5,47 +5,34 @@
 .home-hero {
     object-fit: cover;
     background-image: linear-gradient(rgb(0 0 0 / 68%), rgba(93, 93, 93, 0.4)), url(../../img/hero.jpg);
-    height: 90vh;
-    width: 88vw;
+    /* height: 90vh; */
+    width: 100vw;
     /* padding: 20px 0; */
     background-repeat: no-repeat;
     background-size: cover;
+    flex: 1;
+    color: white;
+    text-align: center;
   }
+
   .hero-title {
-    font-family: "Berkshire";
-    font-size: 4rem;
-    color: antiquewhite;
-    text-shadow: -3px 4px 4px black;
-    margin-block-start: 50px;
-    margin-block-end: 80px;
+    font-weight: 800;
+    font-size: 3.6rem;
   }
   .hero-subtitle {
-    color: antiquewhite;
-    font-family: 'Berkshire';
     font-size: 2rem;
-    text-shadow: -2px 2px 2px black;
-    
-    margin-block-end: 200px;
   }
   
   .hero-slogan {
-    color: antiquewhite;
-    /* font-family: 'Berkshire'; */
-    font-size: 3rem;
-    text-shadow: -2px 2px 2px black;
-    margin-block-end: 30px;
+    font-size: 1rem;
   }
   
   
-  .go-to-books-btn{
-    text-align: center;
-    margin-block-start: 50px;
-    margin-block-end: 50px;
-    padding: 40px ;
-    padding-inline: 25px; 
-    font-size: 2rem ;
-    font-weight: bold;
+  .home-container{
+    gap:50px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.349);
   }
 
-
-  
+  .home-page{
+    flex-grow: 1;
+  }

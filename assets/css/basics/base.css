@@ -20,11 +20,8 @@ body {
     font-family: 'mulish';
 }
 
-
 #root{
-    height: 100vh;
-    flex-direction: column;
-    display: flex;
+    flex-grow: 1;
 }
 
 main{
@@ -39,11 +36,6 @@ h1,h2,h3,h4,h5,h6,p,button,ul,input{
     font-family: 'mulish';
 }
 
-/* h1::first-letter,h2::first-letter,h3::first-letter,h4::first-letter,
-h5::first-letter,h6::first-letter,p::first-letter,button::first-letter{
-    text-transform: uppercase;
-} */
-
 button{
     cursor: pointer;
     border: none;
@@ -51,8 +43,7 @@ button{
 
 footer{
     background-color: rgb(192, 192, 192);
-    padding: 20px;
-   
+    padding: 15px;
 }
 
 a{
@@ -64,22 +55,3 @@ li{
     list-style: none;
 }
 
-
-
-
-
-.main-footer .logo {
-    font-size: 2.5rem;
-    text-shadow: -1px 2px 2px black;
-    padding-block: 9px;
-  }
-
-  
-.footer-copyrights {
-    font-size: .8rem;
-    color: rgb(223, 223, 223);
-    letter-spacing: 1px;
-    text-decoration: overline;
-    padding-block: 10px;
-  
-  }

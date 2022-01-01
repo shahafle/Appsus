@@ -6,6 +6,7 @@
    text-align: start;
    border: 0.2px solid rgb(196, 196, 196);
    max-height: 400px;
+   transition:background-color .2s
 }
 
 .todo-note-preview ,.txt-note-preview,.img-note-preview-details{
@@ -95,9 +96,11 @@ label.checked{
 }
 
 .fa-circle{
-   color:rgba(141, 141, 141, 0.356) ;   
+   color: rgb(250 250 250);
+   text-shadow: 0 0 1px grey;
 }
 
 .fa-check-circle{
    color: #2f5233;
+   text-shadow: 0 0 1px grey;
 }

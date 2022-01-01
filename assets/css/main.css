@@ -10,6 +10,7 @@
 
 /* MAIN APP */
 @import './cmps/app-header.css';
+@import './cmps/app-footer.css';
 @import './pages/about.css';
 @import './pages/home.css';
 
@@ -29,7 +30,6 @@
 @import './apps/book/cmps/book-preview.css';
 @import './apps/book/cmps/books-filter.css';
 @import './apps/book/cmps/books-list.css';
-@import './apps/book/pages/book-app/main.css';
 
 /* NOTES APP */
 @import './apps/keep/pages/notes-board.css';

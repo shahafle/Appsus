@@ -74,13 +74,12 @@ export class NotesBoard extends React.Component {
       ev.preventDefault()
       noteService.colorNote(noteId, color)
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
-      this.onAlertMsg('note-color')
    }
 
    onAlertMsg = (msgType, isPinned) => {
       const Toast = Swal.mixin({
          toast: true,
-         position: 'bottom-end',
+         position: 'top',
          showConfirmButton: false,
          timer: 2500,
          timerProgressBar: true,

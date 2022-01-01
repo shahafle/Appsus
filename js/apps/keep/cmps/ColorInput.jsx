@@ -16,7 +16,10 @@ export class ColorInput extends React.Component {
             <div className={`note-color-input flex ${(this.state.isOpen) ? '' : 'hidden'}`} >
                 {colors.map(color => {
                     return <div
-                        onClick={(ev) => onColorNote(ev, noteId, color)}
+                        onClick={(ev) => {
+                            onColorNote(ev, noteId, color)
+                            this.toggleInput(ev)
+                        }}
                         style={{ backgroundColor: color }}
                         key={color}
                         className="color-value"

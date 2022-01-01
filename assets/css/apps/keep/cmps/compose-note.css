@@ -7,11 +7,13 @@
    margin: 10px auto;
    border-radius: 10px;
    border: 1px rgba(124, 124, 124, 0.322) solid;
-   /* border: 1px rgba(47, 82, 51,0.322) solid; */
+   box-shadow: 0 0 5px grey;
+   background-color: rgba(173, 173, 173, 0.144);
+   transition: background-color .2s;
 }
 
 .compose-note.compose-open{
-background-color: rgba(151, 151, 151, 0.144);
+background-color: rgba(255, 255, 255, 0.144);
 }
 
 .compose-note input{
@@ -92,6 +94,8 @@ background-color: rgba(151, 151, 151, 0.144);
 
 .create-note-btn{
    align-self: flex-end;
-   padding: 5px;
+   padding: 7px 10px;
    border-radius: 5px;
+   color: white;
+   background-color:#2F5233   ;
 }

@@ -67,18 +67,6 @@ export class MailBox extends React.Component {
                 filterBy: { ...prevState.filterBy, searchLine }
             }), this.loadEmails)
         }
-
-
-
-
-
-        // if (new URLSearchParams(prevProps.location.search).get('mail_box_type') !== new URLSearchParams(this.props.location.search).get('mail_box_type')) {
-        //     let currType = new URLSearchParams(this.props.location.search).get('mail_box_type');
-        //     currType = (currType === null) ? '' : currType;
-        //     this.setState((prevState) => ({
-        //         filterBy: { ...prevState.filterBy, 'type': currType }
-        //     }), this.loadEmails)
-        // }
     }
 
 
@@ -92,7 +80,7 @@ export class MailBox extends React.Component {
 
     onSortEmails = (sortBy) => {
         console.log('sortBy:', sortBy);
-        
+
         EmailService.query(this.state.filterBy).then(emails => {
             EmailService.sortEmails(sortBy, emails).then(emails => {
                 this.setState((prevState) => ({ ...prevState, emails }))
