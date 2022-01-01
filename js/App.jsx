@@ -1,4 +1,5 @@
 import { Home } from './pages/home.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
 import { About } from './pages/About.jsx'
 import { NoteApp } from './apps/keep/NoteApp.jsx'
 import { EmailApp } from './apps/mail/pages/EmailApp.jsx'
@@ -19,7 +20,7 @@ export function App() {
                 <Route component={About} path="/about" />
                 <Route component={Home} path="/" />
             </Switch>
-            {/* <AppFooter /> */}
+            <AppFooter />
         </React.Fragment>
         <UserMsg />
     </Router>

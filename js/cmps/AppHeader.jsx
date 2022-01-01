@@ -19,6 +19,7 @@ export class AppHeader extends React.Component {
       if (app === 'email') return 'mail/mail_box'
       if (app === 'keep') return 'keep/board'
       if (app === 'books') return 'book/store'
+
    }
 
 
@@ -36,10 +37,10 @@ export class AppHeader extends React.Component {
                <img className="logo" src="../../assets/img/green-logo.svg" />
                <h1 className="app-name">Trinity</h1>
             </div>
-            <form className="search-bar">
+            {(this.props.app !== 'home') && <form className="search-bar">
                <input type="text" placeholder="Search" name="search" onChange={this.handleChange} value={this.state.search} />
                <Link to={`/${this.appRoute}/?search=${this.state.search}`}><button>Go</button></Link>
-            </form>
+            </form>}
             <nav className="header-nav ">
                <div className={`${(isOpen) ? 'open' : ''} menu`} onClick={this.toggleBtnClass}>
                   <NavLink className={`${(isOpen) ? 'open' : ''} button fas fa-home clean-link`} to="/" ></NavLink>
