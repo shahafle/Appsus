@@ -16,6 +16,7 @@ header input{
   /* border-radius: 5px; */
   /* padding: 6px; */
   background: none;
+  width: 300px;
 }
 
 header input:focus-visible{
@@ -27,12 +28,17 @@ header input:focus-visible{
   background-color: #fff;
   padding: 4px 8px;
   border-radius: 5px;
+  border: 1px #96969647 solid;
 }
 
 .search-bar button{
   background: none;
+  font-size: 1.2rem;
 }
 
+.search-bar button::before{
+  color: #1a1a1a;
+}
 
 
 
@@ -109,7 +115,7 @@ header input:focus-visible{
     top: 350px;
     height: fit-content;
   
-    transition-delay: 0.2s;
+    transition-delay:  0.2s;
   }
   
   .button {
@@ -127,6 +133,7 @@ header input:focus-visible{
     box-shadow: 0 0 10px #bebebe;
     transition: 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.2s ease opacity,
       0.2s cubic-bezier(0.08, 0.82, 0.17, 1) transform;
+      /* transition: transform 0.2s ; */
   }
   .button:hover {
     transform: scale(1.3);

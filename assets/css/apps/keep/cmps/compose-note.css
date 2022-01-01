@@ -16,14 +16,18 @@
 background-color: rgba(255, 255, 255, 0.144);
 }
 
-.compose-note input{
+.compose-note input,.compose-note textarea{
    border: none;
    font-size: 0.9rem;
    background: transparent;
    padding: 5px 0 ;
 }
 
-.compose-note input:focus-visible{
+.compose-note textarea{
+   min-height: 100px;
+}
+
+.compose-note input:focus-visible,.compose-note textarea:focus-visible{
    outline: none;
 }
 

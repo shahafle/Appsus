@@ -40,7 +40,7 @@ export class AppHeader extends React.Component {
             </div>
             {(this.props.app !== 'home') && <form className="search-bar">
                <input type="text" placeholder="Search" name="search" onChange={this.handleChange} value={this.state.search} />
-               <Link to={`/${this.appRoute}/?search=${this.state.search}`} className="fas fa-search"></Link>
+               <Link to={`/${this.appRoute}/?search=${this.state.search}`}><button className="fas fa-search"></button></Link>
             </form>}
             <nav className="header-nav ">
                <div className={`${(isOpen) ? 'open' : ''} menu`} onClick={this.toggleBtnClass}>

@@ -28,7 +28,7 @@ main{
     flex-grow: 1;
 }
 
-h1,h2,h3,h4,h5,h6,p,button,ul,input{
+h1,h2,h3,h4,h5,h6,p,button,ul,input,textarea{
     margin: 0;
     padding: 0;
     color: rgb(27, 27, 27);
@@ -55,3 +55,6 @@ li{
     list-style: none;
 }
 
+textarea{
+    resize: none;
+}

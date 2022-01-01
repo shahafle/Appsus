@@ -1,16 +1,17 @@
 .color-input-btn{
-   position: relative;
+   /* position: relative; */
 }
 
 .note-color-input{
    position: absolute;
-   top:35px;
+   bottom:40px;
    left: 50px;
    background-color: rgb(255, 255, 255);
    padding: 5px;
    border-radius: 10px;
    gap: 5px;
    border: solid 1px gray;
+   z-index: 1;
 }
 
 .color-value{

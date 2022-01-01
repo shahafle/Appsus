@@ -1,12 +1,12 @@
 .note-preview{
    border-radius: 10px;
    cursor: pointer;
-   transition: box-shadow 0.3s;
    align-self:flex-start;
    text-align: start;
    border: 0.2px solid rgb(196, 196, 196);
-   max-height: 400px;
-   transition:background-color .2s
+   transition:background-color .2s,box-shadow .2s;
+   break-inside: avoid-column;
+   margin-bottom: 20px;
 }
 
 .todo-note-preview ,.txt-note-preview,.img-note-preview-details{
@@ -15,7 +15,7 @@
 }
 
 .note-preview:hover{
- box-shadow: 0 0 5px 0px black;
+   box-shadow:inset 0 0 3px 0px black;
 }
 
 .img-note-preview img{

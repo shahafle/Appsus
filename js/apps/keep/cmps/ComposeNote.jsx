@@ -59,7 +59,7 @@ export class ComposeNote extends React.Component {
 
    render() {
       const { type, isOpen } = this.state
-      return <form className={`compose-note ${(isOpen) ? 'compose-open' : ''}`}>
+      return <form className={`compose-note ${(isOpen) ? 'compose-open' : ''}`} onSubmit={(ev) => { this.onCreateNote(ev) }}>
          <div className={`compose-preview flex column ${(isOpen && type !== 'todos') ? 'compose-open' : ''}`}>
 
             <div className="compose-types flex">
@@ -78,15 +78,11 @@ export class ComposeNote extends React.Component {
 
          <div className={`flex column extra-fields ${(!this.state.isOpen) ? 'hidden' : ''}`}>
 
-            {type === 'txt' && < input type="text" name="txt" placeholder="Compose your text" onChange={this.handleFieldChange} value={this.state.fields.txt} />}
+            {type === 'txt' && < textarea type="text" name="txt" placeholder="Compose your text" onChange={this.handleFieldChange} value={this.state.fields.txt} />}
             {type === 'img' && <input type="text" name="url" placeholder="Image url" onChange={this.handleFieldChange} value={this.state.fields.url} />}
             {type === 'todos' && <ComposeTodos handleFieldChange={this.handleFieldChange} />}
 
-            <button
-               className="create-note-btn"
-               onClick={(ev) => {
-                  this.onCreateNote(ev)
-               }}>Create</button>
+            <button className="create-note-btn">Create</button>
          </div>
       </form >
    }
