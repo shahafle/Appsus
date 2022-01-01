@@ -40,6 +40,10 @@ export class NotesBoard extends React.Component {
          .then(note => {
             if (note.info)
                this.setState(prevState => ({ ...prevState, notes: [...prevState.notes, note] }))
+            console.log('note:', note);
+
+            this.onAlertMsg('note-add')
+
          })
          .catch(err => { return Promise.reject(err) })
    }
@@ -53,19 +57,50 @@ export class NotesBoard extends React.Component {
    onPinNote = (ev, noteId) => {
       ev.preventDefault()
       noteService.toggleNotePin(noteId)
-         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+         .then(({ notes, isPinned }) => {
+            this.setState(prevState => ({ ...prevState, notes }))
+            this.onAlertMsg('note-pinned', isPinned)
+         })
    }
 
    onDuplicateNote = (ev, noteId) => {
       ev.preventDefault()
       noteService.duplicateNote(noteId)
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+      this.onAlertMsg('note-dupl')
    }
 
    onColorNote = (ev, noteId, color) => {
       ev.preventDefault()
       noteService.colorNote(noteId, color)
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+      this.onAlertMsg('note-color')
+   }
+
+   onAlertMsg = (msgType, isPinned) => {
+      const Toast = Swal.mixin({
+         toast: true,
+         position: 'bottom-end',
+         showConfirmButton: false,
+         timer: 2500,
+         timerProgressBar: true,
+      })
+      let txt = ''
+      let icon = ''
+      if (msgType === 'note-add') {
+         txt = 'Note created',
+            icon = 'success'
+      } else if (msgType === 'note-pinned') {
+         txt = (isPinned) ? 'Note pinned' : 'Note unpinned',
+            icon = ''
+      } else if (msgType === 'note-dupl') {
+         txt = 'Note duplicated',
+            icon = ''
+      }
+      Toast.fire({
+         icon: icon,
+         title: txt
+      })
    }
 
    render() {

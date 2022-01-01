@@ -117,10 +117,12 @@ function isSearchLineMatch(email, searchLine) {
 }
 
 function sortEmails(sortBy, emails) {
+    console.log('sortBy:', sortBy);
+
 
     if (sortBy === 'from') emails.sort((e1, e2) => e1.from.userName.localeCompare(e2.from.userName));
     if (sortBy === 'subject') emails.sort((e1, e2) => e1.subject.localeCompare(e2.subject));
-    if (sortBy === 'date') emails.sort((e1, e2) => e1.sendAt - e2.sendAt)
+    if (sortBy === 'date') emails.sort((e2, e1) => e1.sentAt - e2.sentAt)
 
     return Promise.resolve(emails)
 }

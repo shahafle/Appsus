@@ -34,8 +34,9 @@ export class AppHeader extends React.Component {
          <div className="main-layout flex space-between align-center">
 
             <div className='brand-container flex'>
-               <img className="logo" src="../../assets/img/green-logo.svg" />
-               <h1 className="app-name">Trinity</h1>
+               <NavLink to="/">  <img className="logo" src="../../assets/img/green-logo.svg" />
+                  <h1 className="app-name">Trinity</h1>
+               </NavLink>
             </div>
             {(this.props.app !== 'home') && <form className="search-bar">
                <input type="text" placeholder="Search" name="search" onChange={this.handleChange} value={this.state.search} />
