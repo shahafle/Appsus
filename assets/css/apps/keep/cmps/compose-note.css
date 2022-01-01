@@ -3,12 +3,12 @@
    align-items: center;
    z-index: 2;
    position: relative;
-   max-width: 300px;
+   max-width: 500px;
    margin: 10px auto;
    border-radius: 10px;
    border: 1px rgba(124, 124, 124, 0.322) solid;
+   /* border: 1px rgba(47, 82, 51,0.322) solid; */
 }
-
 
 .compose-note.compose-open{
 background-color: rgba(151, 151, 151, 0.144);
@@ -88,4 +88,10 @@ background-color: rgba(151, 151, 151, 0.144);
 
 .compose-types button:hover,.compose-types button.active{
    background-color: rgba(151, 151, 151, 0.308);
+}
+
+.create-note-btn{
+   align-self: flex-end;
+   padding: 5px;
+   border-radius: 5px;
 }

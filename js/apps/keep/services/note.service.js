@@ -46,7 +46,7 @@ function _createNotes() {
             title: 'hi',
             txt: "Fullstack Me Baby!"
          },
-         backgroundColor: '#ececec'
+         backgroundColor: '#d5e3d7'
       },
       {
          id: utilService.makeId(),
@@ -56,7 +56,7 @@ function _createNotes() {
             title: "Bobi and Me",
             url: "https://hellodesign.co/wp-content/uploads/2020/11/UX-hello-design.jpg"
          },
-         backgroundColor: '#ececec'
+         backgroundColor: '#d5e3d7'
       },
       {
          id: utilService.makeId(),
@@ -69,7 +69,8 @@ function _createNotes() {
                { txt: "Coding power", doneAt: 187111111 }
             ]
          },
-         backgroundColor: '#ececec'
+         // backgroundColor: '#ececec'
+         backgroundColor: '#d5e3d7'
       }];
    }
    _saveNotesToStorage(notes);
@@ -111,7 +112,7 @@ function addNote(note) {
       type,
       isPinned: false,
       info,
-      backgroundColor: '#ececec'
+      backgroundColor: '#d5e3d7'
    }
    const notes = _loadNotesFromStorage();
    notes.push(formattedNote);

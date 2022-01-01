@@ -1,5 +1,4 @@
 import { EmailService } from "../services/mail.service.js";
-import { eventBusService } from "../../../services/event-bus.service.js"
 import { AppHeader } from '../../../cmps/AppHeader.jsx';
 import { AppSideBar } from './AppSideBar.jsx';
 import { EmailDetails } from "./EmailDetails.jsx";
@@ -17,16 +16,6 @@ export class EmailApp extends React.Component {
       isShowCompose: false,
 
 
-   }
-
-   removeEventBus
-
-   componentDidMount() {
-  
-   }
-
-   componentWillUnmount() {
-      this.removeEventBus()
    }
 
    onOpenEmailCompose = () => {

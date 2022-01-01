@@ -6,3 +6,11 @@
    padding: 20px 0;
    align-items: start;
 }
+
+
+main{
+   background-image: url(../../../../img/eep-board.jfif);
+   background-size: 100vw;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+}

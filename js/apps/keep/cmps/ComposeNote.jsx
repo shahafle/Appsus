@@ -62,11 +62,14 @@ export class ComposeNote extends React.Component {
             {type === 'txt' && < input type="text" name="txt" placeholder="Compose your text" onChange={this.handleFieldChange} />}
             {type === 'img' && <input type="text" name="url" placeholder="Image url" onChange={this.handleFieldChange} />}
             {type === 'todos' && <ComposeTodos handleFieldChange={this.handleFieldChange} />}
-            <button onClick={(ev) => {
-               ev.preventDefault();
-               this.onToggleExtraFields(false);
-               this.props.onAddNote(this.state);
-            }}>Add</button>
+
+            <button
+               className="create-note-btn"
+               onClick={(ev) => {
+                  ev.preventDefault();
+                  this.onToggleExtraFields(false);
+                  this.props.onAddNote(this.state);
+               }}>Create</button>
          </div>
       </form >
    }
