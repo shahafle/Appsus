@@ -2,7 +2,7 @@ import { Loader } from "../../../../cmps/Loader.jsx"
 
 export function TxtNoteDetails({ note, handleEdit, onSaveEdit }) {
    if (!note) return <Loader />
-   return <div className="note-details txt-note-details main-layout">
+   return <main className="note-details txt-note-details main-layout">
       <h3 contentEditable="true"
          data-name="title"
          suppressContentEditableWarning={true}
@@ -17,5 +17,5 @@ export function TxtNoteDetails({ note, handleEdit, onSaveEdit }) {
       <button
          onClick={onSaveEdit}
       >Save</button>
-   </div>
+   </main>
 }

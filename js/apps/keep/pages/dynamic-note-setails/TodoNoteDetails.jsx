@@ -3,7 +3,7 @@ import { Loader } from "../../../../cmps/Loader.jsx"
 export function TodoNoteDetails({ note, onToggleTodoChecked, handleEdit, onSaveEdit, onDeleteTodo, onNewTodo }) {
 
    if (!note) return <Loader />
-   return <div className="note-details  todo-note-details main-layout">
+   return <main className="note-details  todo-note-details main-layout">
       <h3
          contentEditable="true"
          data-name="title"
@@ -37,6 +37,6 @@ export function TodoNoteDetails({ note, onToggleTodoChecked, handleEdit, onSaveE
       <button
          onClick={onSaveEdit}
       >Save</button>
-   </div>
+   </main>
 
 }

@@ -1,20 +1,46 @@
 header{
     background-color: rgb(238, 238, 238);
     padding: 10px 0;
-    box-shadow: inset 0 -5px 0 0 #2F5233;
+  }
+
+.yellow-header{
+  box-shadow: inset 0 -5px 0 0 #FFBA08;
 }
 
+.blue-header{
+  box-shadow: inset 0 -5px 0 0 #233961;
+}
+
+.green-header{
+  box-shadow: inset 0 -5px 0 0 #2F5233;
+}
+
+.main-header{
+  box-shadow: inset 0 -5px 0 0 rgb(46, 46, 46);
+}
 
 header .logo{
     height: 40px;
+    /* transform: translateY(-50%); */
 }
 
+header>:first-child:hover .logo{
+  animation: rotating .5s linear ;
+}
+
+@keyframes rotating {
+  from{
+      transform: rotate(0deg);
+  }
+  to{
+      transform: rotate(360deg);
+  }
+}
+  
 
 header input{
   font-size: 1.2rem;
   border: none;
-  /* border-radius: 5px; */
-  /* padding: 6px; */
   background: none;
   width: 300px;
 }
@@ -39,6 +65,18 @@ header input:focus-visible{
 .search-bar button::before{
   color: #1a1a1a;
 }
+
+
+.yellow-header .logo-app-name{
+  color:#FFBA08;
+}
+.blue-header .logo-app-name{
+  color:#3E65AD;
+}
+.green-header .logo-app-name{
+  color:#2F5233;
+}
+
 
 
 

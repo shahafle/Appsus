@@ -8,7 +8,7 @@ export class NoteApp extends React.Component {
 
    render() {
       return <React.Fragment>
-         <AppHeader app="keep" />
+         <AppHeader app="notes" />
          <Switch>
             <Route component={DynamicNoteDetails} path="/keep/note/:noteId" />
             <Route component={NotesBoard} path="/keep/board" />

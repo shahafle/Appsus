@@ -6,8 +6,18 @@ const { Link, NavLink } = ReactRouterDOM
 export class AppHeader extends React.Component {
    state = {
       search: '',
-      isOpen: false
+      isOpen: false,
+      appColor: 'main'
+   }
 
+
+   componentDidMount() {
+      let appColor = 'main';
+      const { app } = this.props;
+      if (app === 'notes') appColor = 'green';
+      else if (app === 'email') appColor = 'blue';
+      else if (app === 'books') appColor = 'yellow';
+      this.setState(prevState => ({ ...prevState, appColor }))
    }
 
    handleChange = ({ target }) => {
@@ -17,7 +27,7 @@ export class AppHeader extends React.Component {
    get appRoute() {
       const { app } = this.props;
       if (app === 'email') return 'mail/mail_box'
-      if (app === 'keep') return 'keep/board'
+      if (app === 'notes') return 'keep/board'
       if (app === 'books') return 'book/store'
 
    }
@@ -29,13 +39,14 @@ export class AppHeader extends React.Component {
 
    render() {
 
-      const { isOpen } = this.state
-      return <header >
-         <div className="main-layout flex space-between align-center">
+      const { isOpen, appColor } = this.state
+      return <header className={appColor + '-header'} >
+         <div className="main-layout flex space-between align-center " >
 
             <div className='brand-container flex'>
-               <NavLink className="flex" to="/"> <img className="logo" src="../../assets/img/green-logo.svg" />
-                  <h1 className="app-name">Trinity</h1>
+               <NavLink className="flex" to="/">
+                  <img className="logo" src={`assets/img/${appColor}-logo.svg`} />
+                  <h1 className="app-name">Trinity <span className="logo-app-name">{this.props.app}</span></h1>
                </NavLink>
             </div>
             {(this.props.app !== 'home') && <form className="search-bar">

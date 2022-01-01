@@ -4,7 +4,7 @@ export class ImgNoteDetails extends React.Component {
    render() {
       const { note, handleEdit, onSaveEdit } = this.props
       if (!note) return <Loader />
-      return <div className="note-details img-note-details main-layout">
+      return <main className="note-details img-note-details main-layout">
          <h2 contentEditable="true"
             data-name="title"
             suppressContentEditableWarning={true}
@@ -14,6 +14,6 @@ export class ImgNoteDetails extends React.Component {
          <button
             onClick={onSaveEdit}
          >Save</button>
-      </div>
+      </main>
    }
 }
