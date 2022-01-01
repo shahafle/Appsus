@@ -21,7 +21,7 @@ export class ComposeEmail extends React.Component {
 
     componentDidMount() {
         this.toInputRef.current.focus()
-        this.sendDraftInterval = setInterval(this.onSaveDraft, 5000);
+        this.sendDraftInterval = setInterval(this.onSaveDraft, 2500);
 
         this.removeEventBus = eventBusService.on('email-reply', (email) => {  
             this.setState((prevState) => ({
@@ -78,7 +78,7 @@ export class ComposeEmail extends React.Component {
     onSendEmailMsg = () => {
         const Toast = Swal.mixin({
             toast: true,
-            position: 'bottom-end',
+            position: 'top-right',
             width: 200,
             showConfirmButton: false,
             timer: 3000,
