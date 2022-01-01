@@ -33,12 +33,12 @@
   font-weight: 500;
 }
 
-.email-details-from {
+.email-details-from ,.email-details-to{
   color: #888888;
   margin-block-end: 20px;
 }
 
-.email-details-from span {
+.email-details-from span, .email-details-to span {
   color: #131313;
   font-weight: 600;
   font-size: 1.2rem;

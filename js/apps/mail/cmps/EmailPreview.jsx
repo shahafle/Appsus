@@ -68,7 +68,7 @@ export class EmailPreview extends React.Component {
                         {email.isTrashed && <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}
                     </div>
                     {(email.from.address !== loggedInUser.address) && < div className="email-userName">{email.from.userName}</div>}
-                    {(email.from.address === loggedInUser.address) &&<div className="email-userName">{loggedInUser.from.fullName}</div>}
+                    {(email.from.address === loggedInUser.address) &&<div className="email-userName">To: {email.to.userName}</div>}
                     <div className="flex space-between">
                         <p className="email-subject">{email.subject}</p>
                         <p className="email-body">{email.body}</p>

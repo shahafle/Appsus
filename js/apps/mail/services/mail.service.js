@@ -6,7 +6,7 @@ export const EmailService = {
     toggleEmailAttributes,
     getEmailById,
     getUnreadCount,
-    sendEmail,
+    saveDraft,
     getLoggedInUser,
     sortEmails,
 
@@ -44,17 +44,27 @@ function getUnreadCount() {
     const emails = _loadFromStorage()
     let unreadCount = 0
     emails.forEach(email => {
-        if (!email.isTrashed && !email.isRead && email.to === loggedInUser.address) unreadCount++
+        if (!email.isTrashed && !email.isRead && email.to.address === loggedInUser.address) unreadCount++
     })
     return Promise.resolve(unreadCount)
 }
 
-function sendEmail(newEmail) {
+function saveDraft(newDraft) {
     const emails = _loadFromStorage()
-    const email = _createEmail(newEmail)
-    emails.push(email)
+    // const email = (!newDraft.id) ? _createEmail(newDraft) : newDraft
+    if (!newDraft.id) {
+        newDraft = _createEmail(newDraft)
+        emails.push(newDraft)
+
+    } else {
+        // const draft = newDraft
+        const oldDraftIdx = emails.findIndex(email => draft.id === email.id)
+        emails[oldDraftIdx] = newDraft
+    }
+    console.log('newDraft:', newDraft);
+    
     _saveEmailsToStorage(emails)
-    return Promise.resolve()
+    return Promise.resolve(newDraft)
 }
 
 
@@ -66,13 +76,13 @@ function _getFilteredEmails(emails, filterBy) {
     return emails.filter(email => {
         switch (type) {
             case 'inbox':
-                return (!email.isTrashed && email.to === loggedInUser.address && (isSearchLineMatch(email, searchLine)))
+                return (!email.isTrashed && email.to.address === loggedInUser.address && (isSearchLineMatch(email, searchLine)))
 
             case 'starred':
-                return (!email.isTrashed && email.to === loggedInUser.address && email.isStarred && (isSearchLineMatch(email, searchLine)))
+                return (!email.isTrashed && email.to.address === loggedInUser.address && email.isStarred && (isSearchLineMatch(email, searchLine)))
 
             case 'sent':
-                return (!email.isTrashed && email.to !== loggedInUser.address && (isSearchLineMatch(email, searchLine)))
+                return (!email.isTrashed && email.to.address !== loggedInUser.address && (isSearchLineMatch(email, searchLine)))
 
             case 'trash':
 
@@ -80,8 +90,7 @@ function _getFilteredEmails(emails, filterBy) {
 
             case 'draft':
                 return (!email.isTrashed && email.isDraft && (isSearchLineMatch(email, searchLine)))
-            // default:
-            //     return true
+
         }
     })
 
@@ -90,7 +99,7 @@ function _getFilteredEmails(emails, filterBy) {
 function isSearchLineMatch(email, searchLine) {
     return (email.from.address.toLowerCase().includes(searchLine) ||
         email.from.userName.toLowerCase().includes(searchLine) ||
-        email.to.toLowerCase().includes(searchLine) ||
+        email.to.address.toLowerCase().includes(searchLine) ||
         email.subject.toLowerCase().includes(searchLine) ||
         email.body.toLowerCase().includes(searchLine)
     )
@@ -132,7 +141,9 @@ function toggleEmailAttributes(emailId, attribute) {
     return Promise.resolve(email)
 }
 
-function _createEmail({ to, subject, body }) {
+function _createEmail({ address, subject, body }) {
+    const to = getUserNameOnSend(address)
+
     const email = {
         id: utilService.makeId(),
         from: { address: loggedInUser.address, userName: loggedInUser.fullName },
@@ -150,14 +161,22 @@ function _createEmail({ to, subject, body }) {
     return email
 }
 
+
+function getUserNameOnSend(address) {
+    const userName = address.split('@')
+    const to = { address, userName: userName[0] }
+    return to
+}
+
 function _createEmails() {
     var emails = _loadFromStorage()
     if (!emails || !emails.length) {
         emails = [
+
             {
                 id: utilService.makeId(),
                 from: { address: 'momoCo@momo.com', userName: 'Momo Cohen' },
-                to: 'user@Trinity.com',
+                to: { address: 'user@Trinity.com', userName: 'Trinity' },
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
@@ -171,7 +190,7 @@ function _createEmails() {
             {
                 id: utilService.makeId(),
                 from: { address: 'momoAy@momo.com', userName: 'Momo Ayal' },
-                to: 'user@Trinity.com',
+                to: { address: 'user@Trinity.com', userName: 'Trinity' },
                 subject: 'Miss you!',
                 body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit possimus quaerat eveniet accusamus ipsa ut exercitationem molestiae repellendus doloribus ipsum repellat vero error incidunt libero, atque explicabo praesentium eius corporis autem. Nobis, beatae aut dignissimos maxime vitae ipsam corporis labore eius culpa. Illum obcaecati, nam quis alias ad officiis blanditiis.',
                 isRead: false,
@@ -185,7 +204,7 @@ function _createEmails() {
             {
                 id: utilService.makeId(),
                 from: { address: 'momShao@momo.com', userName: 'Momo Shapira' },
-                to: 'user@Trinity.com',
+                to: { address: 'user@Trinity.com', userName: 'Trinity' },
                 subject: 'Miss you!',
                 body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ipsum repellat vero error incidunt libero, atque explicabo praesentium eius corporis autem. Nobis, beatae aut dignissimos maxime vitae ipsam corporis labore eius culpa. Illum obcaecati, nam quis alias ad officiis blanditiis.',
                 isRead: false,
@@ -199,7 +218,7 @@ function _createEmails() {
             {
                 id: utilService.makeId(),
                 from: { address: 'momoYe@momo.com', userName: 'Momo Yehezkel' },
-                to: 'user@Trinity.com',
+                to: { address: 'user@Trinity.com', userName: 'Trinity' },
                 subject: 'Miss you!',
                 body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit possimus quaerat eveniet accusamus ipsa ut exercitationem molestiae repellendus doloribus ipsum repellat vero error incidunt libero, atque explicabo praesentium eius corporis autem. Nobis, beatae aut dignissimos maxime vitae ipsam corporis labore eius.',
                 isRead: false,
@@ -213,7 +232,7 @@ function _createEmails() {
             {
                 id: utilService.makeId(),
                 from: { address: 'momoDa@momo.com', userName: 'Momo Dai' },
-                to: 'user@Trinity.com',
+                to: { address: 'user@Trinity.com', userName: 'Trinity' },
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
@@ -227,7 +246,7 @@ function _createEmails() {
             {
                 id: utilService.makeId(),
                 from: { address: 'momoKa@momo.com', userName: 'Momo Kaplan' },
-                to: 'user@Trinity.com',
+                to: { address: 'user@Trinity.com', userName: 'Trinity' },
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
@@ -240,8 +259,8 @@ function _createEmails() {
             },
             {
                 id: utilService.makeId(),
-                from: { address: 'semi@fireman.com', userName: 'Trinity' },
-                to: 'semi@fireman.com',
+                from: { address: 'user@Trinity.com', userName: 'Trinity' },
+                to: { address: 'semi@fireman.com', userName: 'Semi' },
                 subject: 'Miss you!',
                 body: ' understand the personal data we collect and to give you greater control over your personal data. This is part of our ongoing commitment to be transparent about how we use your data and keep it safe. The new updates will take effect on December 23, 2021, and no further action is required by yo',
                 isRead: false,
@@ -254,8 +273,8 @@ function _createEmails() {
             },
             {
                 id: utilService.makeId(),
-                from: { address: 'carla@walla.com', userName: 'Trinity' },
-                to: 'carla@walla.com',
+                from: { address: 'user@Trinity.com', userName: 'Trinity' },
+                to: { address: 'carla@walla.com', userName: 'Carla' },
                 subject: 'i truly miss you baby!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
@@ -268,8 +287,8 @@ function _createEmails() {
             },
             {
                 id: utilService.makeId(),
-                from: { address: 'Shimon@gmail.com', userName: 'Trinity' },
-                to: 'Shimon@gmail.com',
+                from: { address: 'user@Trinity.com', userName: 'Trinity' },
+                to: { address: 'Shimon@gmail.com', userName: 'Shimon' },
                 subject: 'Gotta Catch Them All!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,

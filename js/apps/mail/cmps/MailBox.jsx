@@ -27,8 +27,7 @@ export class MailBox extends React.Component {
         this.removeEventBus = eventBusService.on('compose-email', this.loadEmails)
 
         EmailService.getLoggedInUser().then(loggedInUser => {
-            this.setState({ loggedInUser })
-
+            this.setState(prevState => ({ ...prevState, loggedInUser }))
         })
     }
 
@@ -62,7 +61,7 @@ export class MailBox extends React.Component {
 
             })
         })
-       
+
     }
 
     render() {
