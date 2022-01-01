@@ -22,10 +22,7 @@ export class EmailApp extends React.Component {
    removeEventBus
 
    componentDidMount() {
-      // this.removeEventBus = eventBusService.on('compose-email', isShowCompose => {
-      //    this.setState({ isShowCompose })
-
-      // })
+  
    }
 
    componentWillUnmount() {

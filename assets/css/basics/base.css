@@ -42,10 +42,9 @@ button{
 }
 
 footer{
-    background-color: rgb(51, 46, 46);
+    background-color: rgb(192, 192, 192);
     padding: 20px;
-    color: rgb(224, 174, 64);
-    text-align: center;
+   
 }
 
 a{
@@ -57,8 +56,22 @@ li{
     list-style: none;
 }
 
-img{
-    /* overflow: hidden; */
-    /* width:100%;
-    height:100%; */
-}
+
+
+
+
+.main-footer .logo {
+    font-size: 2.5rem;
+    text-shadow: -1px 2px 2px black;
+    padding-block: 9px;
+  }
+
+  
+.footer-copyrights {
+    font-size: .8rem;
+    color: rgb(223, 223, 223);
+    letter-spacing: 1px;
+    text-decoration: overline;
+    padding-block: 10px;
+  
+  }
