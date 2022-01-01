@@ -17,6 +17,10 @@ export class AppSideBar extends React.Component {
 
     }
 
+    componentWillUnmount() {
+        this.removeEventBus();
+    }
+
     onUpdateReadCount = () => {
         EmailService.getUnreadCount().then((unreadCount) => {
             this.setState({ unreadCount })
@@ -29,7 +33,7 @@ export class AppSideBar extends React.Component {
         return (
             <aside className="app-sidebar-container flex column">
 
-                <button className="compose-email-btn fas fa-plus " onClick={this.props.onOpenEmailCompose}></button>
+                <button className="compose-email-btn fas fa-plus " onClick={() => this.props.onToggleEmailCompose(true)}></button>
 
                 <div className="sidebar-sort">
                     <ul>

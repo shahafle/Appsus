@@ -10,6 +10,7 @@
   justify-content: flex-start;
 }
 
-/* .mailbox-action-bar > div:active::after {
-  content: "&#x21e9;";
-} */
+.mailbox-action-bar > div {
+    cursor: pointer;
+    padding: 5px;
+}

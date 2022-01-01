@@ -1,8 +1,8 @@
-import { EmailService } from "../services/mail.service.js";
+import { eventBusService } from "../../../services/event-bus.service.js"
 import { AppHeader } from '../../../cmps/AppHeader.jsx';
+import { MailBox } from "../cmps/MailBox.jsx";
 import { AppSideBar } from './AppSideBar.jsx';
 import { EmailDetails } from "./EmailDetails.jsx";
-import { MailBox } from "../cmps/MailBox.jsx";
 import { ComposeEmail } from "../cmps/ComposeEmail.jsx"
 
 
@@ -15,20 +15,27 @@ export class EmailApp extends React.Component {
 
       isShowCompose: false,
 
-
    }
 
-   onOpenEmailCompose = () => {
-      let { isShowCompose } = this.state
-      isShowCompose = !isShowCompose
-      this.setState({ isShowCompose })
+   removeEventBus
 
+   componentDidMount() {
+
+      this.removeEventBus = eventBusService.on('init-reply', (email) => {
+         this.setState({ isShowCompose: true }, () => eventBusService.emit('email-reply', email))
+      })
    }
 
-   onCloseEmailCompose = () => {
-      this.setState({ isShowCompose: false })
 
+   componentWillUnmount() {
+      this.removeEventBus();
    }
+
+   onToggleEmailCompose = (toOpen) => {
+      this.setState({ isShowCompose: toOpen })
+   }
+
+
 
    render() {
       const { unreadCount, isShowCompose } = this.state
@@ -36,14 +43,14 @@ export class EmailApp extends React.Component {
       return <React.Fragment>
          <AppHeader app="email" />
          <main className="email-app-main flex main-layout">
-            <AppSideBar unreadCount={unreadCount} onOpenEmailCompose={this.onOpenEmailCompose} />
+            <AppSideBar unreadCount={unreadCount} onToggleEmailCompose={this.onToggleEmailCompose} />
 
             <Switch>
                <Route component={EmailDetails} path="/mail/mail_box/:emailId" />
                <Route component={MailBox} path="/mail/mail_box" />
             </Switch>
 
-            {isShowCompose && <ComposeEmail onCloseEmailCompose={this.onCloseEmailCompose} isShowCompose={isShowCompose}/>}
+            {isShowCompose && <ComposeEmail onToggleEmailCompose={this.onToggleEmailCompose} isShowCompose={isShowCompose} />}
 
          </main>
       </React.Fragment>
