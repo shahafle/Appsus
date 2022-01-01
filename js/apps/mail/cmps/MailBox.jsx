@@ -8,6 +8,7 @@ export class MailBox extends React.Component {
     state = {
         emails: [],
         loggedInUser: null,
+        sortBy: 'date',
         filterBy: {
             type: 'inbox',
             searchLine: ''
@@ -15,7 +16,6 @@ export class MailBox extends React.Component {
     }
 
     removeEventBus
-
 
     componentDidMount() {
         const params = new URLSearchParams(this.props.location.search);
@@ -66,7 +66,6 @@ export class MailBox extends React.Component {
     }
 
 
-
     loadEmails = () => {
         EmailService.query(this.state.filterBy)
             .then(emails => {
@@ -75,11 +74,9 @@ export class MailBox extends React.Component {
     }
 
     onSortEmails = (sortBy) => {
-        console.log('sortBy:', sortBy);
-
         EmailService.query(this.state.filterBy).then(emails => {
             EmailService.sortEmails(sortBy, emails).then(emails => {
-                this.setState((prevState) => ({ ...prevState, emails }))
+                this.setState((prevState) => ({ ...prevState, emails, sortBy }))
 
             })
         })
@@ -87,7 +84,7 @@ export class MailBox extends React.Component {
     }
 
     render() {
-        const { emails, loggedInUser } = this.state
+        const { emails, loggedInUser, sortBy } = this.state
         if (!emails) return <Loader />
         if (emails.length === 0) return <div>No Emails to show</div>
 
@@ -95,10 +92,11 @@ export class MailBox extends React.Component {
             <React.Fragment>
                 <section className="mailbox-container flex column">
                     <div className="mailbox-action-bar flex">
-                        <div onClick={() => this.onSortEmails('date')}>Date</div>
-                        <div onClick={() => this.onSortEmails('from')}>From</div>
-                        <div onClick={() => this.onSortEmails('subject')}>Subject</div>
-                        <button className="fas fa-redo clear-button" onClick={()=>location.reload()}></button>
+                        <i className="fas fa-sort"></i>
+                        <div className={`${(sortBy === 'date') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('date')}>Date</div>
+                        <div className={`${(sortBy === 'from') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('from')}>From</div>
+                        <div className={`${(sortBy === 'subject') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('subject')}>Subject</div>
+                        <button className="fas fa-redo clear-button" onClick={() => location.reload()}></button>
 
                     </div>
                     {emails.map(email => <EmailPreview key={email.id} email={email} loggedInUser={loggedInUser} loadEmails={this.loadEmails} />)}

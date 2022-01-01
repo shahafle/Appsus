@@ -78,13 +78,12 @@ function getPrice({ amount, currencyCode }, isGetInNIS) {
 
 
 
-function getDate(timeStamp){
-   
+function getDate(timeStamp) {
+
     var date = new Date(timeStamp);
-    
-    return(date.getDate()+
-              "/"+(date.getMonth()+1)+
-              "/"+date.getFullYear()+
-              " "+date.getHours()+
-              ":"+date.getMinutes());
+
+    return (date.getDate() +
+        "/" + (date.getMonth() + 1) +
+        "/" + date.getFullYear()
+    );
 }

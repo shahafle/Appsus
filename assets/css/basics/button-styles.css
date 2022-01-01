@@ -58,21 +58,22 @@
     letter-spacing: 0.25px;
     max-width: 100%;
     overflow: visible;
-    padding: 2px 17px;
+   
     position: relative;
     text-align: center;
+    margin-inline-start: 8px;
    
   }
   
   .compose-email-btn:hover {
     background: #f6f9fe;
-    color: #fbc9c8d8;
+    color: #97B3E6;
   }
   
   .compose-email-btn:active {
     box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
       0 8px 12px 6px rgb(60 64 67 / 15%);
-    border: 2px solid #fbc9c8d8;
+    border: 2px solid #97B3E6;
     outline: none;
   }
 

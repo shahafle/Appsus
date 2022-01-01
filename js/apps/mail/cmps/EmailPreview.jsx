@@ -94,18 +94,18 @@ export class EmailPreview extends React.Component {
         if (!email) return <Loader />
 
         return (
-            <Link className="clean-link" to={`/mail/mail_box/${this.state.email.id}`}>
-                <section className="email-preview flex align-center justify-center">
+            <Link className="clean-link" to={`/mail/mail_box/${email.id}`}>
+                <section className={`${(email.isRead) ? 'preview-read' : ''} email-preview flex align-center justify-center`}>
                     <div className="preview-action-btns align-start justify-center">
                         <button
                             className="fas fa-trash-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'trash')} >
                         </button>
                         <button
-                            className={`${(this.state.email.isStarred) ? 'fas' : 'far'} fa-star fa-lg clear-button`}
+                            className={`${(email.isStarred) ? 'fas' : 'far'} fa-star fa-lg clear-button`}
                             onClick={(ev) => this.onToggleAttributes(ev, email.id, 'star')} >
                         </button>
                         <button
-                            className={` fas fa-envelope${(this.state.email.isRead) ? '-open' : ''} fa-lg clear-button`}
+                            className={` fas fa-envelope${(email.isRead) ? '-open' : ''} fa-lg clear-button`}
                             onClick={(ev) => this.onToggleAttributes(ev, email.id, 'read')}>
                         </button>
                         {email.isTrashed && <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}

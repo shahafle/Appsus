@@ -1,5 +1,5 @@
 .mailbox-container > :first-child {
-  border-top: 1px #909090 solid;
+  /* border-top: 1px #909090 solid; */
 }
 
 .mailbox-action-bar {
@@ -11,6 +11,11 @@
 }
 
 .mailbox-action-bar > div {
-    cursor: pointer;
-    padding: 5px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.sort-active {
+  background-color: #fff;
+  border-radius: 5px;
 }
