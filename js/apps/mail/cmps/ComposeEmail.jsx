@@ -4,12 +4,13 @@ import { eventBusService } from "../../../services/event-bus.service.js"
 export class ComposeEmail extends React.Component {
 
     state = {
-        email: {
-            to: '',
+        draft: {
+            id: 0,
+            address: '',
             subject: '',
             body: '',
-
         }
+
 
     }
 
@@ -19,26 +20,33 @@ export class ComposeEmail extends React.Component {
 
     componentDidMount() {
         this.toInputRef.current.focus()
+        const sendDraftInterval = setInterval(this.onSaveDraft, 5000);
+
     }
 
 
     handleChange = ({ target }) => {
+
         const field = target.name
         const value = target.value
-        this.setState(prevState => ({ email: { ...prevState.email, [field]: value } }))
+
+        this.setState(prevState => ({ draft: { ...prevState.draft, [field]: value } }))
 
     }
 
 
+    onSaveDraft = () => {
+        // ev.preventDefault()
+        EmailService.saveDraft(this.state.draft)
+        .then()
 
-    onSendEmail = (ev) => {
-        ev.preventDefault()
-        EmailService.sendEmail(this.state.email)
         this.props.onCloseEmailCompose()
         eventBusService.emit('compose-email', this.loadEmails)
         this.onSendEmailModal()
 
     }
+
+
 
 
     onSendEmailModal = () => {
@@ -70,10 +78,10 @@ export class ComposeEmail extends React.Component {
                     </div>
                 </div>
 
-                <form className="flex column" id="compose" className="flex column" onSubmit={this.onSendEmail}>
+                <form className="flex column" id="compose" className="flex column" onSubmit={this.onSaveDraft}>
                     <label>To&nbsp;
                         <input
-                            name="to"
+                            name="address"
                             // value={ }
                             type="email"
                             placeholder="user@trinity.com"

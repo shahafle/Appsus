@@ -43,7 +43,7 @@ export class EmailApp extends React.Component {
                <Route component={MailBox} path="/mail/mail_box" />
             </Switch>
 
-            {isShowCompose && <ComposeEmail onCloseEmailCompose={this.onCloseEmailCompose} />}
+            {isShowCompose && <ComposeEmail onCloseEmailCompose={this.onCloseEmailCompose} isShowCompose={isShowCompose}/>}
 
          </main>
       </React.Fragment>

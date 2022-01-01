@@ -1,7 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
-import { EmailService } from "../services/mail.service.js"
+import { EmailService } from "../services/mail.service.js";
 import { eventBusService } from "../../../services/event-bus.service.jsx"
-
 import { DetailsActionBar } from "../cmps/DetailsActionBar.jsx";
 import { Loader } from "../../../cmps/Loader.jsx";
 
@@ -11,11 +10,17 @@ class _EmailDetails extends React.Component {
 
     state = {
         email: null,
+        loggedInUser: null,
     }
 
 
     componentDidMount() {
         this.loadEmail()
+        EmailService.getLoggedInUser().then(loggedInUser => {
+            this.setState(prevState => ({ ...prevState, loggedInUser }))
+
+        })
+
     }
 
     loadEmail = () => {
@@ -73,8 +78,10 @@ class _EmailDetails extends React.Component {
 
 
     render() {
-        const { email } = this.state
-        if (!email) return <Loader />
+        const { email, loggedInUser } = this.state
+
+        if (!email || !loggedInUser) return <Loader />
+
 
 
         return (
@@ -90,7 +97,9 @@ class _EmailDetails extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <p className="email-details-from"><span>{email.from.userName}</span> {`<${email.from.address}>`}</p>
+                        {(email.from.address !== loggedInUser.address) && <p className="email-details-from"><span>{email.from.userName}</span> {`<${email.from.address}>`}</p>}
+                        {(email.from.address === loggedInUser.address) && <p className="email-details-to"><span>To: {email.to.userName}</span> {`< ${email.to.address}>`}</p>}
+
                         <div>{email.body}</div>
                     </div>
                 </div>
