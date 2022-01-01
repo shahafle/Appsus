@@ -9,7 +9,7 @@ export class MailBox extends React.Component {
         emails: [],
         loggedInUser: null,
         filterBy: {
-            type: 'inbox',
+            type: '',
             searchLine: ''
         },
     }
@@ -18,11 +18,22 @@ export class MailBox extends React.Component {
 
 
     componentDidMount() {
-        let currType = new URLSearchParams(this.props.location.search).get('mail_box_type')
-        currType = (currType === null) ? 'inbox' : currType
-        this.setState((prevState) => ({
-            filterBy: { ...prevState.filterBy, 'type': currType }
-        }), this.loadEmails)
+        const params = new URLSearchParams(this.props.location.search);
+        console.log('type: ', params.get('mail_box_type'));
+        if (params.get('mail_box_type')) {
+            let currType = params.get('mail_box_type')
+            currType = (currType === null) ? '' : currType
+            this.setState((prevState) => ({
+                filterBy: { ...prevState.filterBy, 'type': currType }
+            }), this.loadEmails)
+        } else {
+            let searchLine = params.get('search')
+            console.log('search: ', searchLine);
+            searchLine = (searchLine === null) ? '' : searchLine
+            this.setState((prevState) => ({
+                filterBy: { ...prevState.filterBy, searchLine }
+            }), this.loadEmails)
+        }
 
         this.removeEventBus = eventBusService.on('compose-email', this.loadEmails)
 
@@ -36,13 +47,38 @@ export class MailBox extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (new URLSearchParams(prevProps.location.search).get('mail_box_type') !== new URLSearchParams(this.props.location.search).get('mail_box_type')) {
-            let currType = new URLSearchParams(this.props.location.search).get('mail_box_type');
-            currType = (currType === null) ? '' : currType;
+
+        const params = new URLSearchParams(this.props.location.search);
+        const prevParams = new URLSearchParams(prevProps.location.search);
+        if (params.get('mail_box_type') === prevParams.get('mail_box_type') && params.get('search') === prevParams.get('search')) return
+
+        console.log('type: ', params.get('mail_box_type'));
+        if (params.get('mail_box_type')) {
+            let currType = params.get('mail_box_type')
+            currType = (currType === null) ? '' : currType
             this.setState((prevState) => ({
                 filterBy: { ...prevState.filterBy, 'type': currType }
             }), this.loadEmails)
+        } else {
+            let searchLine = params.get('search')
+            console.log('search: ', searchLine);
+            searchLine = (searchLine === null) ? '' : searchLine
+            this.setState((prevState) => ({
+                filterBy: { ...prevState.filterBy, searchLine }
+            }), this.loadEmails)
         }
+
+
+
+
+
+        // if (new URLSearchParams(prevProps.location.search).get('mail_box_type') !== new URLSearchParams(this.props.location.search).get('mail_box_type')) {
+        //     let currType = new URLSearchParams(this.props.location.search).get('mail_box_type');
+        //     currType = (currType === null) ? '' : currType;
+        //     this.setState((prevState) => ({
+        //         filterBy: { ...prevState.filterBy, 'type': currType }
+        //     }), this.loadEmails)
+        // }
     }
 
 
@@ -78,7 +114,7 @@ export class MailBox extends React.Component {
                         <div onClick={() => this.onSortEmails('subject')}>Subject</div>
 
                     </div>
-                    {emails.map(email => <EmailPreview key={email.id} email={email} loggedInUser={loggedInUser} />)}
+                    {emails.map(email => <EmailPreview key={email.id} email={email} loggedInUser={loggedInUser} loadEmails={this.loadEmails} />)}
                 </section>
             </React.Fragment>
 

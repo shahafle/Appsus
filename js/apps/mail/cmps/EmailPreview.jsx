@@ -22,6 +22,7 @@ export class EmailPreview extends React.Component {
             this.setState({ email })
             eventBusService.emit('update-read-count', this.onUpdateReadCount)
             this.onToggleAttributesModal(attribute)
+            this.props.loadEmails()
         })
     }
 
@@ -45,6 +46,7 @@ export class EmailPreview extends React.Component {
         } else if (attribute === 'restore') {
             txt = 'Email was restored'
         }
+
         Toast.fire({
             title: txt
         })
@@ -68,7 +70,7 @@ export class EmailPreview extends React.Component {
                         {email.isTrashed && <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}
                     </div>
                     {(email.from.address !== loggedInUser.address) && < div className="email-userName">{email.from.userName}</div>}
-                    {(email.from.address === loggedInUser.address) &&<div className="email-userName">To: {email.to.userName}</div>}
+                    {(email.from.address === loggedInUser.address) && <div className="email-userName">To: {email.to.userName}</div>}
                     <div className="flex space-between">
                         <p className="email-subject">{email.subject}</p>
                         <p className="email-body">{email.body}</p>

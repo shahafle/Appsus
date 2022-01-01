@@ -9,6 +9,7 @@ export const EmailService = {
     saveDraft,
     getLoggedInUser,
     sortEmails,
+    sendEmail
 
 }
 
@@ -51,50 +52,60 @@ function getUnreadCount() {
 
 function saveDraft(newDraft) {
     const emails = _loadFromStorage()
-    // const email = (!newDraft.id) ? _createEmail(newDraft) : newDraft
     if (!newDraft.id) {
-        newDraft = _createEmail(newDraft)
+        newDraft = _createDraft(newDraft)
         emails.push(newDraft)
 
     } else {
-        // const draft = newDraft
-        const oldDraftIdx = emails.findIndex(email => draft.id === email.id)
+        const oldDraftIdx = emails.findIndex(email => newDraft.id === email.id)
         emails[oldDraftIdx] = newDraft
     }
-    console.log('newDraft:', newDraft);
-    
+
     _saveEmailsToStorage(emails)
     return Promise.resolve(newDraft)
 }
 
 
+function sendEmail(draftId) {
+    const emails = _loadFromStorage()
+    const draftIdx = emails.findIndex(email => draftId === email.id)
+    emails[draftIdx].isDraft = false
+    console.log(emails);
+    _saveEmailsToStorage(emails)
+}
+
 function _getFilteredEmails(emails, filterBy) {
 
     let { type, searchLine } = filterBy
+    if (type) {
 
-    searchLine = searchLine.toLowerCase()
-    return emails.filter(email => {
-        switch (type) {
-            case 'inbox':
-                return (!email.isTrashed && email.to.address === loggedInUser.address && (isSearchLineMatch(email, searchLine)))
+        // searchLine = searchLine.toLowerCase()
+        return emails.filter(email => {
+            switch (type) {
+                case 'inbox':
+                    return (!email.isTrashed && !email.isDraft && email.to.address === loggedInUser.address && (isSearchLineMatch(email, searchLine)))
 
-            case 'starred':
-                return (!email.isTrashed && email.to.address === loggedInUser.address && email.isStarred && (isSearchLineMatch(email, searchLine)))
+                case 'starred':
+                    return (!email.isTrashed && !email.isDraft && email.to.address === loggedInUser.address && email.isStarred && (isSearchLineMatch(email, searchLine)))
 
-            case 'sent':
-                return (!email.isTrashed && email.to.address !== loggedInUser.address && (isSearchLineMatch(email, searchLine)))
+                case 'sent':
+                    return (!email.isTrashed && !email.isDraft && email.to.address !== loggedInUser.address && (isSearchLineMatch(email, searchLine)))
 
-            case 'trash':
+                case 'trash':
+                    return (email.isTrashed && (isSearchLineMatch(email, searchLine)))
 
-                return (email.isTrashed && (isSearchLineMatch(email, searchLine)))
+                case 'draft':
+                    return (!email.isTrashed && email.isDraft && (isSearchLineMatch(email, searchLine)))
 
-            case 'draft':
-                return (!email.isTrashed && email.isDraft && (isSearchLineMatch(email, searchLine)))
-
-        }
-    })
-
+                default:
+                    return true
+            }
+        })
+    } else {
+        return emails.filter(email => isSearchLineMatch(email, searchLine))
+    }
 }
+
 
 function isSearchLineMatch(email, searchLine) {
     return (email.from.address.toLowerCase().includes(searchLine) ||
@@ -141,9 +152,8 @@ function toggleEmailAttributes(emailId, attribute) {
     return Promise.resolve(email)
 }
 
-function _createEmail({ address, subject, body }) {
+function _createDraft({ address, subject, body }) {
     const to = getUserNameOnSend(address)
-
     const email = {
         id: utilService.makeId(),
         from: { address: loggedInUser.address, userName: loggedInUser.fullName },
@@ -153,7 +163,7 @@ function _createEmail({ address, subject, body }) {
         isRead: false,
         isStarred: false,
         isTrashed: false,
-        isDraft: false,
+        isDraft: true,
         labels: [],
         sentAt: Date.now(),
         removedAt: null

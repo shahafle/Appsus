@@ -14,14 +14,17 @@ export class ComposeEmail extends React.Component {
 
     }
 
-
+    sendDraftInterval
 
     toInputRef = React.createRef()
 
     componentDidMount() {
         this.toInputRef.current.focus()
-        const sendDraftInterval = setInterval(this.onSaveDraft, 5000);
+        this.sendDraftInterval = setInterval(this.onSaveDraft, 5000);
+    }
 
+    componentWillUnmount() {
+        clearInterval(this.sendDraftInterval);
     }
 
 
@@ -36,16 +39,28 @@ export class ComposeEmail extends React.Component {
 
 
     onSaveDraft = () => {
-        // ev.preventDefault()
         EmailService.saveDraft(this.state.draft)
-        .then()
+            .then(newDraft => this.setState({ draft: newDraft }))
+    }
 
+    onSendEmail = (ev) => {
+        ev.preventDefault()
+
+        EmailService.sendEmail(this.state.draft.id)
+        this.setState({
+            draft: {
+                draft: {
+                    id: 0,
+                    address: '',
+                    subject: '',
+                    body: '',
+                }
+            }
+        })
         this.props.onCloseEmailCompose()
         eventBusService.emit('compose-email', this.loadEmails)
         this.onSendEmailModal()
-
     }
-
 
 
 
@@ -78,7 +93,7 @@ export class ComposeEmail extends React.Component {
                     </div>
                 </div>
 
-                <form className="flex column" id="compose" className="flex column" onSubmit={this.onSaveDraft}>
+                <form className="flex column" id="compose" className="flex column" onSubmit={this.onSendEmail}>
                     <label>To&nbsp;
                         <input
                             name="address"
