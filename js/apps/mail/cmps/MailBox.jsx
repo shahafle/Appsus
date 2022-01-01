@@ -9,7 +9,7 @@ export class MailBox extends React.Component {
         emails: [],
         loggedInUser: null,
         filterBy: {
-            type: '',
+            type: 'inbox',
             searchLine: ''
         },
     }
@@ -19,16 +19,14 @@ export class MailBox extends React.Component {
 
     componentDidMount() {
         const params = new URLSearchParams(this.props.location.search);
-        // console.log('type: ', params.get('mail_box_type'));
-        if (params.get('mail_box_type')) {
-            let currType = params.get('mail_box_type')
+        if (params.get('mail_box')) {
+            let currType = params.get('mail_box')
             currType = (currType === null) ? '' : currType
             this.setState((prevState) => ({
                 filterBy: { ...prevState.filterBy, 'type': currType }
             }), this.loadEmails)
         } else {
             let searchLine = params.get('search')
-            // console.log('search: ', searchLine);
             searchLine = (searchLine === null) ? '' : searchLine
             this.setState((prevState) => ({
                 filterBy: { ...prevState.filterBy, searchLine }
@@ -50,18 +48,16 @@ export class MailBox extends React.Component {
 
         const params = new URLSearchParams(this.props.location.search);
         const prevParams = new URLSearchParams(prevProps.location.search);
-        if (params.get('mail_box_type') === prevParams.get('mail_box_type') && params.get('search') === prevParams.get('search')) return
+        if (params.get('mail_box') === prevParams.get('mail_box') && params.get('search') === prevParams.get('search')) return
 
-        // console.log('type: ', params.get('mail_box_type'));
-        if (params.get('mail_box_type')) {
-            let currType = params.get('mail_box_type')
+        if (params.get('mail_box')) {
+            let currType = params.get('mail_box')
             currType = (currType === null) ? '' : currType
             this.setState((prevState) => ({
                 filterBy: { ...prevState.filterBy, 'type': currType }
             }), this.loadEmails)
         } else {
             let searchLine = params.get('search')
-            // console.log('search: ', searchLine);
             searchLine = (searchLine === null) ? '' : searchLine
             this.setState((prevState) => ({
                 filterBy: { ...prevState.filterBy, searchLine }

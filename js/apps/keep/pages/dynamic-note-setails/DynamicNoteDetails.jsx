@@ -55,7 +55,7 @@ export class DynamicNoteDetails extends React.Component {
    onAlertMsg = () => {
       const Toast = Swal.mixin({
          toast: true,
-         position: 'bottom-end',
+         position: 'top-right',
          showConfirmButton: false,
          timer: 2500,
          timerProgressBar: true,

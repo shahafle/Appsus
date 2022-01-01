@@ -40,8 +40,6 @@ export class NotesBoard extends React.Component {
          .then(note => {
             if (note.info)
                this.setState(prevState => ({ ...prevState, notes: [...prevState.notes, note] }))
-            console.log('note:', note);
-
             this.onAlertMsg('note-add')
 
          })
@@ -49,9 +47,8 @@ export class NotesBoard extends React.Component {
    }
 
    onDeleteNote = (ev, noteId) => {
-      ev.stopPropagation()
-      noteService.deleteNote(noteId)
-         .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+      ev.preventDefault()
+      this.onDeleteMsg(noteId)
    }
 
    onPinNote = (ev, noteId) => {
@@ -79,7 +76,7 @@ export class NotesBoard extends React.Component {
    onAlertMsg = (msgType, isPinned) => {
       const Toast = Swal.mixin({
          toast: true,
-         position: 'top',
+         position: 'top-right',
          showConfirmButton: false,
          timer: 2500,
          timerProgressBar: true,
@@ -94,12 +91,40 @@ export class NotesBoard extends React.Component {
             icon = ''
       } else if (msgType === 'note-dupl') {
          txt = 'Note duplicated',
-            icon = ''
+            icon = 'success'
       }
       Toast.fire({
          icon: icon,
          title: txt
       })
+   }
+
+   onDeleteMsg = (noteId) => {
+      Swal.fire({
+         title: 'Delete this note?',
+         icon: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#d33',
+         cancelButtonColor: '#2f5233',
+         confirmButtonText: 'Yes, delete it!'
+      })
+         .then((result) => {
+            if (result.isConfirmed) {
+               const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-right',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+               })
+               noteService.deleteNote(noteId)
+                  .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+               Toast.fire({
+                  title: 'Note deleted',
+                  icon: 'success'
+               })
+            }
+         })
    }
 
    render() {
@@ -110,7 +135,6 @@ export class NotesBoard extends React.Component {
          <div className="notes-board">
             {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote}
                onPinNote={this.onPinNote} onDuplicateNote={this.onDuplicateNote} onColorNote={this.onColorNote} />)}
-            {/* {notes.map(note => <Route component={ } />)} */}
 
          </div>
          <Screen />
