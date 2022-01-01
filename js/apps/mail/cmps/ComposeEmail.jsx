@@ -9,22 +9,31 @@ export class ComposeEmail extends React.Component {
             address: '',
             subject: '',
             body: '',
-        }
+        },
+        isMinimize: false
 
 
     }
 
     sendDraftInterval
-
+    removeEventBus
     toInputRef = React.createRef()
 
     componentDidMount() {
         this.toInputRef.current.focus()
         this.sendDraftInterval = setInterval(this.onSaveDraft, 5000);
+
+        this.removeEventBus = eventBusService.on('email-reply', (email) => {  
+            this.setState((prevState) => ({
+                draft: { ...prevState.draft,  address: email.from.address }
+            }))
+        })
     }
 
     componentWillUnmount() {
         clearInterval(this.sendDraftInterval);
+        this.removeEventBus();
+
     }
 
 
@@ -34,9 +43,13 @@ export class ComposeEmail extends React.Component {
         const value = target.value
 
         this.setState(prevState => ({ draft: { ...prevState.draft, [field]: value } }))
-
     }
 
+    onMinimizeCompose = () => {
+        let { isMinimize } = this.state
+        isMinimize = !isMinimize
+        this.setState({ isMinimize })
+    }
 
     onSaveDraft = () => {
         EmailService.saveDraft(this.state.draft)
@@ -57,13 +70,12 @@ export class ComposeEmail extends React.Component {
                 }
             }
         })
-        this.props.onCloseEmailCompose()
+        this.props.onToggleEmailCompose(false)
         eventBusService.emit('compose-email', this.loadEmails)
-        this.onSendEmailModal()
+        this.onSendEmailMsg()
     }
 
-
-    onSendEmailModal = () => {
+    onSendEmailMsg = () => {
         const Toast = Swal.mixin({
             toast: true,
             position: 'bottom-end',
@@ -80,15 +92,15 @@ export class ComposeEmail extends React.Component {
 
 
     render() {
-
-
+  
+        
         return (
-            <section className="compose-email-container flex column ">
+            <section className={`compose-email-container ${(this.state.isMinimize) ? 'minimize' : ''} flex column`}>
                 <div className="composer-header flex space-between">
                     <div className="composer-title">New Email</div>
                     <div className="composer-title-btns flex">
-                        <button className="fas fa-minus clear-button"></button>
-                        <button className="fas fa-times clear-button" onClick={() => this.props.onCloseEmailCompose()}></button>
+                        <button className="fas fa-minus clear-button" onClick={() => this.onMinimizeCompose()}></button>
+                        <button className="fas fa-times clear-button" onClick={() => this.props.onToggleEmailCompose(false)}></button>
                     </div>
                 </div>
 
@@ -96,7 +108,7 @@ export class ComposeEmail extends React.Component {
                     <label>To&nbsp;
                         <input
                             name="address"
-                            // value={ }
+                            value={this.state.draft.address}
                             type="email"
                             placeholder="user@trinity.com"
                             required
@@ -107,7 +119,7 @@ export class ComposeEmail extends React.Component {
                     <label>Subject&nbsp;
                         <input
                             name="subject"
-                            // value={ }
+                            // value={address}
                             type="text"
                             placeholder="subject"
                             onChange={this.handleChange}

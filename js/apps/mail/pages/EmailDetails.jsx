@@ -1,6 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { EmailService } from "../services/mail.service.js";
-import { eventBusService } from "../../../services/event-bus.service.jsx"
+import { eventBusService } from "../../../services/event-bus.service.js"
 import { DetailsActionBar } from "../cmps/DetailsActionBar.jsx";
 import { Loader } from "../../../cmps/Loader.jsx";
 
@@ -35,54 +35,62 @@ class _EmailDetails extends React.Component {
     }
 
     onToggleAttributes = (emailId, attribute) => {
-        // console.log('this.state.email.isTrashed:', this.state.email.isTrashed);
-
-        // if (this.state.email.isTrashed){
-        //      this.onDeleteModal()
-        // }
-        if (this.state.email.isTrashed) attribute = 'delete'
+        if (this.state.email.isTrashed) {
+            attribute = 'delete'
+            this.onDeleteMsg(emailId, attribute)
+            return
+        }
         EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
             this.setState({ email })
             eventBusService.emit('update-read-count', this.onUpdateReadCount)
-
-            if (attribute === 'delete' || attribute === 'trash') this.onBackToMailBox()
-
-
+            if (attribute === 'trash') this.onBackToMailBox()
 
         })
 
     }
 
+    onEmailReply = () => {
+        eventBusService.emit('init-reply', this.state.email)
+    }
 
-    // onDeleteModal = () => {
-    //     Swal.fire({
-    //         title: 'Delete this email??',
-    //         icon: 'warning',
+    onDeleteMsg = (emailId, attribute) => {
+        Swal.fire({
+            title: 'Delete this Email?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#21379B',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'bottom-end',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                    })
+                    EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
+                        this.setState({ email })
+                        eventBusService.emit('update-read-count', this.onUpdateReadCount)
+                        this.onBackToMailBox()
+                    })
+                    Toast.fire({
+                        title: 'Email deleted',
+                        icon: 'success'
+                    })
 
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#d33',
-    //         cancelButtonColor: '#7F7C82',
-    //         confirmButtonText: 'Yes, delete it!',
-    //         timer: 1500,
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire({
-    //                 icon: 'success',
-    //                 title: 'Email has been deleted',
-    //                 showConfirmButton: false,
-    //                 timer: 1500,
-    //             })
-    //         }
-    //     })
-    // }
+                }
+
+            })
+    }
 
 
     render() {
         const { email, loggedInUser } = this.state
 
         if (!email || !loggedInUser) return <Loader />
-
-
 
         return (
 
@@ -92,7 +100,7 @@ class _EmailDetails extends React.Component {
                     <div className="details-title-container flex space-between align-center">
                         <p className="email-title">{email.subject}</p>
                         <div className="flex row">
-                            <button className="details-reply fas fa-reply fa-lg clear-button"></button>
+                            {(email.to.address === loggedInUser.address) && <button className="details-reply fas fa-reply fa-lg clear-button" onClick={this.onEmailReply}></button>}
                             <p>{utilService.getDate(email.sentAt)}</p>
                         </div>
                     </div>

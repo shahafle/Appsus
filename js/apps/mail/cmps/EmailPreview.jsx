@@ -1,6 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { EmailService } from "../services/mail.service.js"
-import { eventBusService } from "../../../services/event-bus.service.jsx"
+import { eventBusService } from "../../../services/event-bus.service.js"
 import { Loader } from "../../../cmps/Loader.jsx";
 
 const { Link } = ReactRouterDOM
@@ -21,12 +21,12 @@ export class EmailPreview extends React.Component {
         EmailService.toggleEmailAttributes(emailId, attribute).then(email => {
             this.setState({ email })
             eventBusService.emit('update-read-count', this.onUpdateReadCount)
-            this.onToggleAttributesModal(attribute)
+            this.onToggleAttributesMsg(attribute)
             this.props.loadEmails()
         })
     }
 
-    onToggleAttributesModal = (attribute) => {
+    onToggleAttributesMsg = (attribute) => {
         const Toast = Swal.mixin({
             toast: true,
             position: 'bottom-end',

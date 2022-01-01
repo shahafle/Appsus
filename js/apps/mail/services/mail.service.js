@@ -46,6 +46,7 @@ function getUnreadCount() {
     let unreadCount = 0
     emails.forEach(email => {
         if (!email.isTrashed && !email.isRead && email.to.address === loggedInUser.address) unreadCount++
+        
     })
     return Promise.resolve(unreadCount)
 }
