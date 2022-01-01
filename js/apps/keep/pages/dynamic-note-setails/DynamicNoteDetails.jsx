@@ -48,6 +48,23 @@ export class DynamicNoteDetails extends React.Component {
 
    onSaveEdit = () => {
       noteService.updateNote(this.state.note)
+      this.onAlertMsg()
+   }
+
+
+   onAlertMsg = () => {
+      const Toast = Swal.mixin({
+         toast: true,
+         position: 'bottom-end',
+         showConfirmButton: false,
+         timer: 2500,
+         timerProgressBar: true,
+      })
+    
+      Toast.fire({
+         icon: 'success',
+         title:'Note successfully edited'
+      })
    }
 
    render() {

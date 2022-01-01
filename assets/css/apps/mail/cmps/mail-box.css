@@ -1,5 +1,15 @@
-
-
-.mailbox-container > :first-child{
-    border-top: 1px #909090 solid;
+.mailbox-container > :first-child {
+  border-top: 1px #909090 solid;
 }
+
+.mailbox-action-bar {
+  font-size: 1.1rem;
+  gap: 35px;
+  height: 44px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* .mailbox-action-bar > div:active::after {
+  content: "&#x21e9;";
+} */

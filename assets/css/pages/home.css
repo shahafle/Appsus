@@ -7,7 +7,7 @@
     background-image: linear-gradient(rgb(0 0 0 / 68%), rgba(93, 93, 93, 0.4)), url(../../img/hero.jpg);
     height: 90vh;
     width: 88vw;
-    /* background-size: 1200px 800px; */
+    /* padding: 20px 0; */
     background-repeat: no-repeat;
     background-size: cover;
   }

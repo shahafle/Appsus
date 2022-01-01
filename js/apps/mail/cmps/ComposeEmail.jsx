@@ -47,8 +47,6 @@ export class ComposeEmail extends React.Component {
     }
 
 
-
-
     onSendEmailModal = () => {
         const Toast = Swal.mixin({
             toast: true,

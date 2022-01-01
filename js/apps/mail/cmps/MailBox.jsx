@@ -55,6 +55,8 @@ export class MailBox extends React.Component {
     }
 
     onSortEmails = (sortBy) => {
+        console.log('sortBy:', sortBy);
+        
         EmailService.query(this.state.filterBy).then(emails => {
             EmailService.sortEmails(sortBy, emails).then(emails => {
                 this.setState((prevState) => ({ ...prevState, emails }))
@@ -76,6 +78,7 @@ export class MailBox extends React.Component {
                         <div onClick={() => this.onSortEmails('date')}>Date</div>
                         <div onClick={() => this.onSortEmails('from')}>From</div>
                         <div onClick={() => this.onSortEmails('subject')}>Subject</div>
+                        <button className="fas fa-redo clear-button"></button>
 
                     </div>
                     {emails.map(email => <EmailPreview key={email.id} email={email} loggedInUser={loggedInUser} />)}

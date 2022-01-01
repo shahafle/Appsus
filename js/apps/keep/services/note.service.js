@@ -154,7 +154,7 @@ function toggleNotePin(noteId) {
    notes[noteIdx].isPinned = !notes[noteIdx].isPinned;
    sortNotes(notes)
    _saveNotesToStorage(notes);
-   return Promise.resolve(notes);
+   return Promise.resolve({ notes, isPinned:notes[noteIdx].isPinned });
 }
 
 function sortNotes(notes) {

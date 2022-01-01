@@ -5,10 +5,10 @@ export class Home extends React.Component {
 
     render() {
         return (
-            <section className="main-layout ">
+            <section className=" ">
                 <AppHeader app='home' />
-                <div className="flex column align-center">
-                <section className="home-hero space-around flex">
+                <div className="flex column align-center ">
+                <section className="home-hero space-around flex main-layout">
                 <div className="home-container  flex column justify-center align-center">
                 <div className="hero-title">Welcome to Trinity</div>
                 <div className="hero-subtitle">A Triforce Application</div>
