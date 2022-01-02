@@ -42,7 +42,7 @@ export class BooksStore extends React.Component {
 
     render() {
         const { books } = this.state;
-        return <main className="main-books-app main-layout flex space-between">
+        return <main className="main-books-app main-layout flex column space-between">
             <BooksFilter onSetFilter={this.onSetFilter} />
             <BooksList books={books} />
         </main>

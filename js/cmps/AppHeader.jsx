@@ -41,7 +41,7 @@ export class AppHeader extends React.Component {
 
       const { isOpen, appColor } = this.state
       return <header className={appColor + '-header'} >
-         <div className="main-layout flex space-between align-center " >
+         <div className="main-layout flex space-between align-center haeder-container" >
 
             <div className='brand-container flex'>
                <NavLink className="flex" to="/">
@@ -49,7 +49,7 @@ export class AppHeader extends React.Component {
                   <h1 className="app-name">Trinity <span className="logo-app-name">{this.props.app}</span></h1>
                </NavLink>
             </div>
-            {(this.props.app !== 'home') && <form className="search-bar">
+            {(this.props.app !== 'home') && <form className="search-bar flex">
                <input type="text" placeholder="Search" name="search" onChange={this.handleChange} value={this.state.search} />
                <Link to={`/${this.appRoute}/?search=${this.state.search}`}><button className="fas fa-search"></button></Link>
             </form>}

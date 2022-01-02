@@ -111,14 +111,16 @@ export class EmailPreview extends React.Component {
                         </button>
                         {email.isTrashed && <button className="restore-trashed-email fas fa-trash-restore-alt fa-lg clear-button" onClick={(ev) => this.onToggleAttributes(ev, email.id, 'restore')} ></button>}
                     </div>
+                    <div className="flex flex-grow1 email-preview-info">
 
-                    {(email.from.address !== loggedInUser.address) && < div className="email-userName">{email.from.userName}</div>}
-                    {(email.from.address === loggedInUser.address) && <div className="email-userName">To: {email.to.userName}</div>}
-                    <div className="flex space-between">
-                        <p className="email-subject">{email.subject}</p>
-                        <p className="email-body">{email.body}</p>
+                        {(email.from.address !== loggedInUser.address) && < div className="email-userName">{email.from.userName}</div>}
+                        {(email.from.address === loggedInUser.address) && <div className="email-userName">To: {email.to.userName}</div>}
+                        <div className="flex email-content-preview">
+                            <p className="email-subject">{email.subject}</p>
+                            <p className="email-body">{email.body}</p>
+                        </div>
                     </div>
-                    <div className="email-date flex flex-grow1">{utilService.getDate(email.sentAt)}</div>
+                    <div className="email-date ">{utilService.getDate(email.sentAt)}</div>
 
                 </section >
             </Link >

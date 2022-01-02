@@ -18,11 +18,11 @@ export class BooksFilter extends React.Component {
 
    render() {
       const { name, maxPrice } = this.state.filterBy
-      return <form className="books-filter flex column stick">
-         <div className="filter-field flex column">
+      return <form className="books-filter flex column">
+         {/* <div className="filter-field flex column">
             <label htmlFor="by-title">Title:</label>
             <input name="name" id="by-title" type="text" value={name} onChange={this.handleChange} />
-         </div>
+         </div> */}
 
          <div className="filter-field flex column">
             <label htmlFor="by-price">Maximum price: <span className="max-price-preview">{maxPrice + '₪'}</span></label>

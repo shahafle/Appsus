@@ -29,7 +29,6 @@
 @import './apps/book/cmps/book-details.css';
 @import './apps/book/cmps/book-preview.css';
 @import './apps/book/cmps/books-filter.css';
-@import './apps/book/cmps/books-list.css';
 
 /* NOTES APP */
 @import './apps/keep/pages/notes-board.css';

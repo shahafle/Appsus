@@ -33,7 +33,7 @@ export class AppSideBar extends React.Component {
 
     render() {
 
-        const {selectedNav, unreadCount}= this.state
+        const { selectedNav, unreadCount } = this.state
 
         return (
             <aside className="app-sidebar-container flex column">
@@ -56,14 +56,14 @@ export class AppSideBar extends React.Component {
                     <NavLink onClick={() => this.onSelectNav('read')} className={`${(selectedNav === 'read') ? 'nav-select' : ''} flex align-center`}
                         to="/mail/mail_box/?mail_box=read"
                     >
-                        <i class="fas fa-envelope-open-text"></i>
+                        <i className="fas fa-envelope-open-text"></i>
                         <li>Read</li>
                     </NavLink>
 
                     <NavLink onClick={() => this.onSelectNav('unread')} className={`${(selectedNav === 'unread') ? 'nav-select' : ''} flex align-center`}
                         to="/mail/mail_box/?mail_box=unread"
                     >
-                        <i class="fas fa-envelope"></i>
+                        <i className="fas fa-envelope"></i>
                         <li>Unread</li>
                     </NavLink>
 
