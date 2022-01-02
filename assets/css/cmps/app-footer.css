@@ -1,15 +1,19 @@
-.main-footer .logo {
-   font-size: 2.5rem;
-   text-shadow: -1px 1px 2px black;
+.main-footer-logo {
+  font-size: 2.5rem;
+  color: #1b1b1b;
 }
 
- 
 .footer-copyrights {
-   font-size: .8rem;
-   letter-spacing: 1px;
-   text-decoration: overline;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-decoration: overline;
 }
 
-.footer-container{
-   gap: 10px;
+.footer-container {
+  gap: 5px;
+}
+
+.main-footer {
+   background-color: #e4e4e4;
+  box-shadow: inset 0 5px 0 0 rgb(46, 46, 46);
 }

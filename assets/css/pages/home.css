@@ -1,38 +1,33 @@
-/* .home-page{
- 
-} */
 
 .home-hero {
-    object-fit: cover;
-    background-image: linear-gradient(rgb(0 0 0 / 68%), rgba(93, 93, 93, 0.4)), url(../../img/hero.jpg);
-    /* height: 90vh; */
-    width: 100vw;
-    /* padding: 20px 0; */
-    background-repeat: no-repeat;
-    background-size: cover;
-    flex: 1;
-    color: white;
-    text-align: center;
-  }
+  object-fit: cover;
+  background-image: linear-gradient(rgb(0 0 0 / 68%), rgba(93, 93, 93, 0.4)),
+    url(../../img/hero.jpg);
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex: 1;
+  color: white;
+  text-align: center;
+}
 
-  .hero-title {
-    font-weight: 800;
-    font-size: 3.6rem;
-  }
-  .hero-subtitle {
-    font-size: 2rem;
-  }
-  
-  .hero-slogan {
-    font-size: 1rem;
-  }
-  
-  
-  .home-container{
-    gap:50px;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.349);
-  }
+.hero-title {
+  font-weight: 800;
+  font-size: 3.6rem;
+}
+.hero-subtitle {
+  font-size: 2rem;
+}
 
-  .home-page{
-    flex-grow: 1;
-  }
+.hero-slogan {
+  font-size: 1.4rem;
+}
+
+.home-container {
+  gap: 50px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.349);
+}
+
+.home-page {
+  flex-grow: 1;
+}

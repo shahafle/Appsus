@@ -27,6 +27,7 @@ export class EmailPreview extends React.Component {
                     this.setState({ email })
                     eventBusService.emit('update-read-count', this.onUpdateReadCount)
                     this.onToggleAttributesMsg(attribute)
+                    this.props.loadEmails()
                 })
         }
     }

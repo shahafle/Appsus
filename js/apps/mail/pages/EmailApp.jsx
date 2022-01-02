@@ -5,9 +5,7 @@ import { AppSideBar } from './AppSideBar.jsx';
 import { EmailDetails } from "./EmailDetails.jsx";
 import { ComposeEmail } from "../cmps/ComposeEmail.jsx"
 
-
 const { Route, Switch } = ReactRouterDOM
-
 
 export class EmailApp extends React.Component {
 
@@ -26,7 +24,6 @@ export class EmailApp extends React.Component {
       })
    }
 
-
    componentWillUnmount() {
       this.removeEventBus();
    }
@@ -35,26 +32,20 @@ export class EmailApp extends React.Component {
       this.setState({ isShowCompose: toOpen })
    }
 
-
-
    render() {
+
       const { unreadCount, isShowCompose } = this.state
 
       return <React.Fragment>
          <AppHeader app="email" />
          <main className="email-app-main flex main-layout">
             <AppSideBar unreadCount={unreadCount} onToggleEmailCompose={this.onToggleEmailCompose} />
-
             <Switch>
                <Route component={EmailDetails} path="/mail/mail_box/:emailId" />
                <Route component={MailBox} path="/mail/mail_box" />
             </Switch>
-
             {isShowCompose && <ComposeEmail onToggleEmailCompose={this.onToggleEmailCompose} isShowCompose={isShowCompose} />}
-
          </main>
       </React.Fragment>
-
-
    }
 }

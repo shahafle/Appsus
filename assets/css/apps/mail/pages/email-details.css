@@ -15,9 +15,11 @@
 
 /* EMAIL DETAILS */
 .email-details-container {
-  background-color: #fff;
+  background-color: #97b3e642;
   padding: 30px;
   display: flex; 
+  border-radius: 5px;
+  word-break: break-all;
 }
 
 .details-title-container {

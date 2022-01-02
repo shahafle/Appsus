@@ -13,7 +13,6 @@ class _EmailDetails extends React.Component {
         loggedInUser: null,
     }
 
-
     componentDidMount() {
         this.loadEmail()
         EmailService.getLoggedInUser()
@@ -50,7 +49,6 @@ class _EmailDetails extends React.Component {
                     this.onToggleAttributesMsg(attribute)
                     eventBusService.emit('update-read-count', this.onUpdateReadCount)
                     if (attribute === 'trash') this.onBackToMailBox()
-
                 })
         }
     }
@@ -75,7 +73,6 @@ class _EmailDetails extends React.Component {
             title: txt
         })
     }
-
 
     onDeleteMsg = (emailId, attribute) => {
         Swal.fire({
@@ -108,7 +105,6 @@ class _EmailDetails extends React.Component {
             })
     }
 
-
     render() {
         const { email, loggedInUser } = this.state
         if (!email || !loggedInUser) return <Loader />
@@ -119,7 +115,6 @@ class _EmailDetails extends React.Component {
                     <div className="details-title-container flex space-between align-center">
                         <p className="email-title">{email.subject}</p>
                         <div className="flex row">
-
                             {(email.to.address === loggedInUser.address) &&
                                 <button className="details-reply fas fa-reply fa-lg clear-button"
                                     onClick={this.onEmailReply}>

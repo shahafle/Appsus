@@ -32,9 +32,7 @@ export class MailBox extends React.Component {
                 filterBy: { ...prevState.filterBy, searchLine }
             }), this.loadEmails)
         }
-
         this.removeEventBus = eventBusService.on('compose-email', this.loadEmails)
-
         EmailService.getLoggedInUser().then(loggedInUser => {
             this.setState(prevState => ({ ...prevState, loggedInUser }))
         })
@@ -45,7 +43,6 @@ export class MailBox extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-
         const params = new URLSearchParams(this.props.location.search);
         const prevParams = new URLSearchParams(prevProps.location.search);
         if (params.get('mail_box') === prevParams.get('mail_box') && params.get('search') === prevParams.get('search')) return
@@ -65,7 +62,6 @@ export class MailBox extends React.Component {
         }
     }
 
-
     loadEmails = () => {
         EmailService.query(this.state.filterBy)
             .then(emails => {
@@ -74,13 +70,13 @@ export class MailBox extends React.Component {
     }
 
     onSortEmails = (sortBy) => {
-        EmailService.query(this.state.filterBy).then(emails => {
-            EmailService.sortEmails(sortBy, emails).then(emails => {
-                this.setState((prevState) => ({ ...prevState, emails, sortBy }))
-
+        EmailService.query(this.state.filterBy)
+            .then(emails => {
+                EmailService.sortEmails(sortBy, emails)
+                    .then(emails => {
+                        this.setState((prevState) => ({ ...prevState, emails, sortBy }))
+                    })
             })
-        })
-
     }
 
     render() {
@@ -97,13 +93,10 @@ export class MailBox extends React.Component {
                         <div className={`${(sortBy === 'from') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('from')}>From</div>
                         <div className={`${(sortBy === 'subject') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('subject')}>Subject</div>
                         <button className="fas fa-redo clear-button" onClick={() => location.reload()}></button>
-
                     </div>
                     {emails.map(email => <EmailPreview key={email.id} email={email} loggedInUser={loggedInUser} loadEmails={this.loadEmails} />)}
                 </section>
             </React.Fragment>
-
         )
-
     }
 }

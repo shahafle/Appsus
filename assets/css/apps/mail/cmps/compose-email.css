@@ -1,14 +1,17 @@
 .compose-email-container {
   position: fixed;
   bottom: 0;
+  left: 40px;
   width: 450px;
   box-shadow: 0 0 3px 0px black;
   border-radius: 15px 15px 0 0;
+  transition: bottom 0.8s, width 0.8s;
+  z-index: 1;
 }
 
 .minimize {
   bottom: -362px;
-  width: 300px;
+  width: 350px;
 }
 
 .composer-header {
@@ -76,4 +79,5 @@ textarea {
   background-color: rgba(255, 255, 255, 0.548);
   font-size: 1rem;
   font-family: inherit;
+  border-radius: 10px;
 }

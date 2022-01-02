@@ -11,8 +11,6 @@ export class ComposeEmail extends React.Component {
             body: '',
         },
         isMinimize: false
-
-
     }
 
     sendDraftInterval
@@ -23,9 +21,9 @@ export class ComposeEmail extends React.Component {
         this.toInputRef.current.focus()
         this.sendDraftInterval = setInterval(this.onSaveDraft, 2500);
 
-        this.removeEventBus = eventBusService.on('email-reply', (email) => {  
+        this.removeEventBus = eventBusService.on('email-reply', (email) => {
             this.setState((prevState) => ({
-                draft: { ...prevState.draft,  address: email.from.address }
+                draft: { ...prevState.draft, address: email.from.address }
             }))
         })
     }
@@ -33,15 +31,11 @@ export class ComposeEmail extends React.Component {
     componentWillUnmount() {
         clearInterval(this.sendDraftInterval);
         this.removeEventBus();
-
     }
 
-
     handleChange = ({ target }) => {
-
         const field = target.name
         const value = target.value
-
         this.setState(prevState => ({ draft: { ...prevState.draft, [field]: value } }))
     }
 
@@ -90,10 +84,8 @@ export class ComposeEmail extends React.Component {
         })
     }
 
-
     render() {
-  
-        
+
         return (
             <section className={`compose-email-container ${(this.state.isMinimize) ? 'minimize' : ''} flex column`}>
                 <div className="composer-header flex space-between">
@@ -119,7 +111,6 @@ export class ComposeEmail extends React.Component {
                     <label>Subject&nbsp;
                         <input
                             name="subject"
-                            // value={address}
                             type="text"
                             placeholder="subject"
                             onChange={this.handleChange}
@@ -128,23 +119,15 @@ export class ComposeEmail extends React.Component {
 
                     <textarea
                         name="body"
-                        // value={ }
                         id="compose"
                         cols="30"
                         rows="10"
                         required
                         onChange={this.handleChange}
                     ></textarea>
-
-
                     <button className="composer-send-btn">Send</button>
-
-
                 </form>
             </section>
         )
-
     }
-
-
 }
