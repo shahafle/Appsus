@@ -10,7 +10,7 @@ export class NoteApp extends React.Component {
       return <React.Fragment>
          <AppHeader app="notes" />
          <Switch>
-            <Route component={DynamicNoteDetails} path="/keep/note/:noteId" />
+            {/* <Route component={DynamicNoteDetails} path="/keep/note/:noteId" /> */}
             <Route component={NotesBoard} path="/keep/board" />
          </Switch>
       </React.Fragment>

@@ -13,7 +13,7 @@
 }
 
 .compose-note.compose-open{
-background-color: rgba(255, 255, 255, 0.144);
+   background-color: rgb(234 234 234);
 }
 
 .compose-note input,.compose-note textarea{
@@ -96,10 +96,3 @@ background-color: rgba(255, 255, 255, 0.144);
    background-color: rgba(151, 151, 151, 0.308);
 }
 
-.create-note-btn{
-   align-self: flex-end;
-   padding: 7px 10px;
-   border-radius: 5px;
-   color: white;
-   background-color:#2F5233   ;
-}

@@ -24,7 +24,7 @@ header .logo{
     /* transform: translateY(-50%); */
 }
 
-header>:first-child:hover .logo{
+header div>:first-child:hover .logo{
   animation: rotating .5s linear ;
 }
 

@@ -8,7 +8,7 @@ export class DynamicNoteDetails extends React.Component {
       note: null
    }
    componentDidMount() {
-      const { noteId } = this.props.match.params;
+      const { noteId } = this.props;
       noteService.getNoteById(noteId).then(note => {
          if (!note) {
             this.props.history.push('/keep/board')
@@ -60,25 +60,24 @@ export class DynamicNoteDetails extends React.Component {
          timer: 2500,
          timerProgressBar: true,
       })
-    
+
       Toast.fire({
          icon: 'success',
-         title:'Note successfully edited'
+         title: 'Note successfully edited'
       })
    }
 
    render() {
       const { note } = this.state
       if (!note) return <React.Fragment></React.Fragment>
-
       switch (note.type) {
          case 'txt':
-            return <TxtNoteDetails note={note} handleEdit={this.handleEdit} onToggleTodoChecked={this.onToggleTodoChecked} onSaveEdit={this.onSaveEdit} />
+            return <TxtNoteDetails note={note} handleEdit={this.handleEdit} onToggleTodoChecked={this.onToggleTodoChecked} onSaveEdit={this.onSaveEdit}  {...this.props} />
          case 'img':
-            return <ImgNoteDetails note={note} handleEdit={this.handleEdit} onToggleTodoChecked={this.onToggleTodoChecked} onSaveEdit={this.onSaveEdit} />
+            return <ImgNoteDetails note={note} handleEdit={this.handleEdit} onToggleTodoChecked={this.onToggleTodoChecked} onSaveEdit={this.onSaveEdit} {...this.props} />
          case 'todos':
             return <TodoNoteDetails note={note} handleEdit={this.handleEdit} onToggleTodoChecked={this.onToggleTodoChecked}
-               onSaveEdit={this.onSaveEdit} onDeleteTodo={this.onDeleteTodo} onNewTodo={this.onNewTodo} />
+               onSaveEdit={this.onSaveEdit} onDeleteTodo={this.onDeleteTodo} onNewTodo={this.onNewTodo}  {...this.props} />
       }
    }
 }

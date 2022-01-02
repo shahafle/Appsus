@@ -1,0 +1,42 @@
+.note-details{
+   position:fixed;
+   left:50vw;
+   top:50vh;
+   transform: translate(-50%,-50%);
+   min-height: 500px;
+   border-radius: 10px;
+   border: 0.2px solid rgb(196, 196, 196);
+   padding: 20px;
+   min-width: 350px;
+   gap: 12px;
+   align-items: start;
+   z-index: 3;
+}
+
+.note-details h3{
+   font-size: 1.5rem;
+}
+
+.note-details p,.note-details label{
+   font-size: 1.2rem;
+}
+
+.todo-note-details ul{
+   gap:8px;
+}
+
+.todo-note-details ul> button{
+   align-self: start;
+}
+
+.todo-note-details li{
+   gap: 8px;
+}
+
+.note-details img{
+   max-width: 85vw;
+}
+
+.note-details li button{
+   background: none;
+}

@@ -81,3 +81,14 @@
 
   /* HEADER SEARCH BTN */
 
+
+  /* Notes btns */
+  
+.notes-primary-btn{
+  align-self: flex-end;
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: white;
+  background-color:#2F5233   ;
+  margin-top: auto;
+}
