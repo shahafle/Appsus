@@ -39,12 +39,12 @@
 }
 
 /* PREVIEW-TEXT */
-.email-preview .email-userName,
+.email-preview .email-username,
 .email-subject {
   white-space: nowrap;
 }
 
-.email-preview .email-userName {
+.email-preview .email-username {
   font-weight: bold;
   font-size: 1rem;
   width: 150px;
