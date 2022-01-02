@@ -43,8 +43,28 @@ function _createNotes() {
          type: "txt",
          isPinned: false,
          info: {
-            title: 'hi',
-            txt: "Fullstack Me Baby!"
+            title: 'קוקוריקו',
+            txt: `
+            אוקיי אוקיי, קוקוריקו תרנגול, קוקוריקו קול גדול
+            אם יש ספק אז יש פה גדילה פוטנציאלית ועכשיו הזמן לתת את הכל
+            מה שחשבתי חשבתי, שבתי כמו רוח, נשבתי מה שאהבתי, עודני כמו ביום שנולדתי
+            קמתי, חזרתי, פיזרתי מילים על מילים וצלילים שמצאתי, הרבה כבוד לפצצתי
+            מעבר לעובדה שחייתי את ההיפ־הופ ברחם
+            תוך כדי תנועה נולד על קצב, רגע של קסם
+            מעבר לשבר, לחדר, התדר עושה את שלו בכל מובן אפשרי
+            גן־עדן זה עניין של תפיסת תודעה, לא דרך או רצון נקמה
+            קוקוריקו, זאת קריאת השכמה, תשמע
+            אין לי רצון למתכת, רק להרגיש אדמה
+            תן לי לבוא וללכת, רק לנגן אהבה
+            מעבר לעובדה שכל הנוגעים בדבר הם חלק בלתי נפרד ממני, מעצם היותי
+            מעבר לכל החומות שכביכול מפרידות, יש אתכם ואותי
+            אז אל תדליקו אותי (אל תדליקו אותו)
+            עוד שנייה אני מתהפך פה על כולם
+            (עוד שנייה הוא מתהפך פה על כולם, בואנ'ה אל תדליקו אותו)
+            רבאק אל תדליקו אותי (אז אל תדליקו אותו)
+            וואלק עוד שנייה אני מתהפך פה על כולם (הוא מתהפך פה על כולם)
+            אני מתהפך פה על כולם (הוא מתהפך פה על כולם)
+            אז אל תדליקו אותי`
          },
          backgroundColor: '#d5e3d7'
       },
@@ -53,25 +73,102 @@ function _createNotes() {
          type: "img",
          isPinned: false,
          info: {
-            title: "Bobi and Me",
+            title: "Welcome to Trinity notes",
             url: "https://hellodesign.co/wp-content/uploads/2020/11/UX-hello-design.jpg"
          },
          backgroundColor: '#d5e3d7'
       },
       {
          id: utilService.makeId(),
-         type: "todos",
+         type: "img",
          isPinned: false,
          info: {
-            title: "Get my stuff together",
+            title: "טונה - המערב הפרוע",
+            url: "https://upload.wikimedia.org/wikipedia/he/c/c1/%D7%9E%D7%96%D7%A8%D7%97_%D7%A4%D7%A8%D7%95%D7%A2.png"
+         },
+         backgroundColor: '#fbe7c6'
+      },
+      {
+         id: utilService.makeId(),
+         type: "todos",
+         isPinned: false,
+         backgroundColor: '#b2d8e5',
+         info: {
+            title: "To do list",
             todos: [
-               { txt: "Driving liscence", doneAt: null },
-               { txt: "Coding power", doneAt: 187111111 }
+               { txt: "Keep my self together", doneAt: 187111111 },
+               { txt: "Coding power", doneAt: 187111111 },
+               { txt: "Clean the dishes", doneAt: null },
+               { txt: "Call the doctor", doneAt: null },
+               { txt: "learn to play: Texas Flood, Stevie Ray Vaughn", doneAt: null },
+               { txt: "Write and amazing mail&note application", doneAt: 187111111 },
+               
             ]
          },
-         // backgroundColor: '#ececec'
+         backgroundColor: '#b2d8e5'
+      },
+      {
+         id: utilService.makeId(),
+         type: "img",
+         isPinned: false,
+         info: {
+            title: "Patterns patterns",
+            url: "https://image.shutterstock.com/image-vector/three-dimensional-maze-perfectly-repeatable-260nw-1465124336.jpg"
+         },
          backgroundColor: '#d5e3d7'
-      }];
+      },
+      {
+         id: utilService.makeId(),
+         type: "img",
+         isPinned: false,
+         info: {
+            title: "james webb space telescope",
+            url: "https://ingeniumcanada.org/sites/default/files/2021-11/nouvelles-20200716-jwst.jpg"
+         },
+         backgroundColor: '#fbe7c6'
+      },
+      {
+         id: utilService.makeId(),
+         type: "txt",
+         isPinned: false,
+         info: {
+            title: 'Texas Flood',
+            txt: `
+            Well it's floodin' down in Texas
+            All of the telephone lines are down
+            Well it's floodin' down in Texas
+            All of the telephone lines are down
+            And I've been tryin' to call my baby
+            Lord and I can't get a single sound
+            Well dark clouds are rollin' in
+            Man I'm standin' out in the rain
+            Well dark clouds are rollin' in
+            Man I'm standin' out in the rain
+            Yeah flood water keep a rollin'
+            Man it's about to drive poor me insane
+            Well I'm leavin' you baby
+            Lord and I'm goin' back home to stay
+            Well I'm leavin' you baby
+            Lord and I'm goin' back home to stay
+            Well back home I know floods and tornados
+            Baby the sun shines every day
+            `
+         },
+         backgroundColor: '#d5e3d7'
+      },
+      {
+         id: utilService.makeId(),
+         type: "img",
+         isPinned: false,
+         info: {
+            title: "רביד פלוטניק - תוך כדי תנועה",
+            url: "https://upload.wikimedia.org/wikipedia/he/c/c1/%D7%A8%D7%91%D7%99%D7%93_%D7%A4%D7%9C%D7%95%D7%98%D7%A0%D7%99%D7%A7_-_%D7%AA%D7%95%D7%9A_%D7%9B%D7%93%D7%99_%D7%AA%D7%A0%D7%95%D7%A2%D7%94.jpg"
+         },
+         backgroundColor: '#ffaebc'
+      },
+   
+   
+   ];
    }
    _saveNotesToStorage(notes);
 }
