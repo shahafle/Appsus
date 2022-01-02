@@ -59,6 +59,7 @@ header input:focus-visible{
   padding: 4px 8px;
   border-radius: 5px;
   border: 1px #96969647 solid;
+  margin-inline-end: 60px;
 }
 
 .search-bar button{

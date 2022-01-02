@@ -2,6 +2,7 @@
    gap: 20px;
 }
 
-.books-filter input[type=text]{
+.books-filter input[type="range"]{
    padding: 2px;
+   align-self: start;
 }
