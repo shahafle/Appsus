@@ -21,7 +21,7 @@ export class TodoNotePreview extends React.Component {
    }
 
    onToggleTodoChecked = (ev, noteId, todoIdx) => {
-      ev.preventDefault()
+      ev.stopPropagation()
       noteService.toggleTodoChecked(noteId, todoIdx)
          .then(note => {
             this.setState({ note })
