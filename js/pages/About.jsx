@@ -8,7 +8,7 @@ export class About extends React.Component {
     render() {
         return (
             <section className="about">
-                <AppHeader/>
+                <AppHeader />
                 <div className="about-container main-layout">
                     <h2 className="about-title">About us</h2>
                     <p>Trinity is an Israeli based company, at two main locations in Israel, Bat-Yam and Tel-Aviv-Yafo.
@@ -70,13 +70,13 @@ export class About extends React.Component {
                             <h4>Trinity CFO</h4>
                             <p>“It's a dangerous business, going out your door. You step onto the road, and if you don't
                                 keep your feet, there's no knowing where you might be swept off to.” — Frodo ("The Lord of the Rings”)</p>
-                            <img className="about-img" src="../assets/img/elad.jpg" alt="" />
+                            <img className="about-img" src="assets/img/elad.jpg" alt="" />
                         </div>
                         <div className="about-info-container-elad flex column align-center justify-center">
                             <h3> Shahaf Levi</h3>
                             <h4>Trinity CEO</h4>
                             <p>"The path to succsess is never easy, but those who give up trying will never get there"</p>
-                            <img className="about-img" src="../assets/img/shahaf.jpg" alt="" />
+                            <img className="about-img" src="assets/img/shahaf.jpg" alt="" />
                         </div>
                     </section>
 
