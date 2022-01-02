@@ -113,8 +113,8 @@ export class EmailPreview extends React.Component {
                     </div>
                     <div className="flex flex-grow1 email-preview-info">
 
-                        {(email.from.address !== loggedInUser.address) && < div className="email-userName">{email.from.userName}</div>}
-                        {(email.from.address === loggedInUser.address) && <div className="email-userName">To: {email.to.userName}</div>}
+                        {(email.from.address !== loggedInUser.address) && < div className="email-username">{email.from.userName}</div>}
+                        {(email.from.address === loggedInUser.address) && <div className="email-username">To: {email.to.userName}</div>}
                         <div className="flex email-content-preview">
                             <p className="email-subject">{email.subject}</p>
                             <p className="email-body">{email.body}</p>

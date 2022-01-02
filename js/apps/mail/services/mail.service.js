@@ -55,7 +55,7 @@ function saveDraft(newDraft) {
     const emails = _loadFromStorage()
     if (!newDraft.id) {
         newDraft = _createDraft(newDraft)
-        emails.push(newDraft)
+        emails.unshift(newDraft)
 
     } else {
         const oldDraftIdx = emails.findIndex(email => newDraft.id === email.id)
@@ -71,7 +71,6 @@ function sendEmail(draftId) {
     const emails = _loadFromStorage()
     const draftIdx = emails.findIndex(email => draftId === email.id)
     emails[draftIdx].isDraft = false
-    console.log(emails);
     _saveEmailsToStorage(emails)
 }
 
