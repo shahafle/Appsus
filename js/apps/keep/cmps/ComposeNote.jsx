@@ -82,7 +82,7 @@ export class ComposeNote extends React.Component {
             {type === 'img' && <input type="text" name="url" placeholder="Image url" onChange={this.handleFieldChange} value={this.state.fields.url} />}
             {type === 'todos' && <ComposeTodos handleFieldChange={this.handleFieldChange} />}
 
-            <button className="create-note-btn">Create</button>
+            <button className="notes-primary-btn">Create</button>
          </div>
       </form >
    }

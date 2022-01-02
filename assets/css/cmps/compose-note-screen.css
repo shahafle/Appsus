@@ -1,4 +1,4 @@
-.compose-note-screen{
+.screen{
       position: fixed;
       width: 100%;
       height: 100%;
@@ -8,11 +8,12 @@
       left: 0;
       opacity: 0;
       pointer-events: none;
-      /* cursor: pointer; */
+      cursor: pointer;
       transition: opacity 0.5s;
+      background-color: rgba(114, 114, 114, 0.582);
 }
 
-.compose-note-screen.open{
+.screen.open{
    opacity: 1;
    pointer-events: auto;
 }

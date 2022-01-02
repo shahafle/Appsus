@@ -15,7 +15,7 @@ export class AppHeader extends React.Component {
       let appColor = 'main';
       const { app } = this.props;
       if (app === 'notes') appColor = 'green';
-      else if (app === 'email') appColor = 'blue';
+      else if (app === 'mail') appColor = 'blue';
       else if (app === 'books') appColor = 'yellow';
       this.setState(prevState => ({ ...prevState, appColor }))
    }
@@ -26,7 +26,7 @@ export class AppHeader extends React.Component {
 
    get appRoute() {
       const { app } = this.props;
-      if (app === 'email') return 'mail/mail_box'
+      if (app === 'mail') return 'mail/mail_box'
       if (app === 'notes') return 'keep/board'
       if (app === 'books') return 'book/store'
 

@@ -3,16 +3,23 @@ import { Loader } from "../../../cmps/Loader.jsx"
 import { DynamicPreview } from "../cmps/dynamic-note-preview/DynamicPreview.jsx";
 import { ComposeNote } from "../cmps/ComposeNote.jsx";
 import { Screen } from "../../../cmps/Screen.jsx";
-
-const { Route } = ReactRouterDOM
+import { DynamicNoteDetails } from "./dynamic-note-setails/DynamicNoteDetails.jsx";
+import { eventBusService } from "../../../services/event-bus.service.js";
 
 export class NotesBoard extends React.Component {
    state = {
       notes: null,
-      filterBy: null
+      filterBy: null,
+      openNote: null
    }
 
+   removeEventBus
+
    componentDidMount() {
+      this.removeEventBus = eventBusService.on('closeNoteDetails', () => {
+         this.setState({ openNote: null })
+      })
+
       let currSearch = new URLSearchParams(this.props.location.search).get('search');
       currSearch = (currSearch === null) ? '' : currSearch;
       this.setState((prevState) => ({
@@ -28,6 +35,10 @@ export class NotesBoard extends React.Component {
             filterBy: { ...prevState.filterBy, 'name': currSearch }
          }), this.loadNotes)
       }
+   }
+
+   componentWillUnmount() {
+      this.removeEventBus();
    }
 
    loadNotes = () => {
@@ -47,12 +58,12 @@ export class NotesBoard extends React.Component {
    }
 
    onDeleteNote = (ev, noteId) => {
-      ev.preventDefault()
+      ev.stopPropagation()
       this.onDeleteMsg(noteId)
    }
 
    onPinNote = (ev, noteId) => {
-      ev.preventDefault()
+      ev.stopPropagation()
       noteService.toggleNotePin(noteId)
          .then(({ notes, isPinned }) => {
             this.setState(prevState => ({ ...prevState, notes }))
@@ -61,14 +72,14 @@ export class NotesBoard extends React.Component {
    }
 
    onDuplicateNote = (ev, noteId) => {
-      ev.preventDefault()
+      ev.stopPropagation()
       noteService.duplicateNote(noteId)
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
       this.onAlertMsg('note-dupl')
    }
 
    onColorNote = (ev, noteId, color) => {
-      ev.preventDefault()
+      ev.stopPropagation()
       noteService.colorNote(noteId, color)
          .then(notes => this.setState(prevState => ({ ...prevState, notes })))
    }
@@ -118,7 +129,10 @@ export class NotesBoard extends React.Component {
                   timerProgressBar: true,
                })
                noteService.deleteNote(noteId)
-                  .then(notes => this.setState(prevState => ({ ...prevState, notes })))
+                  .then(notes => {
+                     this.setState(prevState => ({ ...prevState, notes, openNote: null }))
+                     eventBusService.emit('toggleScreen', false);
+                  })
                Toast.fire({
                   title: 'Note deleted',
                   icon: 'success'
@@ -127,16 +141,23 @@ export class NotesBoard extends React.Component {
          })
    }
 
+   onOpenNote = (openNote) => {
+      eventBusService.emit('toggleScreen', true);
+      this.setState(prevState => ({ ...prevState, openNote }))
+   }
+
    render() {
-      const { notes } = this.state
+      const { notes, openNote } = this.state
       if (!notes) return <Loader />
       return <main className="main-layout">
          <ComposeNote onAddNote={this.onAddNote} />
          <div className="notes-board">
             {notes.map(note => <DynamicPreview key={note.id} note={note} onDeleteNote={this.onDeleteNote}
-               onPinNote={this.onPinNote} onDuplicateNote={this.onDuplicateNote} onColorNote={this.onColorNote} />)}
-
+               onPinNote={this.onPinNote} onDuplicateNote={this.onDuplicateNote} onColorNote={this.onColorNote}
+               onOpenNote={this.onOpenNote} />)}
          </div>
+         {(openNote !== null) && <DynamicNoteDetails noteId={openNote} onDeleteNote={this.onDeleteNote}
+            onPinNote={this.onPinNote} onDuplicateNote={this.onDuplicateNote} onColorNote={this.onColorNote} />}
          <Screen />
       </main>
    }

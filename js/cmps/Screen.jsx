@@ -13,10 +13,11 @@ export class Screen extends React.Component {
 
    render() {
       return <div
-         className={`compose-note-screen ${(this.state.isShown) ? 'open' : ''}`}
+         className={`screen ${(this.state.isShown) ? 'open' : ''}`}
          onClick={() => {
             eventBusService.emit('toggleScreen', false)
             eventBusService.emit('toggleNoteCompose', false)
+            eventBusService.emit('closeNoteDetails')
 
          }}></div>
    }

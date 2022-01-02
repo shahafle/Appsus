@@ -36,7 +36,8 @@
 @import './apps/keep/cmps/note-preview.css';
 @import './apps/keep/cmps/compose-note.css';
 @import './apps/keep/cmps/color-input.css';
-
+@import './apps/keep/cmps/note-details.css';
+@import './apps/keep/cmps/note-acions-bar.css';
 
 /* CMPS */
 @import './cmps/compose-note-screen.css';

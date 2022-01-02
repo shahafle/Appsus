@@ -1,0 +1,35 @@
+.preview-actions-bar{
+   gap: 7px;
+   position: relative;
+}
+
+.preview-actions-bar button{
+   background-color: rgba(0, 0, 0, 0);;
+   font-size: 1.2rem;
+   padding: 2px;
+   width: 35px;
+   height: 35px;
+   border-radius: 50%;
+   transition: background-color 0.3s;
+}
+
+
+.note-preview .preview-actions-bar button:not(.pinned){
+   visibility: hidden;
+   opacity: 0;
+   transition: background-color 0.3s,opacity 0.5s;
+}
+
+.note-preview  .preview-actions-bar button.input-open{
+   visibility: visible;
+   opacity: 1;
+}
+
+.note-preview:hover .preview-actions-bar button{
+   visibility: visible;
+   opacity: 1;
+}
+
+.note-details .preview-actions-bar .fa-palette{
+   display: none;
+}

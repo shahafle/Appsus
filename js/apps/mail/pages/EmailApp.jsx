@@ -37,7 +37,7 @@ export class EmailApp extends React.Component {
       const { unreadCount, isShowCompose } = this.state
 
       return <React.Fragment>
-         <AppHeader app="email" />
+         <AppHeader app="mail" />
          <main className="email-app-main flex main-layout">
             <AppSideBar unreadCount={unreadCount} onToggleEmailCompose={this.onToggleEmailCompose} />
             <Switch>
