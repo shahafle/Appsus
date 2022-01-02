@@ -89,10 +89,10 @@ export class MailBox extends React.Component {
                 <section className="mailbox-container flex column">
                     <div className="mailbox-action-bar flex">
                         <i className="fas fa-sort"></i>
-                        <div className={`${(sortBy === 'date') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('date')}>Date</div>
+                        <button className="fas fa-redo clear-button" onClick={() => location.reload()}></button>
                         <div className={`${(sortBy === 'from') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('from')}>From</div>
                         <div className={`${(sortBy === 'subject') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('subject')}>Subject</div>
-                        <button className="fas fa-redo clear-button" onClick={() => location.reload()}></button>
+                        <div className={`${(sortBy === 'date') ? 'sort-active' : ''} `} onClick={() => this.onSortEmails('date')}>Date</div>
                     </div>
                     {emails.map(email => <EmailPreview key={email.id} email={email} loggedInUser={loggedInUser} loadEmails={this.loadEmails} />)}
                 </section>
