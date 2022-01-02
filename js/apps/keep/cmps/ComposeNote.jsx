@@ -1,4 +1,4 @@
-import { ComposeTodos } from "./composeTodos.jsx";
+import { ComposeTodos } from "composeTodos.jsx";
 import { eventBusService } from "../../../services/event-bus.service.js";
 
 export class ComposeNote extends React.Component {
