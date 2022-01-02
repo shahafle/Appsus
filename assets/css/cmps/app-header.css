@@ -136,29 +136,29 @@ header input:focus-visible{
   }
   .menu.open .button:first-of-type {
     top: 70px;
-    height: fit-content;
+    /* height: fit-content; */
   }
   .menu.open .button:nth-of-type(2) {
     top: 140px;
-    height: fit-content;
+    /* height: fit-content; */
   
     transition-delay: 0.05s;
   }
   .menu.open .button:nth-of-type(3) {
     top: 210px;
-    height: fit-content;
+    /* height: fit-content; */
   
     transition-delay: 0.1s;
   }
   .menu.open .button:nth-of-type(4) {
     top: 280px;
-    height: fit-content;
+    /* height: fit-content; */
   
     transition-delay: 0.15s;
   }
   .menu.open .button:last-of-type {
     top: 350px;
-    height: fit-content;
+    /* height: fit-content; */
   
     transition-delay:  0.2s;
   }
@@ -168,6 +168,7 @@ header input:focus-visible{
 }
 
   .button {
+    height: 50px;
     color: rgb(31, 31, 31);
     padding: 12px;
     font-size: 1.5rem;
