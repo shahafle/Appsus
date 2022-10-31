@@ -59,7 +59,7 @@ An expanded full display of the mail content with edit options.
 ## Technologies
 🧰 Framework: React
 
-This app is a frontend only project in oder to practice our framework skills.  
+This app is a frontend only project in order to practice our framework skills.  
 No backend or database. To store the data we used local storage.  
 We used swal for a handy solution to alerts, prompts and confirmation modals.
 
@@ -71,5 +71,3 @@ We used swal for a handy solution to alerts, prompts and confirmation modals.
 The landing page, such simple welcome page for the user. From this point the user have to choose which app he wants to go to.
 
 ![image](https://user-images.githubusercontent.com/88834944/198957283-6a2d5e91-f7d4-41d8-b16f-b39c15706bd9.png)
-
-###
